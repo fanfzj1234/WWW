@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="__CSS__/index_top.css"/>
 
 
-<a href="#" title="<?php echo $_SESSION['uid'];?>" id="user_login_name" class="glyphicon glyphicon-user" ></a>
+<a href="#" title="<?php echo $_SESSION['uid'];?>" class="glyphicon glyphicon-user" ><strong id="user_login_name" ></strong></a>
 <!-- 假如 session不存在或设置的值为空，即没有登录，显示登录和注册button-->
 <?php
   session_start();
