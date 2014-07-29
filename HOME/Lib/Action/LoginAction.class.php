@@ -18,7 +18,7 @@
                 $data['V'][]="studentId";  
 				$data['V'][]="password";  
 				$data['V'][]="schoolId";  
-				$data['V'][]="type";  
+				$data['type']=$type;  
                 $data['studentId']=$studentId;  
 				$data['password']=$password;  
 				$data['schoolId']=$schoolId;  
