@@ -14,18 +14,18 @@ $(document).ready(function(e) {
                 success: function(data,a){
                 	 if(data.S=="success")
                      {
-                     	$("#user_login_name").addClass("register_style_success");
+                     	$("#user_login_name").attr("class", "register_style_success");
                         $("#user_login_name").append("Hello 游客："+data.uid+"");
                         
                      }
                      if(data.S=="failed")
                      {
-                     	 $("#user_login_name").addClass("register_style_failed");
+                     	 $("#user_login_name").attr("class", "register_style_failed");
                          $("#user_login_name").append(" "+data.MT+" ");
                       }
                 },
         	    error:function(data){
-                        $("#user_login_name").addClass("register_style_success");
+                        $("#user_login_name").attr("class", "register_style_success");
                         $("#user_login_name").append("游客访问已关闭");
         	    }
         });

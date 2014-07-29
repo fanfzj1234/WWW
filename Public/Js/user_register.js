@@ -15,7 +15,7 @@ $(document).ready(function(e) {
                 url: APP+"/Login/user_register",
                 data: {type:"normal_student",studentId:$("#studentId").val(), student_password:$("#student_password").val(),schoolId:$("#school_input_1").val()},
                 dataType: "json",
-                success: function(data){
+                success: function(data,a){
                 	 if(data.S=="success")
                      {
                          $("#register_alert").attr("class", "alert alert-success");
@@ -43,7 +43,7 @@ $(document).ready(function(e) {
                 url: APP+"Login/user_register",
                 data: {type:"normal_teacher",disciplineId:$("#discipline_input").val(), teacherName:$("#teacherName").val(),teacher_password:$("#teacher_password").val(),teacher_password_again:$("#teacher_password_again").val(),schoolId:$("#school_input_2").val()},
                 dataType: "json",
-                success: function(data){
+                success: function(data,a){
                 	 if(data.S=="success")
                      {
                          $("#register_alert").attr("class", "alert alert-success");
