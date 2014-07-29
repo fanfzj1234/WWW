@@ -16,26 +16,26 @@ $(document).ready(function(e) {
                 url: APP+"/User/user_info",
                 data: {uid:$("#session_uid").value(),type:"basic_pull"},
                 dataType: "json",
-                success: function(data){
+                success: function(data,a){
                 	 if(data.S=="success")
                      {
                      	$.each(data.V,function(i,item){
                          $("#basic_pull_userName").append(""+item.userName+"");
                          $("#basic_pull_userDate").append(""+item.userDate+"");
                          if(item.State==1){
-                          $("#basic_pull_State").attr("class", "basic_pull_zs");	
+                          $("#basic_pull_State").addClass("class", "basic_pull_zs");	
                           $("#basic_pull_State").append("正式用户（欢迎你的使用）");
                          }
                          if(item.State==2){
-                          $("#basic_pull_State").attr("class", "basic_pull_ls");	
+                          $("#basic_pull_State").addClass("class", "basic_pull_ls");	
                           $("#basic_pull_State").append("临时用户(请尽快完善信息)");
                          }
                          if(item.Type==1){
-                          $("#basic_pull_Type").attr("class", "basic_pull_student");	
+                          $("#basic_pull_Type").addClass("class", "basic_pull_student");	
                           $("#basic_pull_Type").append("学生");
                          }
                          if(item.Type==2){
-                          $("#basic_pull_Type").attr("class", "basic_pull_teacher");	
+                          $("#basic_pull_Type").addClass("class", "basic_pull_teacher");	
                           $("#basic_pull_Type").append("教师");
                          }
                          });
@@ -58,7 +58,7 @@ $(document).ready(function(e) {
         	{
         		type: "post",
                 url: APP+"User/user_info",
-                data: {type:"sumbit",uid:$("#meuid").value(),username:$("#me_username").value(),userRealName:$("#me_userRealName").value(),schoolId_1:$("#me_schoolId_1").value(),schoolId_2:$("#me_schoolId_2").value(),
+                data: {type:"sumbit",uid:$("#me_uid").value(),username:$("#me_username").value(),userRealName:$("#me_userRealName").value(),schoolId_1:$("#me_schoolId_1").value(),schoolId_2:$("#me_schoolId_2").value(),
                        schoolId_3:$("#me_schoolId_3").value(),schoolId_4:$("#me_schoolId_4").value(),userStudentId:$("#me_userStudentId").value(),userStudentPasswd:$("#me_userStudentPasswd").value(),
                        userEmail:$("#me_userEmail").value(),userTel:$("#me_userTel").value(),userAccount_qq:$("#me_userAccount_qq").value(),userAccount_sina:$("#me_userAccount_sina").value(),
                        userAccount_renren:$("#me_userAccount_renren").value(),userIntro:$("me_userIntro").value()
