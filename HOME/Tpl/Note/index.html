@@ -1,0 +1,61 @@
+<!--
+	作者：范志俊
+	时间：2014-07-25
+         描述：首页页面，包括显示本周课程表，和本周笔记，以及推荐笔记
+-->
+<script>
+    var APP = "__APP__";
+	var IMG = "__IMG__";
+</script>
+<!-- 自定义 table 操作 Javascript 文件 -->
+<script src="__JS__/main_table.js"> </script>
+
+
+	  <div class='title'>
+    <h2>首页</h2>
+     <include file="Public:top" />
+  </div>
+<article class='larg'>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                         本周笔记
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+                           本周笔记  
+<ul class="media-list">
+  <li class="media">
+    <a class="pull-left" href="#">
+       <img style="width: 64px; height: 64px;" class="media-object" src="http://d.hiphotos.baidu.com/image/pic/item/f636afc379310a55d8c966fab54543a9832610ca.jpg" alt="...">
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading">数据库原理</h4>
+        <h5 class="media-heading">第一章</h5>
+               标签：Sql
+    </div>
+  </li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            推荐笔记
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+             推荐笔记      
+      </div>
+    </div>
+  </div>
+</div>
+</article>

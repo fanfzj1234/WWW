@@ -1,0 +1,13 @@
+#school_list_1,#school_list_2,#discipline_list
+{
+	margin-left: 53px;
+	width: 215px;
+}
+.register_style_failed
+{
+	color: #a94442;
+}
+.register_style_success
+{
+	color: #4fc1e9;
+}

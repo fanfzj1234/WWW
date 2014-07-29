@@ -1,0 +1,61 @@
+﻿body { 
+font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+color: #4f6b72; 
+background: #E6EAE9; 
+} 
+
+
+#mytable { 
+width: 100%; 
+padding: 0; 
+margin: 0; 
+text-align : center ; 
+} 
+.table-heading{ 
+    font-family : Georgia, serif; 
+    font-size : 16px ; 
+    font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+    align-content: center;
+    color : #101010 ; 
+    /*background-color : yellow ; */
+} 
+/*.odd{ 
+    background-color : #ffc;  /*奇数行浅黄*/ 
+} */
+/*
+.even{ 
+    background-color : #cef ;/*偶数行浅蓝*/ 
+} */
+
+th{
+	font-size:15px; 
+}
+td { 
+border-right: 1px solid #C1DAD7; 
+border-bottom: 1px solid #C1DAD7; 
+font-size:13px; 
+padding: 6px 6px 6px 12px; 
+color: #4f6b72; 
+align-content: center;
+} 
+
+	
+p td_have{
+	cursor: pointer;
+	}
+p td_null{
+	pointer-events: none;
+}
+
+.class_open{
+	color: #000000;
+	}
+.class_close{
+	color: #4f6b72;
+	}
+.class_null{
+	color: #FFFFFF;
+	}
+
+.hidden{ 
+display : none ;} 
