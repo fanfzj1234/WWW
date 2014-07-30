@@ -37,7 +37,10 @@ $("#school_input_1").keyup(function(e){
 	}
   });
 /*下拉列表失去焦点*/
-$("#school_input_1").focus(function(){ 
+$("#school_input_1").blur(function(){ 
+	$("#school_list_1").hide();
+});
+$("#school_list_1").blur(function(){ 
 	$("#school_list_1").hide();
 });
 /*下拉列表选择，将选择的值放进文本框内*/
@@ -78,7 +81,11 @@ $("#school_input_2").keyup(function(e){
 	}
   });
 /*下拉列表失去焦点*/
-$("#school_input_2").focus(function(){ 
+$("#school_input_2").blur(function(){ 
+	
+	$("#school_list_2").hide();
+});
+$("#school_list_2").blur(function(){ 
 	
 	$("#school_list_2").hide();
 });
@@ -122,7 +129,11 @@ $("#discipline_input").keyup(function(e){
 	}
   });
 /*下拉列表失去焦点*/
-$("#discipline_input").focus(function(){ 
+$("#discipline_input").blur(function(){ 
+	
+	$("#discipline_list").hide();
+});
+$("#discipline_list").blur(function(){ 
 	
 	$("#discipline_list").hide();
 });
