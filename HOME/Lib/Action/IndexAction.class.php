@@ -6,7 +6,9 @@
 		public function index(){
              $this->display();
 		}
-		
+		public function index_main(){
+             $this->display();
+		}
 		public function main(){
 			$this->display();
 		}
