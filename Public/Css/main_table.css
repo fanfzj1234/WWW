@@ -4,7 +4,9 @@ color: #4f6b72;
 background: #E6EAE9; 
 } 
 
-
+span{
+font-size:14px;
+}
 #mytable { 
 width: 100%; 
 padding: 0; 
