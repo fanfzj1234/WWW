@@ -4,7 +4,7 @@
           //header("Location: /404.html");
 		  $this->display('Public:404');
          }
-		 function http_post_data($url, $data_string) {
+	function http_post_data($url, $data_string) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_HEADER, 0);

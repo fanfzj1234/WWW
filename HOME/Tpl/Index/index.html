@@ -11,26 +11,282 @@
 <!-- Custom styles for this template -->
 <link href="http://www.bootcss.com/p/stickup/stickup.css" rel="stylesheet">
 <link rel="image_src" href="http://lirancohen.github.io/stickUp/images/stickUp.png">
+<link href="__CSS__/index_image_style.css" rel="stylesheet">
+
+<!-- 新 jquery Javascript 文件 --> 
+<script type="text/javascript" src='http://code.jquery.com/jquery-2.1.1.js'></script>
+
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<!-- jquery-ui  CSS 文件 -->
+<link rel="stylesheet" href="__CSS__/jquery-ui.css" media="screen" type="text/css" />
+
+<!--font-awesome  标准文字库  CSS 文件 -->
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css">
+
+<!--bootstrap  再编辑   CSS 文件 -->
+<link rel="stylesheet" href="__CSS__/bootstrap.css" media="screen" type="text/css"/>
+
+<style>
+	#school_list_1,#school_list_2,#discipline_list
+{
+	margin-left: 53px;
+	width: 195px;
+}
+.register_style_failed
+{
+	color: #a94442;
+}
+.register_style_success
+{
+	color: #4fc1e9;
+}
+</style>
+<script>
+    var APP = "__APP__";
+	var IMG = "__IMG__";	
+</script>
+<!-- 自定义 下拉列表，验证码，button特效  操作 Javascript 文件 -->
+<script src="__JS__/index_main.js"></script>
+<script src="__JS__/index_chinazjs.js"></script>
 <title>爱拍课堂||ipaikt</title>
 </head>
 <body>
-<body style="" data-find="_5" onload="if(window.location.href.indexOf('temp')==-1)window.location.href=window.location.href+'?temp='+Math.random().toString();bodyLoad();" >
+<body style="" data-find="_5" onload="if(window.location.href.indexOf('temp')==-1)window.location.href=window.location.href+'?temp='+Math.random().toString();" >
     <!-- START THE COVER -->
     <div id="home" class="carousel" data-find="_4" style="margin-bottom: 20px;">
       <div class="carousel-inner">
-        <div class="item active">
+        <div class="item active" style="min-height:380px;">
           <div class="container">
-            <div class="carousel-caption">
+            <div class="carousel-caption" style="padding-bottom: 0px;">
              	<img src="__IMG__/logo2.png"> 
-				<h1>爱拍课堂</h1>
+				<h1 style="background-color: #0a64a4; border-bottom: 0px solid #0a64a4; ">爱拍课堂</h1>
 				<h3>一个 课程表和笔记相结合  APP应用</h3>
-				<p>这是一个快捷、方便的 课程表和笔记应用，它能让查询课程表，以及记录课堂笔记更方便。</p>
-				<p><a class="btn btn-large btn-success" href="__APP__/Index/index_main"><b>Go》》</b></a></p>
+				<p>记录学习点滴，专注学生学习。用上爱拍，喜欢爱拍，恋上爱拍。</p>
+				<p style="margin-bottom: 0px;"><botton class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login" style="background-color: #5CB85C; border-color: #4795d1; font-size: 16px;">Go>>></botton></p>
             </div>
           </div>
         </div>
     </div><!-- END COVER -->
 </div>
+<!--
+	作者：1009137312@qq.com
+	时间：2014-07-31
+	描述：登陆
+
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">
+  登陆
+</button>
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#student_register">
+  注册
+</button>-->
+<!-- 登陆 Modal 模态框 -->
+<div class="modal fade bs-example-modal-sm" id="login" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"  aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h5 class="modal-title" id="login_ModalLabel">登陆 &nbsp;&nbsp;/
+        	<button type="button" class="btn btn-link btn-lg" data-dismiss="modal" data-toggle="modal" data-target="#student_register" style="margin-top: -3px;font-size:14px"  id="student_register_exchange_button">学生注册</button>
+        	/<button type="button" class="btn btn-link btn-lg" data-dismiss="modal" data-toggle="modal" data-target="#teacher_register" style="margin-top: -3px;font-size:14px"  id="teacher_register_exchange_button">教师注册</button>
+        	</h5>
+      </div>
+       <div class="modal-body">
+                    <div class="modal-form">
+                       <form method="post" role="form" id="form_login">
+
+				<div class="form-group">
+
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="glyphicon glyphicon-user"></i>
+						</div>
+
+						<input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off" />
+					</div>
+
+				</div>
+
+				<div class="form-group">
+
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="glyphicon glyphicon-pencil"></i>
+						</div>
+
+						<input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" />
+					</div>
+
+				</div>
+			    <div class="form-group">
+                         
+                         <div class="input-group">
+						<div class="input-group-addon">
+							<i><strong class="glyphicon glyphicon-picture"></strong></i>
+						</div>
+                          <input type="text" class="form-control" name="code" id="code" placeholder="Code" autocomplete="off" style="height: 40px;" />
+                          <span class="input-group-addon" ><img src="__APP__/Public/code" id="code_img" alt="点击验证码刷新" title="点击验证码刷新"></span>
+                         </div>
+						 
+                         
+                        
+				</div>   
+			</form>
+			<!-- 状态提示栏 -->
+			<p id="login_alert" role="alert"></p>
+		  </div>
+		   
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" data-loading-text="Loading..." id="login_button">登陆</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- 学生注册 Modal 模态框-->
+<div class="modal fade bs-example-modal-sm" id="student_register" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"  aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h5 class="modal-title" id="student_register_ModalLabel">
+        	<button type="button" class="btn btn-link btn-lg" data-dismiss="modal" data-toggle="modal" data-target="#login" style="margin-top: -3px;font-size:14px"  id="login_exchange_button">登陆</button>/
+        	  &nbsp;学生注册&nbsp;/
+        	<button type="button" class="btn btn-link btn-lg" data-dismiss="modal" data-toggle="modal" data-target="#teacher_register" style="margin-top: -3px;font-size:14px"  id="teacher_register_exchange_button">教师注册</button>  	
+</h5>
+      </div>
+       <div class="modal-body">
+                    <div class="modal-form">
+                       <form method="post" role="form" id="form_login">
+                       	<div class="form-group">
+                         <div class="input-group">
+                                 <span class="input-group-addon">学校</span>
+                                 <input type="text" id="school_input_1" class="form-control" placeholder="School">
+                                    
+                         </div>
+                          
+                        <select class="input-xlarge" multiple="multiple" id="school_list_1" onmouseover="this.size=document.getElementById('school_list_1').length">
+                        
+                        </select>
+                       
+
+                         </div>
+                        <div class="form-group">
+                         <div class="input-group">
+                         	      <span class="input-group-addon">学号</span>
+                                  <input type="text" class="form-control" id="studentId"  placeholder="Student No.">
+                                  
+                          </div>
+                        </div>
+                        <div class="form-group">
+                        <div class="input-group">
+                                  <span class="input-group-addon">密码</span>
+                                  <input type="password" class="form-control" id="student_password" placeholder="Student Password">
+                                  
+                         </div>
+                        </div>
+			</form>
+			<!-- 状态提示栏 -->
+			<p id="register_alert" role="alert"></p>
+		  </div>
+		   
+      <div class="modal-footer">
+      	
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary"  id="student_register_button">注册</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 教师注册 Modal 模态框-->
+<div class="modal fade bs-example-modal-sm" id="teacher_register" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"  aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+       <h5 class="modal-title" id="student_register_ModalLabel">
+       	<button type="button" class="btn btn-link btn-lg" data-dismiss="modal" data-toggle="modal" data-target="#login" style="margin-top: -3px;font-size:14px"  id="login_exchange_button">登陆</button>
+       	/<button type="button" class="btn btn-link btn-lg" data-dismiss="modal" data-toggle="modal" data-target="#student_register" style="margin-top: -3px;font-size:14px"  id="student_register_exchange_button">学生注册</button>
+         /&nbsp;&nbsp;教师注册
+</h5>
+      </div>
+       <div class="modal-body">
+                    <div class="modal-form">
+                       <form method="post" role="form" id="form_login">
+                       	<div class="form-group">
+                         <div class="input-group">
+                                 <span class="input-group-addon">学校</span>
+                                 <input type="text" id="school_input_2" class="form-control" placeholder="School">
+                                    
+                         </div>
+                          
+                        <select class="input-xlarge" multiple="multiple" id="school_list_2"  onmouseover="this.size=document.getElementById('school_list_2').length">
+                        
+                        </select>
+                       
+
+                         </div>
+                         	<div class="form-group">
+                         <div class="input-group">
+                                 <span class="input-group-addon">专业</span>
+                                 <input type="text" id="discipline_input" class="form-control" placeholder="Discipline">
+                                    
+                         </div>
+                          
+                        <select class="input-xlarge" multiple="multiple" id="discipline_list" onmouseover="this.size=document.getElementById('discipline_list').length">
+                        
+                        </select>
+                       
+
+                         </div>
+                        <div class="form-group">
+                         <div class="input-group">
+                         	      <span class="input-group-addon">教师姓名</span>
+                                  <input type="text" class="form-control" id="teacherName"  placeholder="TeacherName">
+                                  
+                          </div>
+                        </div>
+                        <div class="form-group">
+                        <div class="input-group">
+                                  <span class="input-group-addon">密码</span>
+                                  <input type="password" class="form-control" id="teacher_password" placeholder="Teacher Password">
+                                  
+                         </div>
+                        </div>
+                        <div class="form-group">
+                        <div class="input-group">
+                                  <span class="input-group-addon">再次输入密码</span>
+                                  <input type="password" class="form-control" id="teacher_password_again" placeholder="Password Again">
+                                  
+                         </div>
+                        </div>
+			</form>
+			<!-- 状态提示栏 -->
+			<p id="register_alert" role="alert"></p>
+		  </div>
+		   
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary"  id="teacher_register_button">注册</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
     <!-- START THE NAVBAR -->
     <div class="navbar-wrapper stuckMenu" style="margin-top:0px">
       <div class="container">
@@ -107,37 +363,110 @@
           <h2 class="featurette-heading">更新记录</h2>
         </div>
         <div class="col-lg-offset-1 col-lg-10">
-          
-          
-        </div>
+        	<div class="run">
+<div class="runlf">
+	<img id=lfbut src="__IMG__/1.gif">		
+	</div>
+<div id="gdq">
+<DIV>
+<UL>
+  <LI>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG alt=甜美展现得淋漓尽致 src="__IMG__/phpgnzZ98.jpg"></A><SPAN id=span0></SPAN></DT>
+    <DD><A href="#">甜美展现得淋漓尽致</A></DD></DL>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG alt=回眸一笑让人着迷 src="__IMG__/phptZkg40.jpg"></A><SPAN id=span1></SPAN></DT>
+    <DD><A href="#">回眸一笑让人着迷</A></DD></DL></LI>
+  <LI>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG alt=阔腿裤遮住小象腿 src="__IMG__/phpvpbxeV.jpg"></A><SPAN 
+    id=span2></SPAN></DT>
+    <DD><A href="#">阔腿裤遮住小象腿</A></DD></DL>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG alt=小礼服可爱小女人 src="__IMG__/phptlHjEC.jpg"></A><SPAN 
+    id=span3></SPAN></DT>
+    <DD><A href="#">小礼服可爱小女人</A></DD></DL></LI>
+  <LI>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG alt=帅气鞋和包很相搭 src="__IMG__/phpLAGT1V.jpg"></A><SPAN 
+    id=span4></SPAN></DT>
+    <DD><A href="#">帅气鞋和包很相搭</A></DD></DL>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG alt=超级经典短打装扮 src="__IMG__/phpRw9XR8.jpg"></A><SPAN 
+    id=span5></SPAN></DT>
+    <DD><A href="#">超级经典短打装扮</A></DD></DL></LI>
+  <LI>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG alt=小西服配上工装裤 src="__IMG__/phpCT9bbt.jpg"></A><SPAN 
+    id=span6></SPAN></DT>
+    <DD><A href="#">小西服配上工装裤</A></DD></DL>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG 
+    alt=甜蜜蜜的公主打扮 src="__IMG__/phpJFhjKb.jpg"></A><SPAN 
+    id=span7></SPAN></DT>
+    <DD><A href="#">甜蜜蜜的公主打扮</A></DD></DL></LI>
+  <LI>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG 
+    alt=复古碎花甜到不行 src="__IMG__/phpVXqy87.jpg"></A><SPAN 
+    id=span8></SPAN></DT>
+    <DD><A href="#">复古碎花甜到不行</A></DD></DL>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG alt=豹纹魅惑众人眼球 src="__IMG__/phptJyz9n.jpg"></A><SPAN 
+    id=span9></SPAN></DT>
+    <DD><A href="#">豹纹魅惑众人眼球</A></DD></DL></LI>
+  <LI>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG alt=可人美女甜到心底 src="__IMG__/phpDDxnUe.jpg"></A><SPAN id=span10></SPAN></DT>
+    <DD><A href="#">可人美女甜到心底</A></DD></DL>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG alt=高腰裙美腿秀出来 src="__IMG__/phpUYK3W2.jpg"></A><SPAN 
+    id=span11></SPAN></DT>
+    <DD><A href="#">高腰裙美腿秀出来</A></DD></DL></LI>
+  <LI>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG alt=甜到心里口难开 src="__IMG__/phpM9kokW.jpg"></A><SPAN 
+    id=span12></SPAN></DT>
+    <DD><A href="#">甜到心里口难开</A></DD></DL>
+  <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
+  onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
+    <DT><A href="#"><IMG alt=甜美女生反季穿靴 src="__IMG__/phpqatZcC.jpg"></A><SPAN 
+    id=span13></SPAN></DT>
+    <DD><A href="#">甜美女生反季穿靴</A></DD></DL></LI></UL></DIV></DIV>
+<DIV class=runrg><IMG id=rgbut src="__IMG__/2.gif">
+	</div>
+</DIV>
+<SCRIPT>Effect.HtmlMove("gdq","div/li","scrollLeft",18,"rgbut","lfbut",7000);</SCRIPT>
+</div>
       </div> <!-- END UPDATES -->
 
       <!-- START THE INSTALLATION -->
       <div id="installation" class="row featurette" data-find="_8">
         <div class="col-md-7" data-find="_7">
           <h2 class="featurette-heading">建立更快捷<br> <span class="text-muted">Set up more quickly.</span></h2>
-          <p class="lead">下载或从GitHub上面可控stickUp项目。解压到项目目录。请确保你已经正确引入了jQuery。如果需要了解jQuery，请参考<a href="http://learn.jquery.com/about-jquery/how-jquery-works/">jQuery 是如何工作的</a>。</p>
-          <p class="col-lg-offset-1"><a class="btn btn-large btn-primary" href="http://github.com/LiranCohen/stickUp">Visit GitHub</a><br><br></p>
-          <p class="lead">现在就可以将stickUp所包含的的javascript文件加载到你的页面中了。拷贝下面的代码，粘贴到页面底部。务必确保javascript文件的路径正确无误。
+          <p class="lead"><img src="__IMG__/logo2.png" id="logo" alt="爱拍课堂" width="60px"/>&nbsp;
+          <strong>笔记支持按学校学号导入课表，课表再也不用自己编辑了，省时省力省心。</strong></p>
+          <p class="col-lg-offset-1"></p>
+          <p class="lead">这些还不够<b><i>!</i></b>拍课堂笔记最吸引人的功能之一是<strong>支持拍照记录方式</strong>。</p>
+          <p class="lead">是不是还在为笔油发愁<b><i>?</i></b></p>
+          <p class="lead">是不是害怕记慢了跟不上老师的速度<b><i>?</i></b></p>
+          <p class="lead">是不是还在为抄错的一个字母思考半天想不出来为什么而头痛<b><i>?</i></b></p>
           </p>
-          <xmp>
-            <script src="js/stickUp.min.js"></script>
-          </xmp>
-          <p class="lead">接下来，将下面的代码拷贝粘贴到页面底部，并且放到前面引入的stickUp文件下面。或者，你也可以将下面的代码放倒已经存在的javascript文件中（这个文件也必须在stickUp文件下面）。将 <i>'.navbar-wrapper'</i> 替换为目标元素的class名称。
-          </p>
-          <xmp>
-            <script type="text/javascript">
-              //initiating jQuery
-              jQuery(function($) {
-                $(document).ready( function() {
-                  //enabling stickUp on the '.navbar-wrapper' class
-                  $('.navbar-wrapper').stickUp();
-                });
-              });
-
-            </script>
-          </xmp>
-          <p class="lead">就这么简单！</p>  
+          <p class="lead">现在我们还支持<b>图片拍摄记录课堂笔记</b>的种种方式</p>  
+          <p class="lead"><b><i>方便快捷,就这么简单！</i></b></p>
         </div>
         <div class="col-md-5">
         </div>
@@ -149,46 +478,23 @@
         </div>
         <div class="col-md-7">
           <h2 class="featurette-heading">复习更方便<span class="text-muted"><br>Review the more convenient</span></h2>
-          <p class="lead">如果你的页面布局为单页面导航，并希望导航条一直固定在顶部，让用户随时知道自己所处的位置，只需按照下面的步骤照着做就能实现。</p>
+          <p class="lead">还在为复习没有资源烦恼吗<b><i>?</i></b></p>
+</p>
           <p class="lead">
-            <b>第一步，</b> 收集页面上所有将要作为锚点的元素。<br>
+           还在因为不给别人笔记而当成小抠吗<b><i>?</i></b></p>
           </p>
           <p class="lead">
-            <small><i>如果这些元素还没有被赋予 <b>"id="</b> 属性，请为其设置好。</i></small>
+            <b><img src="__IMG__/logo2.png" id="logo" alt="爱拍课堂" width="60px"/>&nbsp;提供强大的笔记分享功能，让您在期末有资源看，有资料看，一键共享，全班受益。</b>
           </p>
           <p class="lead">
-            <b>接下来，</b> 修改 <i>stickUp</i> 插件的引用代码如下：
+               做你的学霸，让他人羡慕崇拜<b><i>!</i></b>
           </p>
-          <xmp>
-            <script type="text/javascript">
-              //initiating jQuery  
-              jQuery(function($) {
-                $(document).ready( function() {
-                  //为 '.navbar-wrapper' class 启用stickUp插件
-                  $('.navbar-wrapper').stickUp({
-                                parts: {
-                                  0:'home',
-                                  1:'features',
-                                  2: 'news',
-                                  3: 'installation',
-                                  4: 'one-pager',
-                                  5: 'extras',
-                       
-                                  6: 'contact'
-                                },
-                                itemClass: 'menuItem',
-                                itemHover: 'active'
-                              });
-                });
-              });
-            
-            </script>
-          </xmp>
+         
           <p class="lead">
-            **上面的数字标注的是元素出现的顺序。
-            <br><br>
-            <b>itemClass:</b> 是每个导航菜单条目所对应的的class。<br>
-            <b>itemHover:</b> 是当菜单条目处于激活状态时所被赋予的class，用于修改其外观。
+            做你的学渣，有资料去参考从而过科当学神<b><i>!</i></b>
+          </p>
+          <p class="lead">
+          	<b><i>还等什么，马上开启你的专属爱拍课堂，走出精彩学习之路!</i></b>
           </p>
         </div>
       </div>  <!-- END ONE-PAGER -->
@@ -198,53 +504,32 @@
         <div class="col-md-7">
           <h2 class="featurette-heading">功能更多多<br><span class="text-muted">Function more</span></h2>
           <p class="lead">
-            我正在继续完善这个插件。如果有建议或需求，请告诉我。
+             笔记，课表，分享还不够<b><i>?</i></b></p>
           </p>
           <p class="lead">
-            stickUp自己使用到了两个class，需要注意一下。<br><br>
-            <b>.stuckMenu</b>: 初始化插件时，这个class被添加到目标元素。<br>
-            <b>.isStuck</b>: 当stickUp对目标元素起作用时，此class将被添加到目标元素。反之则被移除。
+            <strong>一次满足你!</strong>
           </p>
           <p class="lead">
-            目前stickUp仅提供了下面这一个而外参数，将来会加入更多。<br><br>
-            <b>marginTop</b>:
-            此参数将为目标元素设置上边距。可选值为 <i>'auto'</i>，这时，将会自动获取目标元素的上边距并应用到目标元素上；还可以设置为具体的高度。下面就是本页面导航条所用的代码。
-          </p>
-          <p>
-            </p><xmp>
-              <script type="text/javascript">
-                //initializing jQuery
-                jQuery(function($) {
-                  $(document).ready( function() {
-                    //enabling stickUp on the '.navbar-wrapper' class
-                    $('.navbar-wrapper').stickUp({
-                      //enabling marginTop with the 'auto' setting 
-                      marginTop: 'auto'
-                    });
-                });
-              });
-              
-              </script>            
-            </xmp>
-          <p></p>
-          <p class="lead">
-            其工作过程为，stickUp插件自动获取 '.navbar-wrapper' 的上边距值，并在滚动过程中赋予目标元素。
-          </p>
+           <img src="__IMG__/logo2.png" id="logo" alt="爱拍课堂" width="60px"/>&nbsp;<b>海量的在线教育资源</b>，让你没有老师也能精通一门课程，课堂习题的练习!</p>
+           <p class="lead"><img src="__IMG__/logo2.png" id="logo" alt="爱拍课堂" width="60px"/>&nbsp;<b>教师信息发布</b>，让你不再为收不到短信错过重要事件而苦恼。</p>
+           <p class="lead">真的不要再犹豫了<b><i>!</i></b></p>
+           <p class="lead">
+           	<b><i>马上开启你的专属爱拍课堂</i></b>
+           </p>
+         
         </div>
         <div class="col-md-5">
         </div>
       </div> <!-- END EXTRAS -->
 
       <!-- START THE FOOTER -->
-      <footer id="contact" class="row featurette">
+      <footer id="contact" class="row featurette" style="padding-bottom: 80px;">
         <div class="row">
-        	
-          <span class="text-center">
-          	<h3 class="featurette-heading">APP 版发布！ <small><b><i>Nov 1st, 2014</i></b></small></h3>
-          	<h3 class="featurette-heading">ipaikt</h3><h4>一个 课程表和笔记结合的APP应用</h4></span><br>
+          <h2 class="featurette-heading  text-center"><span class="text-muted">ipaikt</span></h2></br>
+          <h4 class="text-center">一个 课程表和笔记结合的APP应用</h4><br>
           <div class="text-center col-sm-12 col-lg-12">
             <p>© 2013 Liran Cohen |  <a href="http://www.ipaikt.com">爱拍课堂</a></p>
-            
+            <p>如果你在使用中发现爱拍有任何不足之处或问题，欢迎至件到我们的ipaikt@163.com我们会及时诊断和修复您的爱拍。让您更爱您的爱拍。	</p>
           </div>
         </div>
       </footer> <!-- END FOOTER -->

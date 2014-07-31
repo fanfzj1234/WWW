@@ -67,7 +67,7 @@
 			}
 			
 			    $url="";
-				$json_data=http_post_data($url,$data_json);
+				$json_data=Common/http_post_data($url,$data_json);
 				return $json_data;
 		}
 		/*注销用户操作*/
