@@ -9,8 +9,10 @@
 </script>
 <!-- 自定义 table 操作 Javascript 文件 -->
 <script src="__JS__/main_table.js"> </script>
-<div class='title'>
-    <h2>首页</h2>
+
+
+	  <div class='title'>
+    <h2>课程表</h2>
      <!--
 	作者：范志俊
 	时间：2014-07-25
@@ -20,33 +22,19 @@
 	var APP="__APP__";
 </script>
 
-<!-- 自定义 注册提交  操作 Javascript 文件 -->
-<script src="__JS__/user_register.js"></script>
 
 <!-- 自定义 top页面 CSS 文件 -->
 <link rel="stylesheet" href="__CSS__/index_top.css"/>
 
 
-<a href="#" title="<?php echo $_SESSION['uid'];?>" id="user_login_name">
+<a href="#" title="<?php echo $_SESSION['uid'];?>" id="user_login_name"></a>
 <!-- 假如 session不存在或设置的值为空，即没有登录，显示登录和注册button-->
 
 <!-- session 存在，即登录成功就显示用户名 -->
- <strong style="color:#F00;padding-right:2px ;" id="login_user_id">Hello <?php echo $_SESSION['utype']." ".$_SESSION['uid'];?></strong>
- <input type="hidden" id="session_uid" value="<?php echo $_SESSION['uid'];?>"></a>
+ Hello <strong style="color:#F00;padding-right:2px ;" id="login_user_id"><?php echo $_SESSION['utype']." ".$_SESSION['uid'];?></strong>
+ <input type="hidden" id="session_uid" value="<?php echo $_SESSION['uid'];?>">
   </div>
 <article class='larg'>
-<div class="panel-group" id="accordion">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-        	本周课程表
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
-      <div class="panel-body">
-      	<div style="margin-bottom:10px;"><strong >当前时间：</strong><strong id="date" style="margin-left:20px;margin-right: 10px;"></strong></div>
 <table id="mytable" cellspacing="0" class="table table-striped"> 
    <tr> 
       <th width="50px"><strong class="glyphicon glyphicon-calendar"></strong></th> 
@@ -103,48 +91,9 @@
       <td><span class="class_null">空</span></td>
    </tr> 
 </table> 
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                         本周笔记
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse">
-      <div class="panel-body">
-                                           本周笔记  
-<ul class="media-list">
-  <li class="media">
-    <a class="pull-left" href="#">
-       <img style="width: 64px; height: 64px;" class="media-object" src="http://d.hiphotos.baidu.com/image/pic/item/f636afc379310a55d8c966fab54543a9832610ca.jpg" alt="...">
-    </a>
-    <div class="media-body">
-      <h4 class="media-heading">数据库原理</h4>
-        <h5 class="media-heading">第一章</h5>
-               标签：Sql
-    </div>
-  </li>
+<ul class="pagination pagination-lg">
+  <li id="table_last"><a href="#">&laquo;上周</a></li>
+  <li><a href="#">第<strong id="table_week_number"></strong>周</a></li>
+  <li id="table_next"><a href="#">下周&raquo;</a></li>
 </ul>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                            推荐笔记
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse">
-      <div class="panel-body">
-             推荐笔记      
-      </div>
-    </div>
-  </div>
-</div>
 </article>

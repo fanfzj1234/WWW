@@ -101,8 +101,7 @@ oncopy="return false;"
 <header>
 	
   <h1>
-  	<img src="__IMG__/favicon.ico" id="logo" alt="爱拍课堂"/>
-    爱拍课堂
+  		<img src="__IMG__/logo2.png" id="logo" alt="爱拍课堂" width="87px"/>
   </h1>
   <nav>
     <ul>
