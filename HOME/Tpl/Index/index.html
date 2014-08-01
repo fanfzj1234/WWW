@@ -51,14 +51,18 @@
 {
 	color: #4fc1e9;
 }
+.navbar.navbar-inverse.navbar-static-top a:hover {
+color: #;
+}
 </style>
 <script>
     var APP = "__APP__";
 	var IMG = "__IMG__";	
 </script>
-<!-- 自定义 下拉列表，验证码，button特效  操作 Javascript 文件 -->
-<script src="__JS__/index_main.js"></script>
+
 <script src="__JS__/index_chinazjs.js"></script>
+
+
 <title>爱拍课堂||ipaikt</title>
 </head>
 <body>
@@ -192,7 +196,7 @@
                         <div class="form-group">
                         <div class="input-group">
                                   <span class="input-group-addon">密码</span>
-                                  <input type="password" class="form-control" id="student_password" placeholder="Student Password">
+                                  <input type="password" class="form-control" id="student_password_1" placeholder="Student Password">
                                   
                          </div>
                         </div>
@@ -305,7 +309,7 @@
               <ul class="nav navbar-nav">
                 <li class="menuItem active"><a href="#home">首页</a></li>
                 <li class="menuItem"><a href="#features">特色</a></li>
-                <li class="menuItem"><a href="#updates">更新记录</a></li>
+                <li class="menuItem"><a href="#updates">界面更友好</a></li>
                 <li class="menuItem"><a href="#installation">建立更快捷</a></li>
                 <li class="menuItem"><a href="#one-pager">复习更方便</a></li>
                 <li class="menuItem"><a href="#extras">功能更多多</a></li>
@@ -318,7 +322,6 @@
       
       </div>
     </div> <!-- END NAVBAR -->
-
     <!-- START THE CONTENT -->
     <div id="contents" data-find="_3">  
 
@@ -360,10 +363,10 @@
       <!-- START THE UPDATES -->
       <div id="updates" class="row featurette">
         <div class="col-lg-12">
-          <h2 class="featurette-heading">更新记录</h2>
+          <h2 class="featurette-heading">界面更友好</h2>
         </div>
         <div class="col-lg-offset-1 col-lg-10">
-        	<div class="run">
+        	<!--<div class="run">
 <div class="runlf">
 	<img id=lfbut src="__IMG__/1.gif">		
 	</div>
@@ -373,8 +376,8 @@
   <LI>
   <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
   onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
-    <DT><A href="#"><IMG alt=甜美展现得淋漓尽致 src="__IMG__/phpgnzZ98.jpg"></A><SPAN id=span0></SPAN></DT>
-    <DD><A href="#">甜美展现得淋漓尽致</A></DD></DL>
+    <DT><A href="#"><IMG alt="首页" src="__IMG__/phpgnzZ98.jpg"></A><SPAN id=span0></SPAN></DT>
+    <DD><A href="#">首页</A></DD></DL>
   <DL onMouseOver="$(this,'span')[0].style.backgroundColor='#b52153'" 
   onmouseout="$(this,'span')[0].style.backgroundColor='#5f626b'">
     <DT><A href="#"><IMG alt=回眸一笑让人着迷 src="__IMG__/phptZkg40.jpg"></A><SPAN id=span1></SPAN></DT>
@@ -450,8 +453,16 @@
 	</div>
 </DIV>
 <SCRIPT>Effect.HtmlMove("gdq","div/li","scrollLeft",18,"rgbut","lfbut",7000);</SCRIPT>
-</div>
-      </div> <!-- END UPDATES -->
+</div>-->
+<p class="lead">产品截图尽情期待<b><i>!!!!</i><b></p>
+<p class="lead"> </p>
+<p class="lead">  </p>
+<p class="lead"></p>
+<p class="lead"> </p>
+<p class="lead"> </p>
+<p class="lead"> </p>
+<p class="lead"> </p>
+     </div> <!-- END UPDATES -->
 
       <!-- START THE INSTALLATION -->
       <div id="installation" class="row featurette" data-find="_8">
@@ -528,8 +539,9 @@
           <h2 class="featurette-heading  text-center"><span class="text-muted">ipaikt</span></h2></br>
           <h4 class="text-center">一个 课程表和笔记结合的APP应用</h4><br>
           <div class="text-center col-sm-12 col-lg-12">
-            <p>© 2013 Liran Cohen |  <a href="http://www.ipaikt.com">爱拍课堂</a></p>
-            <p>如果你在使用中发现爱拍有任何不足之处或问题，欢迎至件到我们的ipaikt@163.com我们会及时诊断和修复您的爱拍。让您更爱您的爱拍。	</p>
+            <p>© 2014 ipaikt |  <a href="http://www.ipaikt.com" style="color: #f04037;">爱拍课堂</a></p>
+            <p>如果你在使用中发现爱拍有任何不足之处或问题，欢迎至件到我们的<a href="mailto:ipaikt@163.com" style="color: #f04037;">ipaikt@163.com</a>我们会及时诊断和修复您的爱拍</p>
+            <p><b><i>让您更爱您的爱拍。</b></i></p>	
           </div>
         </div>
       </footer> <!-- END FOOTER -->
@@ -571,6 +583,89 @@
         });
       });
     </script>
+<script>
+	$(document).ready(function() {
+	
+	$("#student_register_button").click(function(){
+		var studentId_1=$("#studentId").val();
+	var student_password_1=$("#student_password_1").val();
+	var schoolId_1=$("#school_input_1").val();
+	//alert(schoolId_1);
+	$("#student_register_button").html("Loading...");
+        $.ajax
+        (
+        	{
+        		
+        		type: "post",
+                url: APP+"/Login/user_register",
+                data: {type:"normal_student",studentId:studentId_1, student_password:student_password_1,schoolId:schoolId_1},
+                //data: {type:"normal_student",studentId:"2012021039", student_password:"921128",schoolId:"齐齐哈尔大学"},
+                dataType: "json",
+                success: function(data){
+           
+                	 if(data.S=="success")
+                     {
+                         $("#register_alert").attr("class", "alert alert-success");
+                         $("#register_alert").append("注册成功");
+                         window.location.href=APP+"Index/index_main&uid="+data.uid;
+                     }
+                     if(data.S=="failed")
+                     {
+                     	
+                     	 $("#register_alert").attr("class", "alert alert-danger");
+                         $("#register_alert").append(""+data.MT+"");
+        	         }
+                    
+                },
+        	    error:function(data){
+                         $("#register_alert").attr("class", "alert alert-danger");
+                         $("#register_alert").append("注册失败，请重新注册");
+        	    }
+        	    
+        });
+        
+  }); 
+  /*教师注册*/
+  $("#teacher_register_button").click(function(){
+  	$("#teacher_register_button").html("Loading...");
+  	var disciplineId_1=$("#discipline_input").val();
+	var teacherName_1=$("#teacherName").val();
+	var teacher_password_1=$("#teacher_password").val();
+	var teacher_password_again_1=$("#teacher_password_again").val();
+    var schoolId_2=$("#school_input_2").val();
+        $.ajax
+        (
+        	{
+        		type: "post",
+                url: APP+"Login/user_register",
+                data: {type:"normal_teacher",disciplineId:disciplineId_1, teacherName:teacherName_1,teacher_password:teacher_password_1,teacher_password_again:teacher_password_again_1,schoolId:schoolId_2},
+                dataType: "json",
+                success: function(data){
+                	 if(data.S=="success")
+                     {
+                         $("#register_alert").attr("class", "alert alert-success");
+                         $("#register_alert").append("注册成功");
+                         
+                         window.location.href=APP+"Index/index_main&uid="+data.uid;
+                     }
+                     if(data.S=="failed")
+                     {
+                     	 $("#register_alert").attr("class", "alert alert-danger");
+                         $("#register_alert").append(""+data.MT+"");
+                     }
+                },
+        	    error:function(){
+                         $("#register_alert").attr("class", "alert alert-danger");
+                         $("#register_alert").append("注册失败，请重新注册");
+        	    }
+        });
+    
+  });
+});
+</script>
+<!-- 自定义 下拉列表，验证码，button特效  操作 Javascript 文件 -->
+<script src="__JS__/index_main.js"></script>
+
     <!--<script src="http://www.bootcss.com/p/projects.js"></script>
     <script src=" http://hm.baidu.com/h.js?3d8e7fc0de8a2a75f2ca3bfe128e6391" type="text/javascript"></script>-->
     <!-- ######################################## -->
