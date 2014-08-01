@@ -22,17 +22,19 @@
 	var APP="__APP__";
 </script>
 
+<!-- 自定义 注册提交  操作 Javascript 文件 -->
+<script src="__JS__/user_register.js"></script>
 
 <!-- 自定义 top页面 CSS 文件 -->
 <link rel="stylesheet" href="__CSS__/index_top.css"/>
 
 
-<a href="#" title="<?php echo $_SESSION['uid'];?>" id="user_login_name"></a>
+<a href="#" title="<?php echo $_SESSION['uid'];?>" id="user_login_name">
 <!-- 假如 session不存在或设置的值为空，即没有登录，显示登录和注册button-->
 
 <!-- session 存在，即登录成功就显示用户名 -->
- Hello <strong style="color:#F00;padding-right:2px ;" id="login_user_id"><?php echo $_SESSION['utype']." ".$_SESSION['uid'];?></strong>
- <input type="hidden" id="session_uid" value="<?php echo $_SESSION['uid'];?>">
+ <strong style="color:#F00;padding-right:2px ;" id="login_user_id">Hello <?php echo $_SESSION['utype']." ".$_SESSION['uid'];?></strong>
+ <input type="hidden" id="session_uid" value="<?php echo $_SESSION['uid'];?>"></a>
   </div>
 <article class='larg'>
 <table id="mytable" cellspacing="0" class="table table-striped"> 
