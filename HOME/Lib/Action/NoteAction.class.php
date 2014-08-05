@@ -1,14 +1,13 @@
 <?php
 /*--
-	ä½œè€…ï¼šèŒƒå¿—ä¿Š
-	æ—¶é—´ï¼š2014-07-25
-	æè¿°ï¼šTableæŽ§åˆ¶å™¨ï¼Œæ˜¾ç¤ºè¯¾è¡¨
+	×÷Õß£º·¶Ö¾¿¡
+	Ê±¼ä£º2014-07-25
+	ÃèÊö£ºNote¿ØÖÆÆ÷£¬ÏÔÊ¾±Ê¼Ç
 */
-	class TableAction extends CommonAction {
+	class NoteAction extends CommonAction {
 	
-		// æ˜¾ç¤ºä¸»é¡µé¢
+		// ÏÔÊ¾Ö÷Ò³Ãæ
 		public function index(){
-		ob_end_clean();
              $this->display();
 		}
 		public function test()
@@ -41,7 +40,7 @@
 				$tmp = array_merge(array('begin_time' => $date_beginday),array('class' => $Array->class));
 				$json_arry =json_encode($tmp);
 				
-				echo $json_data;
+				echo $json_arry;
 				
 		}
 		public function curriculum_user(){  

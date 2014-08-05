@@ -11,6 +11,7 @@ class PublicAction extends CommonAction {
               Image::buildImageVerify($length=5, $mode=1, $type='png', $width=60, $height=26, $verifyName='verify');
 		}
 		public function jk(){
+		ob_end_clean();
 			$this->display();
 		}
 		public function get_school_list(){

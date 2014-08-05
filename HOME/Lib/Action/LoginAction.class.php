@@ -37,10 +37,10 @@
 			{
 				//$studentId="2012021039";
 				//$password="921128";
-				//$schoolId="齐齐哈尔大学";
+				$schoolId="齐齐哈尔大学";
 				$studentId=$_POST['studentId'];
 				$password=$_POST['student_password'];
-				$schoolId=$_POST['schoolId'];
+				//$schoolId=$_POST['schoolId'];
 				$type="normal_student";
 				$data['A']="User_Register";
 				$data['AC']="register";
