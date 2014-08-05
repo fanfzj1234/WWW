@@ -8,14 +8,17 @@ $(document).ready(function(e) {
 	
 	/*学生注册*/
 	$("#student_register_button").click(function(){
+		alert(1);
         $.ajax
         (
         	{
+        		
         		type: "post",
                 url: APP+"/Login/user_register",
                 data: {type:"normal_student",studentId:$("#studentId").val(), student_password:$("#student_password").val(),schoolId:$("#school_input_1").val()},
                 dataType: "json",
                 success: function(data,a){
+                	alert(data);
                 	 if(data.S=="success")
                      {
                          $("#register_alert").attr("class", "alert alert-success");
@@ -32,7 +35,7 @@ $(document).ready(function(e) {
                          $("#register_alert").attr("class", "alert alert-danger");
                          $("#register_alert").append("注册失败，请重新注册");
         	    }
-        );
+        });
   });
   /*教师注册*/
   $("#teacher_register_button").click(function(){
@@ -60,7 +63,7 @@ $(document).ready(function(e) {
                          $("#register_alert").attr("class", "alert alert-danger");
                          $("#register_alert").append("注册失败，请重新注册");
         	    }
-        );
+        });
     
   });
 });

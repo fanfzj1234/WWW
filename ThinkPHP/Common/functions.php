@@ -52,6 +52,28 @@ function halt($error) {
     include C('TMPL_EXCEPTION_FILE');
     exit;
 }
+/**
+ * POST发送数据给接口
+ * @param mixed $url j接口地址
+ * @param mixed $data_string 参数
+ * @return string
+ */
+function http_post_data($url, $data_string) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+		curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+			'Content-Type: application/json; charset=utf-8',
+			'Content-Length: ' . strlen($data_string))
+		);
+        ob_start();
+        curl_exec($ch);
+        $return_content = ob_get_contents();
+        return $return_content;
+         }
 
 /**
  * 自定义异常处理

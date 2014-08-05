@@ -1,0 +1,282 @@
+
+
+<!--
+	作者：范志俊
+	时间：2014-07-25
+         描述：首页页面，包括显示本周课程表，和本周笔记，以及推荐笔记
+-->
+<style>
+	body { 
+font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+color: #4f6b72; 
+background: #E6EAE9; 
+} 
+
+span{
+font-size:14px;
+}
+#mytable { 
+width: 100%; 
+padding: 0; 
+margin: 0; 
+text-align : center ; 
+} 
+.table-heading{ 
+    font-family : Georgia, serif; 
+    font-size : 16px ; 
+    font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+    align-content: center;
+    color : #101010 ; 
+} 
+
+
+th{
+	font-size:15px; 
+}
+td { 
+border-right: 1px solid #C1DAD7; 
+border-bottom: 1px solid #C1DAD7; 
+font-size:13px; 
+padding: 6px 6px 6px 12px; 
+color: #4f6b72; 
+align-content: center;
+} 
+
+	
+p td_have{
+	cursor: pointer;
+	}
+p td_null{
+	pointer-events: none;
+}
+
+.class_open{
+	color: #000000;
+	}
+.class_close{
+	color: #4f6b72;
+	}
+.class_null{
+	color: #FFFFFF;
+	}
+
+.hidden{ 
+display : none ;} 
+
+#stu_table{
+	display: -moz-box;display: -webkit-box;
+	}
+#table_left{
+	width:100px;padding-left:10px;cursor: pointer;
+	}
+#table_right{
+	width:100px;padding-right:10px;cursor: pointer;
+	}
+#table_main{
+	-moz-box-flex: 1;-webkit-box-flex: 1;padding:2px;
+	}
+#stu_table,#table_left,#table_right,#table_main{
+	-moz-box-sizing: border-box;-webkit-box-sizing: border-box;
+}
+</style>
+		<script src="__JS__/jquery-1.7.2.js"></script>
+		<script src="__JS__/jquery-1.7.2.min.js"></script>	
+<div class='title'>
+    <h2>首页</h2>
+     <include file="Public:top" />
+  </div>
+<article class='larg'>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        	本周课程表
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+      	<div id="stu_table" style="display: -moz-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;display: -webkit-box;">
+      	<div id="table_left" style="display:inline-block;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;text-align: center;vertical-align: middle;">
+      		<img src="__IMG__/1.gif" alt="上一周" style="background-position: center;vertical-align: middle;margin-top: 100px;">
+      	</div>
+      	<div id="table_main" style="-moz-box-flex: 1;-webkit-box-flex: 1;padding:5px;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;">
+<table id="mytable" cellspacing="0" class="table table-responsive"> 
+	   <tbody><tr> 
+      <?php 
+	    $jdtoday = cal_to_jd(CAL_GREGORIAN,date("m"),date("d"),date("Y"));
+        $offset = jddayofweek($jdtoday);
+		for($i=1-$offset; $i<=7-$offset; $i++){
+           $date = strtotime($i.' days');
+           echo "<td>".date('n-j', $date)."<br>(".date('D', $date).")</td>";
+		 }
+      ?>
+   </tr>
+   </tbody>
+</table> 
+      </div>
+     
+      <div id="table_right" style="display::inline-block;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;text-align: center;vertical-align: middle;">
+      	<img src="__IMG__/2.gif" alt="下一周" style="background-position: center;vertical-align: middle;margin-top: 100px;">
+      </div>  
+    </div>
+    </div>
+    </div>
+   </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                         本周笔记
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+                                           本周笔记  
+<ul class="media-list">
+  <li class="media">
+    <a class="pull-left" href="#">
+       <img style="width: 64px; height: 64px;" class="media-object" src="http://d.hiphotos.baidu.com/image/pic/item/f636afc379310a55d8c966fab54543a9832610ca.jpg" alt="...">
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading">数据库原理</h4>
+        <h5 class="media-heading">第一章</h5>
+               标签：Sql
+    </div>
+  </li>
+</ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            推荐笔记
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+             推荐笔记      
+      </div>
+    </div>
+  </div>
+</div>
+</article>
+
+<script>  
+		var uid01=document.getElementById("session_uid").value;
+		var rows;
+		var currentWeek;
+        /*从服务器取得指定用户的课表，读取开始时间并计算当前教学周存入cookie，返回课程信息*/
+		$(document).ready(function() {
+			var APP="__APP__"; 			 
+	     	var classTabel;
+	     	//请求数据
+			$.ajax({
+			type:"post",
+			dataType:"json",
+			data:{uid:uid01,type:"getByTime"},
+			url:APP+"Table/curriculum_user",			
+			async:false,
+			success:function(data){
+				var btime = new Date(data.begin_time);
+			    currentWeek=TimeSpan(btime);
+			    alert(currentWeek);
+				classTabel=data.class;
+                    var k=1;
+                    		rows=classTabel.length;
+							for(var i=0;i<classTabel.length;i++)
+							{
+								for(var i1=0;i1<classTabel[i].length;i1++)
+									{
+										$("#mytable").append("<tr style='display:none' id=tr_"+k+"></tr>");
+										for(var i2=0;i2<classTabel[i][i1].length;i2++)
+											{
+												var trid="#tr_"+k;
+												if(classTabel[i][i1][i2] !=null)
+												{
+													$(trid).append("<td><span class='class_open' id=c_"+classTabel[i][i1][i2].nid+">"+classTabel[i][i1][i2].elabel+"</span></td> ");
+												}
+												else
+												{
+													//alert("第"+(i+1)+"周星期"+(i2+1)+"第"+(i1+1)+"大节"+"没课");
+													$(trid).append("<td ><span class='class_null'>"+"空"+"</span></td> ");
+												}
+											}
+		                                k++;
+								}
+							}
+							if(currentWeek<=0)
+							{
+								DisplayByCurrentWeek(1);
+							}
+							else
+							{
+								DisplayByCurrentWeek(currentWeek);
+							}
+			},
+			error:function(){
+				alert("data error");
+			}
+			
+});
+	
+/***********************************************/
+            $('th').parent().addClass('table-heading');         
+            $('td:contains("showtime")').siblings().addClass('tdhlight'); 
+            $('#mytable td').hover(function(){ 
+                   
+                     	 $(this).addClass('info'); 
+                     $(this).css("cursor","pointer"); 
+                   
+                }, 
+                function(){ 
+                    
+                    $(this).removeClass('info'); 
+                    
+                });  
+	})	;
+
+		function DisplayByCurrentWeek(week)
+        {
+			//var week=parseInt(document.getElementById("txtWeek").value);
+			var brow=(week-1)*5+1;
+			var erow=week*5;
+            // loop to add all the <tr>
+            //var rows = parseInt(document.getElementById("rowno").text);
+            for(var row_index=1;row_index<=rows*7;row_index++)
+            {
+            		var trId="tr_"+row_index;
+            		if(document.getElementById(trId)!=undefined){
+	                var tr_node=document.getElementById(trId);
+	                tr_node.style.display = "none";
+            	}
+            }
+            for(var row_index=brow;row_index<=erow;row_index++)
+            {
+            	var trId1="tr_"+row_index;
+            	if(document.getElementById(trId1)!=undefined)
+            	{
+	                var tr_node=document.getElementById(trId1);
+	                tr_node.style.display = "table-row";
+               }
+            }
+        }
+        function TimeSpan(beginTime)
+        {
+        		var nowtime = new Date();
+				var days = nowtime.getTime()-beginTime.getTime();
+				days = Math.floor(days/(24*3600*1000))+1;
+				//alert(days);
+				var weeks = Math.ceil(days/7);
+				return weeks;
+				//days = days%7;
+				//alert(weeks,days);
+				//alert(btime+nowtime)
+				//if (days<=0) {days = 1;}
+        }
+</script>

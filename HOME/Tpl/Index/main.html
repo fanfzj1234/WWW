@@ -1,14 +1,56 @@
+
+
 <!--
 	作者：范志俊
 	时间：2014-07-25
          描述：首页页面，包括显示本周课程表，和本周笔记，以及推荐笔记
 -->
-<script>
-    var APP = "__APP__";
-	var IMG = "__IMG__";
-</script>
-<!-- 自定义 table 操作 Javascript 文件 -->
-<script src="__JS__/main_table.js"> </script>
+<style>
+.detailImg {
+	text-align: center;
+	position: relative;
+	display: -moz-box;display: -webkit-box;
+}
+.detailImg img {
+	max-width: 684px;
+}
+.detailImg p {
+	text-align: center;
+	color: #999;
+}
+#detailImg-pre,
+#detailImg-next {
+	position: absolute;
+	width: 30px;
+	height: 46px;
+	top: 50%;
+	background: url(__IMG__/page_button.gif) 0 0 no-repeat;
+	cursor: pointer;
+	text-indent:-9999px;
+}
+#detailImg-pre {
+	left: 0;
+	background-position: -35px 0;
+}
+#detailImg-next {
+	right: 0;
+	background-position: -99px 0;
+}
+#detailImg-pre:hover {
+	background-position: -35px -47px;
+}
+#detailImg-next:hover {
+	background-position: -99px -47px;
+}
+#detailImg-box{
+    -moz-box-flex: 1;-webkit-box-flex: 1;margin-left:30px;margin-right:30px
+}
+#detailImg-box,#detailImg-pre,#detailImg-next,detailImg{
+    -moz-box-sizing: border-box;-webkit-box-sizing: border-box;
+}
+</style>
+		<script src="__JS__/jquery-1.7.2.js"></script>
+		<script src="__JS__/jquery-1.7.2.min.js"></script>	
 <div class='title'>
     <h2>首页</h2>
      <include file="Public:top" />
@@ -25,73 +67,27 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse in">
       <div class="panel-body">
-      	<div style="margin-bottom:10px;"><strong >当前时间：</strong><strong id="date" style="margin-left:20px;margin-right: 10px;"></strong></div>
-<table id="mytable" cellspacing="0" class="table table-striped"> 
-   <tr> 
-      <th width="50px"><strong class="glyphicon glyphicon-calendar"></strong></th> 
-      <?php 
-	    $jdtoday = cal_to_jd(CAL_GREGORIAN,date("m"),date("d"),date("Y"));
-        $offset = jddayofweek($jdtoday);
-		for($i=1-$offset; $i<=7-$offset; $i++){
-           $date = strtotime($i.' days');
-           echo "<th>".date('n-j', $date)."<br>(".date('D', $date).")</th>";
-		 }
-      ?>
-   </tr> 
-   <tr> 
-      <th>一</th> 
-      <td><span class="class_open">专业实验I1</span></td> 
-      <td><span class="class_open">软件工程</span></td> 
-      <td><span class="class_open">大学英语5</span></td> 
-      <td><span class="class_open">计算机组成原理</span></td> 
-      <td><span class="class_open">软件工程</span></td> 
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_null">空</span></td> 
-   </tr> 
-    <tr> 
-      <th>二</th> 
-      <td><span class="class_open">数据库原理</span></td> 
-      <td><span class="class_open">计算机组成原理</span></td> 
-      <td><span class="class_open">数据库原理</span></td> 
-      <td><span class="class_open">毛泽东思想和中国特色社会主义理论体系概论2</span></td> 
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_open">操作系统</span></td> 
-      <td><span class="class_null">空</span></td> 
-   </tr> 
-    <tr> 
-      <th>三</th> 
-      <td><span class="class_open">专业实验II2</span></td> 
-      <td><span class="class_open">毛泽东思想和中国特色社会主义理论体系概论2</span></td> 
-      <td><span class="class_open">数据库系统开发实训</span></td>  
-      <td><span class="class_open">操作系统</span></td> 
-      <td><span class="class_close">专业实验II2</span></td>
-      <td><span class="class_null">空 </span></td> 
-      <td><span class="class_null">空 </span></td> 
-   </tr> 
-    <tr> 
-      <th>四</th>  
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_open">专业基础实验2</span></td> 
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_open">专业基础实验2</span></td> 
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_null">空</span></td> 
-   </tr> 
-    <tr > 
-      <th>五</th>  
-      <td><span class="class_open">算法设计与分析</span></td> 
-      <td><span class="class_open">微机接口技术</span></td> 
-      <td><span class="class_open">算法设计与分析</span></td> 
-      <td><span class="class_open">微机接口技术</span></td> 
-      <td><span class="class_open">数字系统设计</span></td> 
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_null">空</span></td>
-   </tr> 
+      	    <div class="detailImg" > 
+		<a id="detailImg-pre" alt="上一周">&lt;</a>
+		<div id="detailImg-box" class="box">
+		<table id="mytable" cellspacing="0" class="table table-condensed table-bordered"> 
+	     <tr> 
+            <td id="trw_1"></td>
+			<td id="trw_2"></td>
+			<td id="trw_3"></td>
+			<td id="trw_4"></td>
+			<td id="trw_5"></td>
+			<td id="trw_6"></td>
+			<td id="trw_7"></td>
+      </tr> 
 </table> 
-      </div>
+ </div>
+		<a id="detailImg-next" alt="下一周">&gt;</a> 
+</div>
+    
     </div>
-  </div>
+    </div>
+   </div>
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -134,3 +130,218 @@
   </div>
 </div>
 </article>
+
+
+<script>  
+		var uid01=document.getElementById("session_uid").value;
+		var rows;
+		var currentWeek;    //保存当前周
+		var tempWeek;       //临时周，用于用户操作（上一周，下一周）
+		var btime;	//教学开始时间
+		var classTabel;
+		var classDetail;
+        /*从服务器取得指定用户的课表，读取开始时间并计算当前教学周存入cookie，返回课程信息*/
+		$(document).ready(function() {
+			var APP="__APP__"; 			 
+
+	     	//请求数据
+			$.ajax({
+			type:"post",
+			dataType:"json",
+			data:{uid:uid01,type:"getByTime"},
+			url:APP+"Table/curriculum_user",			
+			async:false,
+			success:function(data){
+				classDetail=data;
+			    btime = new Date(data.begin_time);
+			    currentWeek=TimeSpan(btime);
+			    tempWeek=currentWeek;
+				classTabel=data.class;
+                    var k=1;
+                    		rows=classTabel.length;
+							for(var i=0;i<classTabel.length;i++)
+							{
+								for(var i1=0;i1<classTabel[i].length;i1++)
+									{
+										$("#mytable").append("<tr style='display:none' id=tr_"+k+"></tr>");
+										for(var i2=0;i2<classTabel[i][i1].length;i2++)
+											{
+												var trid="#tr_"+k;
+												if(classTabel[i][i1][i2] !=null)
+												{
+													var itemClassLabel=classTabel[i][i1][i2].elabel;
+													if(itemClassLabel.length>8)
+													{
+														itemClassLabel=itemClassLabel.substring(0, 8) + "***";
+													}
+													
+													$(trid).append("<td><span class='class_open test-center' id=class_"+(i)+"_"+(i1)+"_"+(i2)+" onmouseover='ViewInfor(id)'>"+itemClassLabel+"</span></td> ");
+												}
+												else
+												{
+													//alert("第"+(i+1)+"周星期"+(i2+1)+"第"+(i1+1)+"大节"+"没课");
+													$(trid).append("<td ><span class='class_null'>"+"空"+"</span></td> ");
+												}
+											}
+		                                k++;
+								}
+							}
+							if(currentWeek<0)
+							{
+								ChangeTimeView();
+								DisplayByCurrentWeek(1);
+								
+							}
+							else if(currentWeek>22)
+							{
+								ChangeTimeView();
+								DisplayByCurrentWeek(18);
+							}
+							else
+							{
+								ChangeTimeView();
+								DisplayByCurrentWeek(currentWeek);
+							}
+			},
+			error:function(){
+				alert("data error");
+			}
+			
+});
+	
+/***********************************************/
+            $('th').parent().addClass('table-heading');         
+            $('td:contains("showtime")').siblings().addClass('tdhlight'); 
+            $('#mytable td').hover(function(){ 
+                   
+                     	 $(this).addClass('info'); 
+                     $(this).css("cursor","pointer"); 
+                   
+                }, 
+                function(){ 
+                    
+                    $(this).removeClass('info'); 
+                    
+                });  
+				$("#detailImg-next").click(function(){
+		           ChangClassWeek("next");
+		        });
+				$("#detailImg-pre").click(function(){
+		           ChangClassWeek("pre");
+		        });
+	})	;
+
+		//显示当前教学周的课表，并隐藏其他教学周
+		function DisplayByCurrentWeek(week)
+        {
+			//var week=parseInt(document.getElementById("txtWeek").value);
+			var brow=(week-1)*5+1;
+			var erow=week*5;
+            // loop to add all the <tr>
+            //var rows = parseInt(document.getElementById("rowno").text);
+            for(var row_index=1;row_index<=rows*7;row_index++)
+            {
+            		var trId="tr_"+row_index;
+            		if(document.getElementById(trId)!=undefined){
+	                var tr_node=document.getElementById(trId);
+	                tr_node.style.display = "none";
+            	}
+            }
+            for(var row_index=brow;row_index<=erow;row_index++)
+            {
+            	var trId1="tr_"+row_index;
+            	if(document.getElementById(trId1)!=undefined)
+            	{
+	                var tr_node=document.getElementById(trId1);
+	                tr_node.style.display = "table-row";
+               }
+            }
+        }
+        
+		//计算时间差，返回当前教学周
+		function TimeSpan(beginTime)
+        {
+        		var nowtime = new Date();
+				var days = nowtime.getTime()-beginTime.getTime();
+				days = Math.floor(days/(24*3600*1000))+1;
+				//alert(days);
+				var weeks = Math.ceil(days/7);
+				return weeks;
+				//days = days%7;
+				//alert(weeks,days);
+				//alert(btime+nowtime)
+				//if (days<=0) {days = 1;}
+        }
+
+		//根据选择的周，显示相应周次的课表
+		function  ChangClassWeek(item) 
+		{
+			if(item=="pre")
+			{
+				if(tempWeek<=0)
+				{
+					ChangeTimeView() ;
+					DisplayByCurrentWeek(1);
+					alert("已经到第一周了，不要再点了");
+				}
+				else
+				{
+					ChangeTimeView() ;
+					--tempWeek;
+					DisplayByCurrentWeek(tempWeek);
+				}
+			}
+			else if(item=="next")
+			{
+				if(tempWeek>=18)
+				{
+					ChangeTimeView() ;
+					alert("已经到第最后一周周了，不要再点了");
+					DisplayByCurrentWeek(18);
+				}
+				else
+				{
+					ChangeTimeView() ;
+					++tempWeek;
+					DisplayByCurrentWeek(tempWeek);
+					
+				}
+			}
+			else
+			{
+				alert("operate error!!");
+			}
+		}
+
+		//根据当前教学周，改变table 表头显示的日期
+		function ChangeTimeView() 
+		{
+			var currentDate=btime.valueOf()+parseInt(tempWeek)*7* 24 * 60 * 60 * 1000;
+			currentDate = new Date(currentDate);
+			var nowDayOfWeek = currentDate.getDay(); 
+			var nowDay = currentDate.getDate(); 
+			var nowMonth = currentDate.getMonth(); 
+			var nowYear = currentDate.getYear(); 
+			nowYear += (nowYear < 2000) ? 1900 : 0; 
+			var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek+1); 
+			var weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek)); 
+			for(var count=1;count<8;count++)
+			{
+				var trw_week=document.getElementById("trw_"+count);
+				trw_week.innerHTML=weekStartDate.toDateString();
+				weekStartDate=new Date(weekStartDate.valueOf()+24*60*60*1000);
+			}
+			
+		}
+	
+		function ViewInfor(viewId)
+		{
+			//alert(viewId);
+    		var strs = new Array(); 
+   			strs = viewId.split("_"); 
+			var i0=parseInt(strs[1]);
+			var i1=parseInt(strs[2]);
+			var i2=parseInt(strs[3]);
+			alert(classDetail.class[i0][i1][i2].elabel+";"+classDetail.class[i0][i1][i2].ctype+";"+classDetail.class[i0][i1][i2].etname+";"+classDetail.class[i0][i1][i2].exmtype+";"+classDetail.class[i0][i1][i2].eaddress);
+		}
+</script>

@@ -2200,7 +2200,7 @@ table th[class*="col-"] {
 .table > thead > tr.info > th,
 .table > tbody > tr.info > th,
 .table > tfoot > tr.info > th {
-  background-color: #d9edf7;
+  background-color: #f0f0f0;
 }
 .table > thead > tr > td.info_null,
 .table > tbody > tr > td.info_null,
@@ -3615,16 +3615,17 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li {
   position: relative;
   display: block;
+  
 }
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 2px 15px;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eee;
+  background-color: #4795d1;
 }
 .nav > li.disabled > a {
   color: #777;
@@ -4247,7 +4248,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   color: #fff;
-  background-color: #080808;
+  background-color: #0A64A4;
 }
 .navbar-inverse .navbar-nav > .disabled > a,
 .navbar-inverse .navbar-nav > .disabled > a:hover,
@@ -4551,6 +4552,7 @@ a.label:focus {
   vertical-align: baseline;
   background-color: #777;
   border-radius: 10px;
+  margin-top:20px;
 }
 .badge:empty {
   display: none;
@@ -5248,7 +5250,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel-primary > .panel-heading {
   color: #fff;
-  background-color: #428bca;
+  background-color: #4795d1;
   border-color: #428bca;
 }
 .panel-primary > .panel-heading + .panel-collapse > .panel-body {

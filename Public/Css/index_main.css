@@ -5,7 +5,7 @@
   font-style: normal;
   font-weight: normal;
   src: url('http://weloveiconfonts.com/api/fonts/entypo/entypo.eot');
-  src: url('http://weloveiconfonts.com/api/fonts/entypo/entypo.eot?#iefix') format('eot'), url('http://weloveiconfonts.com/api/fonts/entypo/entypo.woff') format('woff'), url('http://weloveiconfonts.com/api/fonts/entypo/entypo.ttf') format('truetype'), url('http://weloveiconfonts.com/api/fonts/entypo/entypo.svg#entypo') format('svg');
+  src: url('http://weloveiconfonts.com/api/fonts/entypo/entypo.woff') format('woff');
 }
 .entypo-note:before {
   content: "\266a";
@@ -924,7 +924,7 @@ h2:before {
   position: absolute;
   left: -21px;
   top:  5px;
-  background-color: #efefef;
+  background-color: #0a64a4;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -952,7 +952,7 @@ header nav ul li {
   border-top: 1px solid #3bafda;
 }
 header nav ul li:hover {
-  background-color: #454952;
+  background-color: #4795d1;
   transition: all 0.6s;
   border-bottom: 1px solid #797979;
 }
@@ -1071,7 +1071,7 @@ a {
   text-decoration:none;
 }
 .bckg {
-  background-color:#4795d1;
+  background-color:#0a64a4;
   box-shadow:5px 2px 10px rgba(14, 14, 14, 0.48) inset;
   width:200px;
   height:100%;
@@ -1085,17 +1085,17 @@ h1 {
     color: #F6F6EF;
     line-height:60px;
     margin:0;
-    font-size:25px;
+    font-size:26px;
     letter-spacing:2px;
-    background-color:#efefef;
+    background-color:#0a64a4;
     border-bottom:1px solid rgba(101, 116, 134, 0.57);
 }
 h2 {
-  font-size: 21px;
+  font-size: 24px;
   text-transform: uppercase;
   margin: 0;
   letter-spacing: 3px;
-  color: #919191;
+  color: #f04037;
   font-weight: normal;
   padding-left: 40px;
   line-height: 60px;
@@ -1119,7 +1119,7 @@ h2 {
   }
 }
 h3 {
-  font-size:17px;
+  font-size:20px;
   margin:0;
   line-height: 40px;
   color: #555;

@@ -7,16 +7,15 @@
 	var APP="__APP__";
 </script>
 
-<!-- 自定义 注册提交  操作 Javascript 文件 -->
-<script src="__JS__/user_register.js"></script>
-
 <!-- 自定义 top页面 CSS 文件 -->
 <link rel="stylesheet" href="__CSS__/index_top.css"/>
 
 
-<a href="#" title="<?php echo $_SESSION['uid'];?>" id="user_login_name">
+<a href="#" title="<?php session_start(); echo $_SESSION['uid'];?>" id="user_login_name">
 <!-- 假如 session不存在或设置的值为空，即没有登录，显示登录和注册button-->
 
 <!-- session 存在，即登录成功就显示用户名 -->
- <strong style="color:#F00;padding-right:2px ;" id="login_user_id">Hello <?php echo $_SESSION['utype']." ".$_SESSION['uid'];?></strong>
- <input type="hidden" id="session_uid" value="<?php echo $_SESSION['uid'];?>"></a>
+ <strong style="color:#4795d1;padding-right:2px;font-size: 16px;" id="login_user_id">Hello Uid:<?php echo $_SESSION['uid']; ?>&nbsp;&nbsp;用户</strong>
+ <input type="hidden" id="session_uid" value="<?php echo $_SESSION['uid'];?>" text="<?php echo $_SESSION['uid'];?>">
+  <input type="hidden" id="week_num" value="">
+  </a>

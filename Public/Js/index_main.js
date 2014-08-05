@@ -7,7 +7,7 @@
  */	
 	$(document).ready( function() {
 		$("#code_img").click(function(){
-		$("#code_img").attr("src",APP+"/Public/code?"+"Math.random()");
+		$("#code_img").attr("src",APP+"/Public/code&"+"Math.random()");
 		
 	});		
  var inputString_1=$("#school_input_1").val();
@@ -145,7 +145,7 @@ $("#discipline_input").focus(function(){
 $("#discipline_list option").click(function(event){
 	$("#discipline_input").val($(this).text());
 });
-$("#login_button").click(function(){
+/*$("#login_button").click(function(){
 	window.location.href=APP+"Index/index_main";
 });
 $("#student_register_button").click(function(){
@@ -153,5 +153,5 @@ $("#student_register_button").click(function(){
 });
 $("#teacher_register_button").click(function(){
 	window.location.href=APP+"Index/index_main";
-});
+});*/
 });
