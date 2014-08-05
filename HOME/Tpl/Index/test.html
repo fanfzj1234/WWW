@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+				<script src="__JS__/jquery-1.7.2.js"></script>
+				<script src="__JS__/jquery-1.7.2.min.js"></script>	
+	</head>
+<body>
+<table id="mytable">
+
+</table>
+显示第几周：
+<input type="text" id="txtWeek"/>
+<input type="button" id="changeView" value="cilck me" onclick="ButtonViewTable_onclick()" />
+</body>
+<script>
+		var rows;
+		$(document).ready(function() {
+	     var APP="__APP__"; 
+	     var classTabel;
+				$.ajax({
+				type:"post",
+				dataType:"json",
+				url:APP+"Table/test",			
+				async:false,
+				success:function(data){
+					classTabel=data;
+					rows=classTabel.length;
+                    var k=1;
+					for(var i=0;i<classTabel.length;i++)
+					{
+						for(var i1=0;i1<classTabel[i].length;i1++)
+							{
+								$("#mytable").append("<tr style='display:none' id=tr_"+k+"></tr>");
+								for(var i2=0;i2<classTabel[i][i1].length;i2++)
+									{
+										var trid="#tr_"+k;
+										if(classTabel[i][i1][i2] !=null)
+										{
+											$(trid).append("<td><span class='class_open' id=c_"+classTabel[i][i1][i2].nid+">"+classTabel[i][i1][i2].elabel+"</span></td> ");
+										}
+										else
+										{
+											//alert("第"+(i+1)+"周星期"+(i2+1)+"第"+(i1+1)+"大节"+"没课");
+											$(trid).append("<td ><span class='class_null'>"+"空"+"</span></td> ");
+										}
+									}
+                                k++;
+							}
+					}
+				}
+	});
+	});
+	function ButtonViewTable_onclick()
+        {
+			var week=parseInt(document.getElementById("txtWeek").value);
+			var brow=(week-1)*5+1;
+			var erow=week*5;
+            // loop to add all the <tr>
+            //var rows = parseInt(document.getElementById("rowno").text);
+            for(var row_index=1;row_index<=rows*7;row_index++)
+            {
+            		var trId="tr_"+row_index;
+            		if(document.getElementById(trId)!=undefined){
+	                var tr_node=document.getElementById(trId);
+	                tr_node.style.display = "none";
+            	}
+            }
+            for(var row_index=brow;row_index<=erow;row_index++)
+            {
+            	var trId1="tr_"+row_index;
+            	if(document.getElementById(trId1)!=undefined)
+            	{
+	                var tr_node=document.getElementById(trId1);
+	                tr_node.style.display = "block";
+               }
+            }
+
+        }
+
+</script>
+</html>

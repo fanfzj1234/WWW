@@ -1,302 +1,131 @@
+
+
 <!--
 	作者：范志俊
 	时间：2014-07-25
          描述：首页页面，包括显示本周课程表，和本周笔记，以及推荐笔记
 -->
-
 <style>
-	#wrapper {
-  padding: 12px;
+span{
+font-size:14px;
+}
+#mytable,#xxtable{ 
+width: 100%; 
+padding: 0; 
+margin: 0; 
+text-align : center ; 
+background-color:#ffffff;
+} 
+.table-heading{ 
+    font-family : Georgia, serif; 
+    font-size : 16px ; 
+    font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+    align-content: center;
+    color : #101010 ; 
+} 
+
+
+th{
+	font-size:15px; 
+}
+	
+p td_have{
+	cursor: pointer;
+	}
+p td_null{
+	pointer-events: none;
 }
 
-select {
-  -webkit-appearance: menulist-button;
-  width: 200px;
-  height: 25px;
-}
+.class_open_xx{
+	color: #60c5eb;
+	}
+.class_open_kc{
+	color: #4795d1;
+	}
+.class_open_ks{
+	color: #f04037;
+	}
+.class_close{
+	color: #4f6b72;
+	}
+.class_null{
+	color: #FFFFFF;
+	}
 
-.drp-popup {
-  font-family: "AvenirLTStd-Heavy", "Avenir LT Std 85 Heavy", "Open Sans", Helvetica, Arial, sans-serif;
+.hidden{ 
+display : none ;} 
+.detailImg {
+	text-align: center;
+	position: relative;
+	display: -moz-box;display: -webkit-box;
 }
-
-.drp-popup {
-  top: 30px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  position: absolute;
-  z-index: 9999;
-  font-size: 12px;
-  color: #444444;
-  background-color: white;
-  margin: 15px 0;
-  padding: 18px 18px 38px;
-  text-transform: uppercase;
-  border: 1px solid #d6d6d6;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  border-radius: 12px;
-  -webkit-box-shadow: 0px 4px 10px 0 #828282;
-  -moz-box-shadow: 0px 4px 10px 0 #828282;
-  box-shadow: 0px 4px 10px 0 #828282;
+.detailImg img {
+	max-width: 684px;
 }
-.drp-popup *, .drp-popup *:before, .drp-popup *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+.detailImg p {
+	text-align: center;
+	color: #999;
 }
-.drp-popup a {
-  text-decoration: none;
+#detailImg-pre,
+#detailImg-next {
+	position: absolute;
+	width: 30px;
+	height: 46px;
+	top: 30%;
+	background: url(__IMG__/page_button.gif) 0 0 no-repeat;
+	cursor: pointer;
+	text-indent:-9999px;
 }
-.drp-popup ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+#detailImg-pre {
+	left: 0;
+	background-position: -35px 0;
 }
-.drp-popup .drp-timeline {
-  position: relative;
+#detailImg-next {
+	right: 0;
+	background-position: -99px 0;
 }
-.drp-popup .drp-timeline .drp-timeline-bar {
-  position: relative;
-  height: 13px;
-  border-bottom: 3px solid #cccccc;
-  bottom: 21px;
+#detailImg-pre:hover {
+	background-position: -35px -47px;
 }
-.drp-popup .drp-timeline .drp-timeline-bar:before, .drp-popup .drp-timeline .drp-timeline-bar:after {
-  content: "";
-  position: absolute;
-  height: 15px;
-  border-left: 3px solid #cccccc;
-  bottom: -9px;
-  left: 0;
+#detailImg-next:hover {
+	background-position: -99px -47px;
 }
-.drp-popup .drp-timeline .drp-timeline-bar:after {
-  left: auto;
-  right: 0;
+#detailImg-box{
+    -moz-box-flex: 1;-webkit-box-flex: 1;margin-left:30px;margin-right:30px
 }
-.drp-popup .drp-timeline .drp-timeline-presets {
-  position: relative;
-  z-index: 1;
+#detailImg-box,#detailImg-pre,#detailImg-next,detailImg{
+    -moz-box-sizing: border-box;-webkit-box-sizing: border-box;
 }
-.drp-popup .drp-timeline .drp-timeline-presets li {
-  position: relative;
-  width: 87px;
-  height: 36px;
-  display: inline-block;
-  color: #bcbcbc;
-  background-image: url("data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==");
-  text-align: center;
-  cursor: pointer;
+td { 
+border-right: 1px solid #C1DAD7; 
+border-bottom: 1px solid #C1DAD7; 
+font-size:13px; 
+color: #4f6b72; 
+align-content: center;
+width:160px;
+} 
+.week_id_num_span{
+	text-align: center;
+    width: 30px;
+    height:30px;
+    line-height:35px;
+    padding: 1px 1px 1px 3px;
+    border: 1px solid transparent;
+    border-radius: 1px;
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    color: #000000;
+	background-color:#F7FBFF ;
+	float: left;
+    margin: 1px 1px;
+    font-size: 16px;
 }
-.drp-popup .drp-timeline .drp-timeline-presets li:first-child {
-  margin-left: 3px;
-}
-.drp-popup .drp-timeline .drp-timeline-presets li .drp-button {
-  z-index: 2;
-  cursor: pointer;
-  background-color: #e0e0e0;
-  width: 12px;
-  height: 12px;
-  position: absolute;
-  bottom: 4px;
-  left: 37px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  border: 2px solid white;
-  -webkit-transition: all 0.15s ease;
-  -moz-transition: all 0.15s ease;
-  -o-transition: all 0.15s ease;
-  transition: all 0.15s ease;
-}
-.drp-popup .drp-timeline .drp-timeline-presets li.drp-selected {
-  color: #444444;
-}
-.drp-popup .drp-timeline .drp-timeline-presets li.drp-selected .drp-button, .drp-popup .drp-timeline .drp-timeline-presets li:hover .drp-button {
-  background-color: #2a91ca;
-  width: 16px;
-  height: 16px;
-  left: 35px;
-  bottom: 2px;
-}
-.drp-popup .drp-calendar {
-  display: table-cell;
-  vertical-align: top;
-  width: 228px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #e0e0e0;
-}
-.drp-popup .drp-calendar .drp-month-picker {
-  position: relative;
-  background-color: #efefef;
-  height: 30px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
-  margin-bottom: 3px;
-  line-height: 32px;
-}
-.drp-popup .drp-calendar .drp-month-picker .drp-month-title {
-  font-size: 14px;
-  text-align: center;
-}
-.drp-popup .drp-calendar .drp-month-picker .drp-arrow {
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  cursor: pointer;
-  position: absolute;
-  width: 28px;
-  height: 30px;
-  line-height: 32px;
-  text-align: center;
-  left: 0;
-  top: 0;
-  color: #afafaf;
-}
-.drp-popup .drp-calendar .drp-month-picker .drp-arrow-right {
-  left: auto;
-  right: 0px;
-}
-.drp-popup .drp-calendar .drp-day-headers li {
-  display: inline-block;
-  width: 30px;
-  height: 24px;
-  line-height: 26px;
-  margin: 0 0 3px 3px;
-  text-align: center;
-}
-.drp-popup .drp-calendar .drp-day-headers li:first-child {
-  margin-left: 0;
-}
-.drp-popup .drp-calendar .drp-days {
-  zoom: 1;
-}
-.drp-popup .drp-calendar .drp-days:before, .drp-popup .drp-calendar .drp-days:after {
-  content: "";
-  display: table;
-}
-.drp-popup .drp-calendar .drp-days:after {
-  clear: both;
-}
-.drp-popup .drp-calendar .drp-days li {
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  width: 33px;
-  height: 24px;
-  border-right: solid 3px white;
-  float: left;
-  cursor: pointer;
-  line-height: 26px;
-  text-align: center;
-  margin: 0 0 3px 0;
-}
-.drp-popup .drp-calendar .drp-days li.drp-day-last-in-row {
-  width: 30px;
-  border-right: none;
-}
-.drp-popup .drp-calendar .drp-days li.drp-day-in-range {
-  color: #2a91ca;
-  background-color: #ddf3fe;
-  border-color: #ddf3fe;
-}
-.drp-popup .drp-calendar .drp-days li.drp-day-last-in-range {
-  border-color: white;
-}
-.drp-popup .drp-calendar .drp-days li.drp-day-selected, .drp-popup .drp-calendar .drp-days li:hover {
-  color: #efefef;
-  background-color: #2a91ca;
-}
-.drp-popup .drp-calendar .drp-days li.drp-day-disabled {
-  color: #cccccc;
-}
-.drp-popup .drp-calendar .drp-days li.drp-day-disabled:hover {
-  background-color: white;
-  cursor: default;
-}
-.drp-popup .drp-calendar .drp-days .drp-day-empty {
-  background-color: transparent !important;
-  cursor: auto;
-}
-.drp-popup .drp-calendars {
-  padding: 18px 0 10px;
-  border-top: 1px solid #e0e0e0;
-}
-.drp-popup .drp-calendar:first-child .drp-day-selected {
-  border-color: #ddf3fe;
-}
-.drp-popup .drp-calendar-date {
-  position: absolute;
-  bottom: 0px;
-  height: 34px;
-  width: inherit;
-  text-align: center;
-  color: #2a91ca;
-  font-size: 16px;
-}
-.drp-popup .drp-calendar-date:before {
-  font-size: 12px;
-  color: #444444;
-}
-.drp-popup .drp-calendar-start .drp-calendar-date:before {
-  content: "Start Date: ";
-}
-.drp-popup .drp-calendar-end .drp-calendar-date:before {
-  content: "End Date: ";
-}
-.drp-popup .drp-calendar-separator {
-  display: table-cell;
-  position: relative;
-  width: 69px;
-  top: 8px;
-}
-.drp-popup .drp-calendar-separator:before {
-  content: "";
-  position: absolute;
-  height: 90%;
-  border-left: 1px solid #e0e0e0;
-  left: 34px;
-}
-.drp-popup .drp-calendar-separator:after {
-  content: "To";
-  position: absolute;
-  top: 80px;
-  color: #2a91ca;
-  background-color: white;
-  height: 38px;
-  width: 69px;
-  text-align: center;
-  font-size: 16px;
-  line-height: 41px;
-}
-.drp-popup .drp-tip {
-  position: absolute;
-  top: 0;
-  left: 30px;
-}
-.drp-popup .drp-tip:before, .drp-popup .drp-tip:after {
-  content: "";
-  position: absolute;
-  border-style: solid;
-  bottom: 0;
-}
-.drp-popup .drp-tip:before {
-  left: 0;
-  border-width: 0 16px 16px;
-  border-color: #d6d6d6 transparent;
-}
-.drp-popup .drp-tip:after {
-  left: 2px;
-  border-width: 0px 14px 14px;
-  border-color: white transparent;
+.week_id_num_span:hover{
+    color: #FFFFFF;
+	background-color:#3bafda ;
+	cursor: pointer;
 }
 </style>
-
 <div class='title'>
     <h2>首页</h2>
      <include file="Public:top" />
@@ -312,91 +141,52 @@ select {
       </h4>
     </div>
     <div id="collapseOne" class="panel-collapse collapse in">
+    	
       <div class="panel-body">
-      	<div style="margin-bottom:10px;"> <div id='wrapper'>
-  <form>
-    <select class='custom-date' name='select'>
-      <option value='7'>7 Days</option>
-      <option value='30'>30 Days</option>
-      <option selected='selected' value='90'>90 Days</option>
-      <option value='180'>180 Days</option>
-      <option value='365'>365 Days</option>
-      <option value='custom'>Custom</option>
-    </select>
-  </form>
-</div>
-   <ul class="pagination pagination-lg">
-  <li id="table_last"><a href="#">&laquo;上周</a></li>
-  <li><a href="#">第<strong id="now_weeK">1</strong>周</a></li>
-  <li id="table_next"><a href="#">下周&raquo;</a></li>
-</ul>
-      	</div>
-<table id="mytable" cellspacing="0" class="table table-striped"> 
-   <tr> 
-      <th width="50px"><strong class="glyphicon glyphicon-calendar"></strong></th> 
-      <?php 
-	    $jdtoday = cal_to_jd(CAL_GREGORIAN,date("m"),date("d"),date("Y"));
-        $offset = jddayofweek($jdtoday);
-		for($i=1-$offset; $i<=7-$offset; $i++){
-           $date = strtotime($i.' days');
-           echo "<th>".date('n-j', $date)."<br>(".date('D', $date).")</th>";
-		 }
-      ?>
-   </tr> 
-   <tr> 
-      <th>一</th> 
-      <td><span class="class_open">专业实验I1</span></td> 
-      <td><span class="class_open">软件工程</span></td> 
-      <td><span class="class_open">大学英语5</span></td> 
-      <td><span class="class_open">计算机组成原理</span></td> 
-      <td><span class="class_open">软件工程</span></td> 
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_null">空</span></td> 
-   </tr> 
-    <tr> 
-      <th>二</th> 
-      <td><span class="class_open">数据库原理</span></td> 
-      <td><span class="class_open">计算机组成原理</span></td> 
-      <td><span class="class_open">数据库原理</span></td> 
-      <td><span class="class_open">毛泽东思想和中国特色社会主义理论体系概论2</span></td> 
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_open">操作系统</span></td> 
-      <td><span class="class_null">空</span></td> 
-   </tr> 
-    <tr> 
-      <th>三</th> 
-      <td><span class="class_open">专业实验II2</span></td> 
-      <td><span class="class_open">毛泽东思想和中国特色社会主义理论体系概论2</span></td> 
-      <td><span class="class_open">数据库系统开发实训</span></td>  
-      <td><span class="class_open">操作系统</span></td> 
-      <td><span class="class_close">专业实验II2</span></td>
-      <td><span class="class_null">空 </span></td> 
-      <td><span class="class_null">空 </span></td> 
-   </tr> 
-    <tr> 
-      <th>四</th>  
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_open">专业基础实验2</span></td> 
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_open">专业基础实验2</span></td> 
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_null">空</span></td> 
-   </tr> 
-    <tr > 
-      <th>五</th>  
-      <td><span class="class_open">算法设计与分析</span></td> 
-      <td><span class="class_open">微机接口技术</span></td> 
-      <td><span class="class_open">算法设计与分析</span></td> 
-      <td><span class="class_open">微机接口技术</span></td> 
-      <td><span class="class_open">数字系统设计</span></td> 
-      <td><span class="class_null">空</span></td> 
-      <td><span class="class_null">空</span></td>
-   </tr> 
-</table> 
+	  <div style="margin-left:30px"  id="jxz_xz" class="dropdown">
+         <botton class="btn btn-primary_1 btn-lg" data-toggle="modal" data-target="#week_select_modal">
+					选择教学周
+				</botton>
+<div class="modal fade bs-example-modal-sm" id="week_select_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"  aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h5 class="modal-title" id="login_ModalLabel">教学周选择</h5>
       </div>
+       <div class="modal-body">
+          <div class="modal-form" >
+              <div class="form-group" >
+                 <div id="week_select_div" style="height: auto;margin-bottom: 80px;"></div>
+		     </div>
+	      </div>
+      </div>
+     </div>
     </div>
   </div>
+</div>
+      	<div class="detailImg" > 
+		<a id="detailImg-pre" alt="上一周">&lt;</a>
+		<div id="detailImg-box" class="box">
+		<table id="mytable" cellspacing="0" class="table table-condensed table-bordered"> 
+	     <tr> 
+            <th id="trw_1"></td>
+			<th id="trw_2"></td>
+			<th id="trw_3"></td>
+			<th id="trw_4"></td>
+			<th id="trw_5"></td>
+			<th id="trw_6"></td>
+			<th id="trw_7"></td>
+      </tr> 
+</table> 
+ </div>
+		<a id="detailImg-next" alt="下一周">&gt;</a> 
+</div>
+    
+    </div>
+    <div style="clear: both;height: 20px;"></div>
+    </div>
+   </div>
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -439,9 +229,240 @@ select {
   </div>
 </div>
 </article>
-<!-- 时间  Javascript 文件 -->
-<script type="text/javascript" src="__JS__/time.js"></script>
-<!--选择教学周-->
-<script type="text/javascript" src="__JS__/week_select.js"></script>
-<!-- 自定义 table 操作 Javascript 文件 -->
-<script src="__JS__/main_table.js"> </script>
+<script>  
+		var uid01=document.getElementById("session_uid").value;
+		var rows;           //共有的周数
+		var currentWeek;    //保存当前周
+		var tempWeek;       //临时周，用于用户操作（上一周，下一周）
+		var btime;			//教学开始时间			
+        /*从服务器取得指定用户的课表，读取开始时间并计算当前教学周存入cookie，返回课程信息*/
+		$(document).ready(function() {
+			var APP="__APP__"; 			 
+	     	var classTabel;
+	     	//请求数据
+			$.ajax({
+			type:"post",
+			dataType:"json",
+			data:{uid:uid01,type:"getByTime"},
+			url:APP+"Table/curriculum_user",			
+			async:false,
+			success:function(data){
+				classDetail=data;
+			    btime = new Date(data.begin_time);
+			    currentWeek=TimeSpan(btime);
+			    tempWeek=currentWeek;
+				classTabel=data.class;
+                    var k=1;
+                    		rows=classTabel.length;
+							for(var i=0;i<classTabel.length;i++)
+							{
+								for(var i1=0;i1<classTabel[i].length;i1++)
+									{
+										$("#mytable").append("<tr style='display:none' id=tr_"+k+"></tr>");
+										for(var i2=0;i2<classTabel[i][i1].length;i2++)
+											{
+												var trid="#tr_"+k;
+												if(classTabel[i][i1][i2] !=null)
+												{
+													var itemClassexmtype=classTabel[i][i1][i2].exmtype;
+													var itemClassLabel=classTabel[i][i1][i2].elabel;
+													if(itemClassLabel.length>8)
+													{
+														itemClassLabel=itemClassLabel.substring(0, 8) + "***";
+													}
+													 if(itemClassexmtype=="考查")
+													$(trid).append("<td><span class='class_open_kc test-center' id=class_"+(i)+"_"+(i1)+"_"+(i2)+" onmouseover='ViewInfor(id)'>"+itemClassLabel+"</span></td> ");
+													if(itemClassexmtype=="考试")
+													$(trid).append("<td><span class='class_open_ks test-center' id=class_"+(i)+"_"+(i1)+"_"+(i2)+" onmouseover='ViewInfor(id)'>"+itemClassLabel+"</span></td> ");
+													if(itemClassexmtype=="限选")
+													$(trid).append("<td><span class='class_open_xx test-center' id=class_"+(i)+"_"+(i1)+"_"+(i2)+" onmouseover='ViewInfor(id)'>"+itemClassLabel+"</span></td> ");
+												}
+												else
+												{
+													//alert("第"+(i+1)+"周星期"+(i2+1)+"第"+(i1+1)+"大节"+"没课");
+													$(trid).append("<td ><span class='class_null'>"+"空"+"</span></td> ");
+												}
+											}
+		                                k++;
+								}
+							}
+							if(currentWeek<0)
+							{
+								ChangeTimeView();
+								DisplayByCurrentWeek(1);
+								
+							}
+							else if(currentWeek>22)
+							{
+								ChangeTimeView();
+								DisplayByCurrentWeek(18);
+							}
+							else
+							{
+								ChangeTimeView();
+								DisplayByCurrentWeek(currentWeek);
+							}
+			},
+			error:function(){
+				alert("data error");
+			}
+			
+});
+	
+/***********************************************/
+            $('th').parent().addClass('table-heading');         
+            $('td:contains("showtime")').siblings().addClass('tdhlight'); 
+            $('#mytable td').hover(function(){ 
+                   
+                     	 $(this).addClass('info'); 
+                     $(this).css("cursor","pointer"); 
+                   
+                }, 
+                function(){ 
+                    
+                    $(this).removeClass('info'); 
+                    
+                });  
+			$("#detailImg-next").click(function(){
+		           ChangClassWeek("next");
+		        });
+			$("#detailImg-pre").click(function(){
+		           ChangClassWeek("pre");
+		        });
+		    var week_num=rows;
+			for(var i=0;i<week_num;i++)
+			{
+				$("#week_select_div").append("<span class='week_id_num_span' id='week_id_num_"+i+"' onclick='week_select(id)'>"+(i+1)+"</span>");
+				if((i+1)%9==0)
+				$("#week_select_div").append("<br>");
+			}
+			
+	})	;
+
+		//显示当前教学周的课表，并隐藏其他教学周
+		function DisplayByCurrentWeek(week)
+        {
+			//var week=parseInt(document.getElementById("txtWeek").value);
+			var brow=(week-1)*5+1;
+			var erow=week*5;
+            // loop to add all the <tr>
+            //var rows = parseInt(document.getElementById("rowno").text);
+            for(var row_index=1;row_index<=rows*7;row_index++)
+            {
+            		var trId="tr_"+row_index;
+            		if(document.getElementById(trId)!=undefined){
+	                var tr_node=document.getElementById(trId);
+	                tr_node.style.display = "none";
+            	}
+            }
+            for(var row_index=brow;row_index<=erow;row_index++)
+            {
+            	var trId1="tr_"+row_index;
+            	if(document.getElementById(trId1)!=undefined)
+            	{
+	                var tr_node=document.getElementById(trId1);
+	                tr_node.style.display = "table-row";
+               }
+            }
+        }
+        
+		//计算时间差，返回当前教学周
+		function TimeSpan(beginTime)
+        {
+        		var nowtime = new Date();
+				var days = nowtime.getTime()-beginTime.getTime();
+				days = Math.floor(days/(24*3600*1000))+1;
+				//alert(days);
+				var weeks = Math.ceil(days/7);
+				return weeks;
+				//days = days%7;
+				//alert(weeks,days);
+				//alert(btime+nowtime)
+				//if (days<=0) {days = 1;}
+        }
+
+		//根据选择的周，显示相应周次的课表
+		function  ChangClassWeek(item) 
+		{
+			if(item=="pre")
+			{
+				if(tempWeek<=0)
+				{
+					ChangeTimeView() ;
+					DisplayByCurrentWeek(1);
+					alert("已经到第一周了，不要再点了");
+				}
+				else
+				{
+					ChangeTimeView() ;
+					--tempWeek;
+					DisplayByCurrentWeek(tempWeek);
+				}
+			}
+			else if(item=="next")
+			{
+				if(tempWeek>=18)
+				{
+					ChangeTimeView() ;
+					alert("已经到第最后一周周了，不要再点了");
+					DisplayByCurrentWeek(18);
+				}
+				else
+				{
+					ChangeTimeView() ;
+					++tempWeek;
+					DisplayByCurrentWeek(tempWeek);
+					
+				}
+			}
+			else
+			{
+				alert("operate error!!");
+			}
+		}
+
+		//根据当前教学周，改变table 表头显示的日期
+		function ChangeTimeView() 
+		{
+			var currentDate=btime.valueOf()+parseInt(tempWeek)*7* 24 * 60 * 60 * 1000;
+			currentDate = new Date(currentDate);
+			var nowDayOfWeek = currentDate.getDay(); 
+			var nowDay = currentDate.getDate(); 
+			var nowMonth = currentDate.getMonth(); 
+			var nowYear = currentDate.getYear(); 
+			nowYear += (nowYear < 2000) ? 1900 : 0; 
+			var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek+1); 
+			var weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek)); 
+			for(var count=1;count<8;count++)
+			{
+				var trw_week=document.getElementById("trw_"+count);
+				trw_week.innerHTML=weekStartDate.toDateString();
+				weekStartDate=new Date(weekStartDate.valueOf()+24*60*60*1000);
+			}
+			
+		}
+	
+		function ViewInfor(viewId)
+		{
+			//alert(viewId);
+    		var strs = new Array(); 
+   			strs = viewId.split("_"); 
+			var i0=parseInt(strs[1]);
+			var i1=parseInt(strs[2]);
+			var i2=parseInt(strs[3]);
+			alert(classDetail.class[i0][i1][i2].elabel+";"+classDetail.class[i0][i1][i2].ctype+";"+classDetail.class[i0][i1][i2].etname+";"+classDetail.class[i0][i1][i2].exmtype+";"+classDetail.class[i0][i1][i2].eaddress);
+		}
+		function week_select(weekId){
+			//alert(weekId);
+			$('#week_select_modal').modal('toggle')
+			var strs = new Array(); 
+   			strs = weekId.split("_"); 
+			var i0=parseInt(strs[1]);
+			var i1=parseInt(strs[2]);
+			var i2=parseInt(strs[3]);
+			var i3=parseInt(i2)+1;
+			DisplayByCurrentWeek(i3);
+			tempWeek=i2;
+			ChangeTimeView() ;
+		}
+</script>

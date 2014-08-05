@@ -7,36 +7,35 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <!-- Bootstrap & Snippet plugin core CSS-->
-<link href="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="__CSS__/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="http://www.bootcss.com/p/stickup/stickup.css" rel="stylesheet">
-<link rel="image_src" href="http://lirancohen.github.io/stickUp/images/stickUp.png">
+<link href="__CSS__/stickup.css" rel="stylesheet">
+
 <link href="__CSS__/index_image_style.css" rel="stylesheet">
 
 <!-- 新 jquery Javascript 文件 --> 
-<script type="text/javascript" src='http://code.jquery.com/jquery-2.1.1.js'></script>
+<script type="text/javascript" src='__JS__/jquery-2.1.1.js'></script>
 
 <!-- 新 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="__CSS__/bootstrap.min.css">
 
 <!-- 可选的Bootstrap主题文件（一般不用引入） -->
-<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="__CSS__/bootstrap-theme.min.css">
 
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="__JS__/bootstrap.min.js"></script>
 
 <!-- jquery-ui  CSS 文件 -->
 <link rel="stylesheet" href="__CSS__/jquery-ui.css" media="screen" type="text/css" />
 
 <!--font-awesome  标准文字库  CSS 文件 -->
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css">
+<link rel="stylesheet" href="__CSS__/font-awesome.css">
 
 <!--bootstrap  再编辑   CSS 文件 -->
 <link rel="stylesheet" href="__CSS__/bootstrap.css" media="screen" type="text/css"/>
-
+<!-- 自定义 下拉列表，验证码，button特效  操作 Javascript 文件 -->
+<script src="__JS__/index_main.js"></script>
 <style>
 	#school_list_1,#school_list_2,#discipline_list
 {
@@ -52,7 +51,21 @@
 	color: #4fc1e9;
 }
 .navbar.navbar-inverse.navbar-static-top a:hover {
-color: #;
+color: #ffffff;
+}
+.navbar.navbar-inverse.navbar-static-top a:hover {
+color: #000000;
+}
+.navbar-inverse .navbar-nav>.active>a {
+background-image: -webkit-linear-gradient(top,#222 0,#282828 100%);
+background-image: -o-linear-gradient(top,#222 0,#282828 100%);
+background-image: -webkit-gradient(linear,left top,left bottom,from(#222),to(#282828));
+background-image: linear-gradient(to bottom,#0A64A4 0,#0A64A4 100%);
+color:#FFFFFF;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff282828', GradientType=0);
+background-repeat: repeat-x;
+-webkit-box-shadow: inset 0 3px 9px rgba(0,0,0,.25);
+box-shadow: inset 0 3px 9px rgba(0,0,0,.25);
 }
 </style>
 <script>
@@ -66,7 +79,9 @@ color: #;
 <title>爱拍课堂||ipaikt</title>
 </head>
 <body>
-<body style="" data-find="_5" onload="if(window.location.href.indexOf('temp')==-1)window.location.href=window.location.href+'?temp='+Math.random().toString();" >
+<body style="" data-find="_5"
+>
+<!-- onload="if(window.location.href.indexOf('temp')==-1)window.location.href=window.location.href+'&?temp='+Math.random().toString();" -->
     <!-- START THE COVER -->
     <div id="home" class="carousel" data-find="_4" style="margin-bottom: 20px;">
       <div class="carousel-inner">
@@ -77,7 +92,12 @@ color: #;
 				<h1 style="background-color: #0a64a4; border-bottom: 0px solid #0a64a4; ">爱拍课堂</h1>
 				<h3>一个 课程表和笔记相结合  APP应用</h3>
 				<p>记录学习点滴，专注学生学习。用上爱拍，喜欢爱拍，恋上爱拍。</p>
-				<p style="margin-bottom: 0px;"><botton class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login" style="background-color: #5CB85C; border-color: #4795d1; font-size: 16px;">Go>>></botton></p>
+				<p style="margin-bottom: 0px;"><botton class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">
+					<strong>登陆</strong>
+				</botton>
+				<botton class="btn btn-primary_1 btn-lg" data-toggle="modal" data-target="#student_register">
+					<strong>注册</strong>
+				</botton></p>
             </div>
           </div>
         </div>
@@ -147,12 +167,12 @@ color: #;
 				</div>   
 			</form>
 			<!-- 状态提示栏 -->
-			<p id="login_alert" role="alert"></p>
+			<p id="login_alert" role="alert">程序员正在为登陆功能奋战中</p>
 		  </div>
 		   
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary" data-loading-text="Loading..." id="login_button">登陆</button>
+        <button type="button" class="btn btn-primary_1" data-loading-text="Loading..." id="login_button">登陆</button>
       </div>
     </div>
   </div>
@@ -176,7 +196,7 @@ color: #;
                        	<div class="form-group">
                          <div class="input-group">
                                  <span class="input-group-addon">学校</span>
-                                 <input type="text" id="school_input_1" class="form-control" placeholder="School">
+                                 <input type="text" id="school_input_1" class="form-control" placeholder="(暂时只支持齐齐哈尔大学)">
                                     
                          </div>
                           
@@ -202,13 +222,13 @@ color: #;
                         </div>
 			</form>
 			<!-- 状态提示栏 -->
-			<p id="register_alert" role="alert"></p>
+			<p id="register_alert_stu" role="alert"></p>
 		  </div>
 		   
       <div class="modal-footer">
       	
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary"  id="student_register_button">注册</button>
+        <button type="button" class="btn btn-primary_2"  id="student_register_button">注册</button>
       </div>
     </div>
   </div>
@@ -279,12 +299,12 @@ color: #;
                         </div>
 			</form>
 			<!-- 状态提示栏 -->
-			<p id="register_alert" role="alert"></p>
+			<p id="register_alert_tea" role="alert"></p>
 		  </div>
 		   
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary"  id="teacher_register_button">注册</button>
+        <button type="button" class="btn btn-primary_2"  id="teacher_register_button">注册</button>
       </div>
     </div>
   </div>
@@ -333,7 +353,7 @@ color: #;
         <h5 style="margin-top:5px;"><mute>v0.0.1 BETA</mute></h5></center>
           <div class="col-lg-4">
           
-            <img src="http://www.bootcss.com/p/stickup/images/simple.png">
+            <img src="__IMG__/simple.png">
             <h2>建立更快捷</h2>
             <p>课表秒导入，显示云同步</p>
             <p>有图有真相，笔记轻松建</p>
@@ -342,7 +362,7 @@ color: #;
             <p><a class="btn btn-default" href="#installation">详细内容 »</a></p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-4">
-            <img src="http://www.bootcss.com/p/stickup/images/onepager.png">
+            <img src="__IMG__/onepager.png">
             <h2>复习更方便</h2>
             <p>后台能识别，自动理知识</p>
             <p>资源同步推，课程同步好</p>
@@ -351,7 +371,7 @@ color: #;
             <p><a class="btn btn-default" href="#one-pager">详细信息 »</a></p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-4">
-            <img src="http://www.bootcss.com/p/stickup/images/opensource.png">
+            <img src="__IMG__/opensource.png">
             <h2>功能更多多</h2>
             <p>老师来帮助，不挂有保障</p>
             <p>平台版本全，终端任君选</p>
@@ -553,12 +573,11 @@ color: #;
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script src="__JS__/jquery.min.js"></script>
 
     <!-- ### IMPORTANT ### stickUp javascript file -->
     <!-- ######################################### --> 
-    <script src="http://www.bootcss.com/p/stickup/js/stickUp.min.js"></script>
+    <script src="__JS__/stickUp.min.js"></script>
     <!-- ######################################### -->
 
     <!-- ### IMPORTANT ### stickUp options in use -->
@@ -583,15 +602,16 @@ color: #;
         });
       });
     </script>
+    
 <script>
+   
 	$(document).ready(function() {
-	
-	$("#student_register_button").click(function(){
+	function  student_register_go(){
 		var studentId_1=$("#studentId").val();
-	var student_password_1=$("#student_password_1").val();
-	var schoolId_1=$("#school_input_1").val();
-	//alert(schoolId_1);
-	$("#student_register_button").html("Loading...");
+	    var student_password_1=$("#student_password_1").val();
+	    //var schoolId_1=$("#school_input_1").val();
+        var schoolId_1="齐齐哈大学";
+	   $("#student_register_button").html("Loading...");
         $.ajax
         (
         	{
@@ -599,7 +619,7 @@ color: #;
         		type: "post",
                 url: APP+"/Login/user_register",
                 data: {type:"normal_student",studentId:studentId_1, student_password:student_password_1,schoolId:schoolId_1},
-                //data: {type:"normal_student",studentId:"2012021039", student_password:"921128",schoolId:"齐齐哈尔大学"},
+                //data: {type:"normal_student",studentId:studentId_1, student_password:student_password_1,schoolId:schoolId_1},
                 dataType: "json",
                 success: function(data){
            
@@ -620,13 +640,19 @@ color: #;
         	    error:function(data){
                          $("#register_alert").attr("class", "alert alert-danger");
                          $("#register_alert").append("注册失败，请重新注册");
-        	    }
-        	    
+        	    }     	    
         });
         
-  }); 
+  }
+	$("#student_register_button").click(function()
+	{
+	        student_register_go();
+	}); 
   /*教师注册*/
   $("#teacher_register_button").click(function(){
+          teacher_register_go();
+  });
+    function teacher_register_go(){
   	$("#teacher_register_button").html("Loading...");
   	var disciplineId_1=$("#discipline_input").val();
 	var teacherName_1=$("#teacherName").val();
@@ -660,14 +686,18 @@ color: #;
         	    }
         });
     
+   }
+  $("#student_register").keydown(function(e){  
+  if(e.keyCode==13){  
+   student_register_go();
+  }  
+  });
+  $("#teacher_register").keydown(function(e){  
+  if(e.keyCode==13){  
+   teacher_register_go();
+  }  
   });
 });
 </script>
-<!-- 自定义 下拉列表，验证码，button特效  操作 Javascript 文件 -->
-<script src="__JS__/index_main.js"></script>
-
-    <!--<script src="http://www.bootcss.com/p/projects.js"></script>
-    <script src=" http://hm.baidu.com/h.js?3d8e7fc0de8a2a75f2ca3bfe128e6391" type="text/javascript"></script>-->
-    <!-- ######################################## -->
 </body>
 </html>
