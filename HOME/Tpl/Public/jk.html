@@ -743,8 +743,8 @@ p{
     <h2 id="table_info_jk">二.课程表接口</h3>
 		<!--2-1-->
 		<div id="2-1">
-		<h3 id="two_one">2-1 正常请求课表 &nbsp;&nbsp;Curriculum_get&nbsp;&nbsp;&nbsp;      POST</h3>
-		<P>接口相关参数：A:Curriculum_User；AC:getByTime</P>
+		<h3 id="two_one">2-1 正常请求课表 &nbsp;&nbsp;Curriculum_Usert&nbsp;&nbsp;&nbsp;      POST</h3>
+		<P>接口相关参数：A:Curriculum_User；AC:getForCurrentTerm</P>
 		<p>参数：<strong>uid:</strong>用户id;<strong>divection:</strong>方向;<strong>start_time:</strong>开始时间（时间可以具体到分，也可以具体到日）;<strong>end_time:</strong>结束时间;<strong>school_week:</strong>学校周</p>
 		<p>返回：<strong>divection:</strong>方向;<strong>class_day_num:</strong>每天课程数;<strong>class_array:</strong>课程数组</p>
 		<p><strong>课程数组:</strong>name:课程名称;type:课程类型;id:课程id;操作时用  teacherId：教师id；teacherName:教师姓名；status：老师状态</p>
@@ -786,10 +786,7 @@ p{
 				</td>
 			</tr>
 		</table> 
-		<P>结果成功案例："uid":vertical&nbsp;"class_day_num":"5"&nbsp;"class_array":[0]{['id']2 ['name']"高等数学" ['type']['normal_class'] ['teacherId']24 ['teacherName']"张三" ['status']'normal'.....}
-				[1]{['id']3 ['name']NULL ['type']"no_class" }
-				[2]{['id']5 ['name']"大学英语" ['type']['normal_class'] ['teacherId']23 ['teacherName']"李四" ['status']'pause'.....}	
-				[3]{['id']8 ['name']"自习" ['type']'self_study' ['status']'pause'.....}	</P>
+		<P>结果成功案例："{"S":"success","C":"6f7308f3fb450aadd0330e4e32ebd319","E":1,"M":null,"MT":null,"V":["calid","sclid1","year","half","week","beginday","scl_time","class"],"calid":"1","sclid1":"631","year":"2014","half":"2","week":"21","beginday"......}"	</P>
       </div>
     </div>
   </div>
