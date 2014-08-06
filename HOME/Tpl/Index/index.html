@@ -67,10 +67,21 @@ background-repeat: repeat-x;
 -webkit-box-shadow: inset 0 3px 9px rgba(0,0,0,.25);
 box-shadow: inset 0 3px 9px rgba(0,0,0,.25);
 }
+article,aside,dialog,footer,header,section,footer,nav,figure,menu{display:block}
 </style>
 <script>
     var APP = "__APP__";
-	var IMG = "__IMG__";	
+	var IMG = "__IMG__";
+(function() {
+if (!
+/*@cc_on!@*/
+0) return;
+var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
+var i= e.length;
+while (i--){
+document.createElement(e[i])
+}
+})()	
 </script>
 
 <script src="__JS__/index_chinazjs.js"></script>
@@ -78,9 +89,15 @@ box-shadow: inset 0 3px 9px rgba(0,0,0,.25);
 
 <title>爱拍课堂||ipaikt</title>
 </head>
-<body>
-<body style="" data-find="_5"
->
+
+<body style="overflow:scroll;overflow-x:hidden" data-find="_5">
+<!--[if lte IE 8]>
+<noscript>
+<style>.html5-wrappers{display:none!important;}</style>
+<div class="ie-noscript-warning">您的浏览器禁用了脚本，请<a href="">查看这里</a>来启用脚本!或者<a href="/?noscript=1">继续访问</a>.
+</div>
+</noscript>
+<![endif]-->
 <!-- onload="if(window.location.href.indexOf('temp')==-1)window.location.href=window.location.href+'&?temp='+Math.random().toString();" -->
     <!-- START THE COVER -->
     <div id="home" class="carousel" data-find="_4" style="margin-bottom: 20px;">
