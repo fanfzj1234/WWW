@@ -2,9 +2,9 @@
 /*--
 	作者：范志俊
 	时间：2014-07-25
-	描述：Index控制器，显示主页index和主题main页面
+	描述：User控制器
 */
-	class TableAction extends CommonAction {
+	class UserAction extends CommonAction {
 		// 显示主页面
 		public function index(){
              $this->display();

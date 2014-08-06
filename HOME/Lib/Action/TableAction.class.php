@@ -8,13 +8,14 @@
 	
 		// 显示主页面
 		public function index(){
+		ob_end_clean();
              $this->display();
 		}
 		public function test()
 		{
 			 
 			    //$type="getByTime";
-			    $uid="43";
+			    $uid="45";
 				$data['A']="Curriculum_User";
 				$data['AC']="getForCurrentTerm";
 				$data['C']=base64_encode(gzencode("http".time()."W"));  
@@ -40,7 +41,7 @@
 				$tmp = array_merge(array('begin_time' => $date_beginday),array('class' => $Array->class));
 				$json_arry =json_encode($tmp);
 				
-				echo $json_arry;
+				echo $json_data;
 				
 		}
 		public function curriculum_user(){  
