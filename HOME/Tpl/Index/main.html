@@ -5,6 +5,7 @@
 	时间：2014-07-25
          描述：首页页面，包括显示本周课程表，和本周笔记，以及推荐笔记
 -->
+<<<<<<< HEAD
 <link href="__CSS__/main_table.css">
 <style>
 th{
@@ -13,6 +14,11 @@ th{
 span{
 	font-size: 14px;
 	font: "微软雅黑";
+=======
+<style>
+span{
+font-size:14px;
+>>>>>>> origin/master
 }
 #mytable,#xxtable{ 
 width: 100%; 
@@ -21,6 +27,7 @@ margin: 0;
 text-align : center ; 
 background-color:#ffffff;
 } 
+<<<<<<< HEAD
 
 td { 
 border-right: 1px solid #C1DAD7; 
@@ -49,6 +56,8 @@ width:160px;
 	position: relative;
 	display: -moz-box;display: -webkit-box;
 }
+=======
+>>>>>>> origin/master
 .table-heading{ 
     font-family : Georgia, serif; 
     font-size : 16px ; 
@@ -57,6 +66,44 @@ width:160px;
     color : #101010 ; 
 } 
 
+<<<<<<< HEAD
+=======
+
+th{
+	font-size:15px; 
+}
+	
+p td_have{
+	cursor: pointer;
+	}
+p td_null{
+	pointer-events: none;
+}
+
+.class_open_xx{
+	color: #60c5eb;
+	}
+.class_open_kc{
+	color: #4795d1;
+	}
+.class_open_ks{
+	color: #f04037;
+	}
+.class_close{
+	color: #4f6b72;
+	}
+.class_null{
+	color: #FFFFFF;
+	}
+
+.hidden{ 
+display : none ;} 
+.detailImg {
+	text-align: center;
+	position: relative;
+	display: -moz-box;display: -webkit-box;
+}
+>>>>>>> origin/master
 .detailImg img {
 	max-width: 684px;
 }
@@ -74,14 +121,42 @@ width:160px;
 	cursor: pointer;
 	text-indent:-9999px;
 }
+<<<<<<< HEAD
 
+=======
+#detailImg-pre {
+	left: 0;
+	background-position: -35px 0;
+}
+#detailImg-next {
+	right: 0;
+	background-position: -99px 0;
+}
+#detailImg-pre:hover {
+	background-position: -35px -47px;
+}
+#detailImg-next:hover {
+	background-position: -99px -47px;
+}
+>>>>>>> origin/master
 #detailImg-box{
     -moz-box-flex: 1;-webkit-box-flex: 1;margin-left:30px;margin-right:30px
 }
 #detailImg-box,#detailImg-pre,#detailImg-next,detailImg{
     -moz-box-sizing: border-box;-webkit-box-sizing: border-box;
 }
+<<<<<<< HEAD
 
+=======
+td { 
+border-right: 1px solid #C1DAD7; 
+border-bottom: 1px solid #C1DAD7; 
+font-size:13px; 
+color: #4f6b72; 
+align-content: center;
+width:160px;
+} 
+>>>>>>> origin/master
 .week_id_num_span{
 	text-align: center;
     width: 30px;
@@ -103,6 +178,7 @@ width:160px;
 	background-color:#3bafda ;
 	cursor: pointer;
 }
+<<<<<<< HEAD
 .week_id_num_span_active{
     color: #FFFFFF;
 	background-color:#0a64a4 ;
@@ -123,6 +199,8 @@ width:160px;
 .class_null{
 	color: #FFFFFF;
 	}
+=======
+>>>>>>> origin/master
 </style>
 <div class='title'>
     <h2>首页</h2>
@@ -327,6 +405,7 @@ width:160px;
 			$("#detailImg-pre").click(function(){
 		           ChangClassWeek("pre");
 		        });
+<<<<<<< HEAD
 		    //教学周选择循环显示周
 		    var week_num=rows;
 			for(var i=0;i<week_num;i++)
@@ -336,6 +415,12 @@ width:160px;
 				else{
 				$("#week_select_div").append("<span class='week_id_num_span_active' id='week_id_num_"+i+"' onclick='week_select(id)'>"+(i+1)+"</span>");	
 				}
+=======
+		    var week_num=rows;
+			for(var i=0;i<week_num;i++)
+			{
+				$("#week_select_div").append("<span class='week_id_num_span' id='week_id_num_"+i+"' onclick='week_select(id)'>"+(i+1)+"</span>");
+>>>>>>> origin/master
 				if((i+1)%9==0)
 				$("#week_select_div").append("<br>");
 			}
@@ -345,9 +430,17 @@ width:160px;
 		//显示当前教学周的课表，并隐藏其他教学周
 		function DisplayByCurrentWeek(week)
         {
+<<<<<<< HEAD
 			var brow=(week-1)*5+1;
 			var erow=week*5;
  
+=======
+			//var week=parseInt(document.getElementById("txtWeek").value);
+			var brow=(week-1)*5+1;
+			var erow=week*5;
+            // loop to add all the <tr>
+            //var rows = parseInt(document.getElementById("rowno").text);
+>>>>>>> origin/master
             for(var row_index=1;row_index<=rows*7;row_index++)
             {
             		var trId="tr_"+row_index;
@@ -373,8 +466,18 @@ width:160px;
         		var nowtime = new Date();
 				var days = nowtime.getTime()-beginTime.getTime();
 				days = Math.floor(days/(24*3600*1000))+1;
+<<<<<<< HEAD
 				var weeks = Math.ceil(days/7);
 				return weeks;
+=======
+				//alert(days);
+				var weeks = Math.ceil(days/7);
+				return weeks;
+				//days = days%7;
+				//alert(weeks,days);
+				//alert(btime+nowtime)
+				//if (days<=0) {days = 1;}
+>>>>>>> origin/master
         }
 
 		//根据选择的周，显示相应周次的课表
@@ -382,7 +485,11 @@ width:160px;
 		{
 			if(item=="pre")
 			{
+<<<<<<< HEAD
 				if(tempWeek==0)
+=======
+				if(tempWeek<=0)
+>>>>>>> origin/master
 				{
 					ChangeTimeView() ;
 					DisplayByCurrentWeek(1);
@@ -390,24 +497,43 @@ width:160px;
 				}
 				else
 				{
+<<<<<<< HEAD
 					--tempWeek;
 					ChangeTimeView() ;
 					DisplayByCurrentWeek(tempWeek+1);
+=======
+					ChangeTimeView() ;
+					--tempWeek;
+					DisplayByCurrentWeek(tempWeek);
+>>>>>>> origin/master
 				}
 			}
 			else if(item=="next")
 			{
+<<<<<<< HEAD
 				if(tempWeek==18)
 				{
 					ChangeTimeView() ;
 					alert("考试周，没有课，好好复习啦~");
+=======
+				if(tempWeek>=18)
+				{
+					ChangeTimeView() ;
+					alert("已经到第最后一周周了，不要再点了");
+>>>>>>> origin/master
 					DisplayByCurrentWeek(18);
 				}
 				else
 				{
+<<<<<<< HEAD
 					++tempWeek;
 					ChangeTimeView() ;
 					DisplayByCurrentWeek(tempWeek+1);
+=======
+					ChangeTimeView() ;
+					++tempWeek;
+					DisplayByCurrentWeek(tempWeek);
+>>>>>>> origin/master
 					
 				}
 			}
@@ -437,7 +563,11 @@ width:160px;
 			}
 			
 		}
+<<<<<<< HEAD
 	    //显示课程详细信息
+=======
+	
+>>>>>>> origin/master
 		function ViewInfor(viewId)
 		{
 			//alert(viewId);
@@ -448,7 +578,10 @@ width:160px;
 			var i2=parseInt(strs[3]);
 			alert(classDetail.class[i0][i1][i2].elabel+";"+classDetail.class[i0][i1][i2].ctype+";"+classDetail.class[i0][i1][i2].etname+";"+classDetail.class[i0][i1][i2].exmtype+";"+classDetail.class[i0][i1][i2].eaddress);
 		}
+<<<<<<< HEAD
 		//教学周选择周显示相应周
+=======
+>>>>>>> origin/master
 		function week_select(weekId){
 			//alert(weekId);
 			$('#week_select_modal').modal('toggle')

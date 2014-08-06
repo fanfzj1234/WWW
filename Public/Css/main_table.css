@@ -1,15 +1,21 @@
+<<<<<<< HEAD
 ﻿th{
 	font-size: 16px
 }
 span{
 	font-size: 14px;
 	font: "微软雅黑";
+=======
+﻿span{
+font-size:14px;
+>>>>>>> origin/master
 }
 #mytable,#xxtable{ 
 width: 100%; 
 padding: 0; 
 margin: 0; 
 text-align : center ; 
+<<<<<<< HEAD
 background-color:#ffffff;
 } 
 
@@ -47,6 +53,23 @@ width:160px;
     align-content: center;
     color : #101010 ; 
 } 
+=======
+background-color:#000000;
+} 
+.table-heading{ 
+    font-family : Georgia, serif; 
+    font-size : 16px ; 
+    font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+    align-content: center;
+    color : #101010 ; 
+} 
+
+
+th{
+	font-size:15px; 
+}
+
+>>>>>>> origin/master
 
 .detailImg img {
 	max-width: 684px;
@@ -73,6 +96,7 @@ width:160px;
     -moz-box-sizing: border-box;-webkit-box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 .week_id_num_span{
 	text-align: center;
     width: 30px;
@@ -99,11 +123,17 @@ width:160px;
 	background-color:#0a64a4 ;
 	cursor: pointer;
 }
+=======
+>>>>>>> origin/master
 .class_open_xx{
 	color: #60c5eb;
 	}
 .class_open_kc{
+<<<<<<< HEAD
 	color: #4795d1;
+=======
+	color: #76c24f;
+>>>>>>> origin/master
 	}
 .class_open_ks{
 	color: #f04037;

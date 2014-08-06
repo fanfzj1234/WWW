@@ -15,7 +15,11 @@
 		{
 			 
 			    //$type="getByTime";
+<<<<<<< HEAD
 			    $uid="45";
+=======
+			    $uid="43";
+>>>>>>> origin/master
 				$data['A']="Curriculum_User";
 				$data['AC']="getForCurrentTerm";
 				$data['C']=base64_encode(gzencode("http".time()."W"));  
