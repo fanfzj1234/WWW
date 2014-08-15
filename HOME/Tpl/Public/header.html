@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOTYPE html PUBLI "-//W3//DTD XHTML 10 Trsitiol//E" "">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,14 +13,13 @@
 	var IMG = "__IMG__";	
 </script>
 <!-- Bootstrap & Snippet plugin core CSS-->
-
 <link href="__CSS__/index_image_style.css" rel="stylesheet">
 <link href="__CSS__/table.css">
 <!-- 新 jquery Javascript 文件 --> 
 <script type="text/javascript" src='__JS__/jquery-2.1.1.js'></script>
 <script type="text/javascript" src='__JS__/week_jquery.js'></script>
-<!-- 新 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="__CSS__/bootstrap.min.css">
+<!-- 新 Bootstrap 核心 CSS 文件
+<link rel="stylesheet" href="__CSS__/bootstrap.min.css"> -->
 
 <!-- 可选的Bootstrap主题文件（一般不用引入） 
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
@@ -31,6 +30,9 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="__JS__/bootstrap.min.js"></script>
 
+<!--[if lte IE 6]>
+  <script type="text/javascript" src="__JS__/bootstrap-ie.js"></script>
+ <![endif]-->
 <!-- jquery-ui  CSS 文件 -->
 <link rel="stylesheet" href="__CSS__/jquery-ui.css" media="screen" type="text/css" />
 
@@ -39,6 +41,12 @@
 
 <!--bootstrap  再编辑   CSS 文件 -->
 <link rel="stylesheet" href="__CSS__/bootstrap.css" media="screen" type="text/css"/>
+ <!--[if lte IE 6]>
+
+  <link rel="stylesheet" type="text/css" href="__CSS__/bootstrap-ie6.css">
+
+  <link rel="stylesheet" type="text/css" href="__CSS__/ie.css">
+  <![endif]-->
 <!-- 主页 框架  CSS 文件 -->
 <link rel="stylesheet" href="__CSS__/index_main.css" media="screen" type="text/css" />
 <!-- 首页 CSS-->
@@ -50,28 +58,43 @@ ondragstart="return false;"
 onpaste="return false;" 
 oncut="return false;"  
 oncopy="return false;" 
-onload=""
+ sroll="no"
 >
-
+<style>
+#dh-t li{
+	height:45px;line-height:45px;
+	 }
+*{
+	overflow-y : visible;
+ scrollbar-3dlight-color:#D4D0C8; /*- 最外左 -*/
+  scrollbar-highlight-color:#fff; /*- 左二 -*/
+  scrollbar-face-color:#E4E4E4; /*- 面子 -*/
+  scrollbar-arrow-color:#666; /*- 箭头 -*/
+  scrollbar-shadow-color:#808080; /*- 右二 -*/
+  scrollbar-darkshadow-color:#D7DCE0; /*- 右一 -*/
+  scrollbar-base-color:#D7DCE0; /*- 基色 -*/
+  scrollbar-track-color:#FFFFFF;/*- 滑道 -*/
+}
+</style>
 <span class='bckg'></span>
 <header>
 	
   <h1>
   		<img src="__IMG__/logo2.png" id="logo" alt="爱拍课堂" width="87px"/>
   </h1>
-  <nav>
+  <nav style="vertical-align:middle;" id="dh-t">
     <ul>
      <li>
-        <span class="glyphicon glyphicon-home"  data-title='首页' id="index">&nbsp;&nbsp;首页</span>
+        <span class="glyphicon glyphicon-home"  data-title='首页' id="index">&nbsp;首页</span>
       </li>
       <li>
-        <span data-title='课程表' id="syllabus" class="glyphicon glyphicon-calendar">&nbsp;&nbsp;课程表</span>
+        <span data-title='课程表' id="syllabus" class="glyphicon glyphicon-calendar" >&nbsp;课程表</span>
       </li>
       <li>
-        <span data-title='课堂笔记' id="note" class="glyphicon glyphicon-book">&nbsp;&nbsp;课堂笔记</span>
+        <span data-title='课堂笔记' id="note" class="glyphicon glyphicon-book">&nbsp;课堂笔记</span>
       </li>
-      <li>
-        <span data-title='我的资料' id="information" class="glyphicon glyphicon-star">&nbsp;&nbsp;我的资料</span>
+      <li >
+        <span data-title='我的资料' id="information" class="glyphicon glyphicon-star">&nbsp;我的资料</span>
       </li>      
     </ul>
      
@@ -81,10 +104,6 @@ onload=""
 
 <!-- 用户信息  Javascript 文件 -->
 <script type="text/javascript" src="__JS__/user_info.js"></script>
-
-<!-- 时间  Javascript 文件 -->
-<script type="text/javascript" src="__JS__/time.js"></script>
-
 
 
 
@@ -101,7 +120,12 @@ $(document).ready( function() {
 	$("#note").click(function(){
 		$(".index_main").load(APP+"/Note/index");
 	});
-	
+	$("#information").click(function(){
+	   	$(".index_main").load(APP+"/User/index"); 
+       });
+    $("#go_finish_info").click(function(){
+	   	$(".index_main").load(APP+"/User/index"); 
+       });
     $('body').on("click", ".larg div h3", function(){
     if ($(this).children('span').hasClass('close')) {
       $(this).children('span').removeClass('close');

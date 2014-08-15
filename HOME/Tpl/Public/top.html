@@ -15,7 +15,15 @@
 <!-- 假如 session不存在或设置的值为空，即没有登录，显示登录和注册button-->
 
 <!-- session 存在，即登录成功就显示用户名 -->
- <strong style="color:#4795d1;padding-right:2px;font-size: 16px;" id="login_user_id">Hello Uid:<?php echo $_SESSION['uid']; ?>&nbsp;&nbsp;用户</strong>
- <input type="hidden" id="session_uid" value="<?php echo $_SESSION['uid'];?>" text="<?php echo $_SESSION['uid'];?>">
-  <input type="hidden" id="week_num" value="">
+ <strong style="color:#4795d1;padding-right:2px;font-size: 16px;" id="login_user_id">Hello 
+ 	<?php 
+ 	if($_SESSION['type']=="normal_student"||$_SESSION['utype']=1)
+ 	{
+ 		echo "学生";
+ 	}
+ 	else
+ 	{
+ 		echo "教师";
+ 	}
+ 	?>:<?php echo $_SESSION['uid']; ?></strong>
   </a>
