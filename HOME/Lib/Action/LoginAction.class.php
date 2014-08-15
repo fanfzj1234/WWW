@@ -4,8 +4,8 @@
 	    /*实现用户登陆*/
 	    public function user()
 		{
-			$studentId="2012021039";
-				$password="921128";
+			    $studentId="2012093675";
+				$password="093675";
 				$schoolId="齐齐哈尔大学";
 				$type="normal_student";
 				
@@ -26,8 +26,18 @@
 				$json="json=".$data_json;  
 			    $url = "http://api.ipaikt.com:88";
 				$json_data=http_post_data($url,$json);
-				var_dump($json_data);
-				
+				$json_code=json_decode($json_data);
+			    if($json_code->S=="success")
+			    {
+				   $i=json_encode(1);
+				   session_start();
+				   $_SESSION['state']=1;
+				   $_SESSION['yz']==md5('爱拍课堂');
+			    }
+			    else{
+				$i=json_encode($json_code->MT);
+			    }
+			    echo $i;
 		}
 		public function user_register(){
 			$type=$_POST['type'];
@@ -55,7 +65,29 @@
 				$data['password']=$password;  
 				$data['schoolId']=$schoolId;  
 				
-				
+				 $data_json=json_encode($data);
+				$json="json=".$data_json;  
+			    $url = "http://api.ipaikt.com:88";
+				$json_data=http_post_data($url,$json);
+				$json_code=json_decode($json_data);
+			    $V = $json_code->V;
+				foreach($V as  $v){
+                     $Array->$v = $json_code->$v;
+                }    
+			    if($json_code->S=="success")
+			   {
+				$i=json_encode(1);
+				 session_start();
+				$_SESSION['state']=2;
+				$_SESSION['uid']=$Array->uid;
+				$_SESSION['type']=$Array->userType;
+				$_SESSION['utype']=1;
+				$_SESSION['yz']==md5('爱拍课堂');
+			   }
+			else{
+				$i=json_encode($json_code->MT);
+			}
+			echo $i;
 				
 			}
 			if($type=="normal_teacher")
@@ -83,7 +115,25 @@
 				$data['password_again']=$password_again;
 				$data['schoolId']=$schoolId;  
                
-
+                $json_code=json_decode($json_data);
+			    $V = $json_code->V;
+				foreach($V as  $v){
+                     $Array->$v = $json_code->$v;
+                }    
+			    if($json_code->S=="success")
+			   {
+				$i=json_encode(1);
+				 session_start();
+				$_SESSION['state']=2;
+				$_SESSION['uid']=$Array->uid;
+				$_SESSION['type']=$Array->userType;
+				$_SESSION['utype']=2;
+				$_SESSION['yz']=md5('爱拍课堂');
+			   }
+			else{
+				$i=json_encode($json_code->MT);
+			}
+			echo $i;
 			}
 			if($type=="custom")
 			{
@@ -95,19 +145,102 @@
                 $data['V'][]="type";  
 				$data['type']=$type;  
                 
-
+                $json_code=json_decode($json_data);
+			   $V = $json_code->V;
+				foreach($V as  $v){
+                     $Array->$v = $json_code->$v;
+                }    
+			    if($json_code->S=="success")
+			   {
+				$i=json_encode(1);
+				 session_start();
+				$_SESSION['state']=2;
+				$_SESSION['uid']=$Array->uid;
+				$_SESSION['type']=$Array->userType;
+				$_SESSION['yz']=md5('爱拍课堂');
+			    }
+			else{
+				$i=json_encode($json_code->MT);
 			}
-			    $data_json=json_encode($data);
-				$json="json=".$data_json;  
-			    $url = "http://api.ipaikt.com:88";
-				$json_data=http_post_data($url,$json);
-				echo $json_data;
+			echo $i;
+			}
+			   
 		}
 		/*注销用户操作*/
 		public function  do_logout(){
 			unset($_SESSION['user']);
 		    //$this->success("注销成功");
 			$this->display("Index:index");
-			}	
+			}
+		public function	verify(){
+			session_start();
+			//echo md5($_POST['verify']);
+			
+			if($_SESSION['verify']== md5($_POST['verify'])) {
+                 echo 1;
+            }
+			else{
+				echo 2;
+			}
+		}
+		public function user_login(){
+			    $username=$_POST['username'];
+				$password=$_POST['password'];
+				
+				$data['A']="User_Register";
+				$data['AC']="login";
+				$data['C']=base64_encode(gzencode("http".time()."W"));  
+				$data['E']=1;
+				$data['V'][]="username";  
+                $data['V'][]="password";  
+				$data['username']=$username;  
+				$data['password']=$password; 
+				$data_json=json_encode($data);
+				$json="json=".$data_json;  
+			    $url = "http://api.ipaikt.com:88";
+				$json_data=http_post_data($url,$json);
+				$json_code=json_decode($json_data);
+				$V = $json_code->V;
+				foreach($V as  $v){
+                     $Array->$v = $json_code->$v;
+                }    
+			    if($json_code->S=="success")
+			   {
+				$i=json_encode(1);
+				 session_start();
+				$_SESSION['state']=1;
+				$_SESSION['uid']=$Array->uid;
+				$_SESSION['udate']=$Array->udate;
+				$_SESSION['utype']=$Array->utype;
+				if($_SESSION['utype']==1)
+				$_SESSION['type']="normal_student";
+				if($_SESSION['utype']==2)
+				$_SESSION['type']="teacher";
+				$_SESSION['yz']=md5('爱拍课堂');
+			    }
+			else{
+				$i=json_encode($json_code->MT);
+			}
+			echo $i;
+		}
+		public function login_test(){
+			    $username="fanfzj";
+				$password="6yhn6yhn";
+				
+				$data['A']="User_Register";
+				$data['AC']="login";
+				$data['C']=base64_encode(gzencode("http".time()."W"));  
+				$data['E']=1;
+				$data['V'][]="username";  
+                $data['V'][]="password";  
+				$data['username']=$username;  
+				$data['password']=$password; 
+				$data_json=json_encode($data);
+				$json="json=".$data_json;
+				echo $json."<br>"; 
+			    $url = "http://api.ipaikt.com:88";
+				$json_data=http_post_data($url,$json);
+				echo $json_data;
+		}
 	}
 ?>

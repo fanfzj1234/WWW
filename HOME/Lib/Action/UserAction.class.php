@@ -7,100 +7,290 @@
 	class UserAction extends CommonAction {
 		// 显示主页面
 		public function index(){
-             $this->display();
+			    ob_end_clean();
+			    $uid=$_SESSION['uid'];
+				$data['A']="User_info";
+				$data['AC']="getUserInfo";
+				$data['C']=base64_encode(gzencode("http".time()."W"));  
+				$data['E']=1;
+                $data['V'][]="uid";  
+                $data['uid']=$uid;  
+                $data_json=json_encode($data);
+				$json="json=".$data_json;  
+				$url= "http://api.ipaikt.com:88";
+				$json_data=http_post_data($url,$json);
+				$json_code=json_decode($json_data);
+				$V = $json_code->V;
+				foreach($V as  $v){
+                     $Array->$v = $json_code->$v;
+                }    
+				$me_uid=$Array->uid;
+				$me_uemail=$Array->uemail;
+				$email=explode("@",$me_uemail);
+				$me_utel=$Array->utel;
+				$me_uqq=$Array->uqq;
+				$me_usina=$Array->usina;
+				$me_urenren=$Array->urenren;
+				$me_uinfo=$Array->uinfo;
+				//$me_schlid1=$Array->schlid1;
+				//$me_schlid2=$Array->schlid2;
+				//$me_schlid3=$Array->schlid3;
+				//$me_schlid4=$Array->schlid4;
+				$me_sclname=$Array->sclname;
+				$me_sclname2=$Array->sclname2;
+				$me_sclname3=$Array->sclname3;
+				$me_sclname4=$Array->sclname4;
+				
+				$this->assign("user_id",$me_uid);
+				$this->assign("userEmail",$email[0]);
+				$this->assign("userTel",$me_utel);
+				$this->assign("userAccount_qq",$me_uqq);
+				$this->assign("userAccout_sina",$me_usina);
+				$this->assign("userAccout_renren",$me_urenren);
+				$this->assign("userIntro",$me_uinfo);
+				//$this->assign("schoolId_1_id",$me_schlid1);
+				//$this->assign("schoolId_2_id",$me_schlid2);
+				//$this->assign("schoolId_3_id",$me_schlid3);
+				//$this->assign("schoolId_4_id",$me_schlid4);
+				$this->assign("schoolId_1",$me_sclname);
+				$this->assign("schoolId_2",$me_sclname2);
+				$this->assign("schoolId_3",$me_sclname3);
+				$this->assign("schoolId_4",$me_sclname4);
+                $this->display();
+		}
+		public function test(){
+			    $uid="54";
+				$data['A']="User_info";
+				$data['AC']="getUserInfo";
+				$data['C']=base64_encode(gzencode("http".time()."W"));  
+				$data['E']=1;
+                $data['V'][]="uid";  
+                $data['uid']=$uid;  
+                $data_json=json_encode($data);
+				$json="json=".$data_json;  
+				//echo $json;
+				$url= "http://api.ipaikt.com:88";
+				$json_data=http_post_data($url,$json);
+				$json_code=json_decode($json_data);
+				$V = $json_code->V;
+				foreach($V as  $v){
+                     $Array->$v = $json_code->$v;
+                }    
+				$me_uid=$Array->uid;
+				
+				$me_uemail=$Array->uemail;
+				$me_utel=$Array->utel;
+				echo "dianhua::".$me_utel;
+				$me_uqq=$Array->uqq;
+				echo $me_usina=$Array->usina;
+				
+				$me_urenren=$Array->urenren;
+				echo $me_urenren;
+				$me_uinfo=$Array->uinfo;
+		}
+		public function user_test(){
+			     $uid=54;
+				//$username=$_POST['me_username'];
+				//$userRealName=$_POST['me_userRealName'];
+				$schoolId_1=631;
+				$schoolId_2=2;
+				$schoolId_3=1;
+				$schoolId_4=2;
+				$userStudentId="2012021039";
+				$userStudentPasswd="921128";
+				$usrEmail="1009137312@qq.com";
+				$userTel="188452399765";
+				$userAccount_qq="1009137312";
+				$userAccount_sina="1009137312@qq.com";
+				$userAccount_renren="15921171834";
+				$userIntro="人生没有彩排，每天都是直播。迎着朝阳，踏上属于你的旅途.";
+				
+				$data['A']="User_info";
+				$data['AC']="updateUserInfo";
+				$data['C']=base64_encode(gzencode("http".time()."W"));  
+				$data['E']=1;
+                $data['V'][]="uid";  
+				//$data['V'][]="username";
+				//$data['V'][]="userRealName";
+				$data['V'][]="sclid1";
+				$data['V'][]="sclid2";
+				$data['V'][]="sclid3";
+				$data['V'][]="sclid4";
+				$data['V'][]="ustuid";
+				$data['V'][]="ustupass";
+				$data['V'][]="uemail";
+				$data['V'][]="utel";
+				$data['V'][]="uqq";
+				$data['V'][]="usina";
+				$data['V'][]="urenren";
+				$data['V'][]="uinfo";
+				
+                $data['uid']=$uid;  
+				//$data['username']=$username;  
+			    //$data['userRealName']=$userRealName;  
+				$data['sclid1']=$schoolId_1;  
+				$data['sclid2']=$schoolId_2;  
+				$data['sclid3']=$schoolId_3;  
+				$data['sclid4']=$schoolId_4;  
+				$data['ustuid']=$userStudentId;  
+				$data['ustupass']=$userStudentPasswd;  
+				$data['uemail']=$usrEmail;  
+				$data['utel']=$userTel;  
+				$data['uqq']=$userAccount_qq;  
+				$data['usina']=$userAccount_sina;
+				
+                $data['urenren']=$userAccount_renren;
+				$data['uinfo']=$userIntro;  
+                $data_json=json_encode($data);
+                $json="json=".$data_json;
+               echo $json;  
+//				$data_json=json_encode($data);
 		}
 		public function user_info(){
-			$type=$_POST['type'];
-			if($type=="basic_pull")
-			{
-				$uid=$_POST['me_uid'];
-				
-				$data['A']="User_info";
-				$data['AC']=$type;
-				$data['C']=base64_encode(gzencode("http".time()."W"));  
-				$data['E']=1;
-                $data['V'][]="uid";  
-                $data['uid']=$uid;  
-                $data_json=json_encode($data);
-				
-				$url="";
-				$json_data=http_post_data($url,$data_json);
-				return $json_data;
-			}
-			if($type=="sumbit")
-			{
-				$uid=$_POST['me_me_uid'];
-				$username=$_POST['me_username'];
-				$userRealName=$_POST['me_userRealName'];
-				$schoolId_1=$_POST['me_schoolId_1'];
-				$schoolId_2=$_POST['me_schoolId_2'];
-				$schoolId_3=$_POST['me_schoolId_3'];
-				$schoolId_4=$_POST['me_schoolId_4'];
-				$userStudentId=$_POST['me_userStudentId'];
-				$userStudentPasswd=$_POST['me_userStudentPasswd'];
-				$usrEmail=$_POST['me_usrEmail'];
-				$userTel=$_POST['me_userTel'];
-				$userAccount_qq=$_POST['me_userAccount_qq'];
-				$userAccount_sina=$_POST['me_userAccount_sina'];
-				$userAccount_renren=$_POST['me_userAccount_renren'];
-				$userIntro=$_POST['me_userIntro'];
-				
-				$data['A']="User_info";
-				$data['AC']=$type;
-				$data['C']=base64_encode(gzencode("http".time()."W"));  
-				$data['E']=1;
-                $data['V'][]="uid";  
-				$data['V'][]="username";
-				$data['V'][]="userRealName";
-				$data['V'][]="schoolId_1";
-				$data['V'][]="schoolId_2";
-				$data['V'][]="schoolId_3";
-				$data['V'][]="schoolId_4";
-				$data['V'][]="userStudentId";
-				$data['V'][]="userStudentPasswd";
-				$data['V'][]="usrEmail";
-				$data['V'][]="userTel";
-				$data['V'][]="userAccount_qq";
-				$data['V'][]="userAccount_sina";
-				$data['V'][]="userAccount_renren";
-				$data['V'][]="userIntro";
-				
-                $data['uid']=$uid;  
-				$data['username']=$username;  
-			    $data['userRealName']=$userRealName;  
-				$data['schoolId_1']=$schoolId_1;  
-				$data['schoolId_2']=$schoolId_2;  
-				$data['schoolId_3']=$schoolId_3;  
-				$data['schoolId_4']=$schoolId_4;  
-				$data['userStudentId']=$userStudentId;  
-				$data['userStudentPasswd']=$userStudentPasswd;  
-				$data['usrEmail']=$usrEmail;  
-				$data['userTel']=$userTel;  
-				$data['userAccount_qq']=$userAccount_qq;  
-				$data['userAccount_sina']=$userAccount_sina;
-                $data['userAccount_renren']=$userAccount_renren;
-				$data['userIntro']=$userIntro;  
-                $data_json=json_encode($data);
-			}
-			if($type=="detailPull")
-			{
-				$uid=$_POST['me_me_uid'];
-				
-				$data['A']="User_info";
-				$data['AC']=$type;
-				$data['C']=base64_encode(gzencode("http".time()."W"));  
-				$data['E']=1;
-                $data['V'][]="uid";  
-				
-                $data['uid']=$uid;  
-				
-                $data_json=json_encode($data);
-			}
+			    
 			
-				$url="";
-				$json_data=http_post_data($url,$data_json);
-				return $json_data;
-			
+				$uid=$_POST['uid'];
+				//$username=$_POST['me_username'];
+				//$userRealName=$_POST['me_userRealName'];
+				$schoolId_1=$_POST['sclid1'];
+				$schoolId_2=$_POST['sclid2'];
+				$schoolId_3=$_POST['sclid3'];
+				$schoolId_4=$_POST['sclid4'];
+				//$userStudentId=$_POST['ustuid'];
+				//$userStudentPasswd=$_POST['ustupass'];
+				$usrEmail=$_POST['uemail'];
+				$userTel=$_POST['utel'];
+				$userAccount_qq=$_POST['uqq'];
+				$userAccount_sina=$_POST['usina'];
+				$userAccount_renren=$_POST['urenren'];
+				$userIntro=$_POST['uinfo'];
+				
+				$data['A']="User_info";
+				$data['AC']="updateUserInfo";
+				$data['C']=base64_encode(gzencode("http".time()."W"));  
+				$data['E']=1;
+                $data['V'][]="uid";  
+				//$data['V'][]="username";
+				//$data['V'][]="userRealName";
+				$data['V'][]="sclid1";
+				$data['V'][]="sclid2";
+				$data['V'][]="sclid3";
+				$data['V'][]="sclid4";
+				//$data['V'][]="ustuid";
+				//$data['V'][]="ustupass";
+				$data['V'][]="uemail";
+				$data['V'][]="utel";
+				$data['V'][]="uqq";
+				$data['V'][]="usina";
+				$data['V'][]="urenren";
+				$data['V'][]="uinfo";
+				
+                $data['uid']=$uid;  
+				//$data['username']=$username;  
+			    //$data['userRealName']=$userRealName;  
+				$data['sclid1']=$schoolId_1;  
+				$data['sclid2']=3;  
+				$data['sclid3']=1;  
+				$data['sclid4']=1;  
+				//$data['ustuid']=$userStudentId;  
+				//$data['ustupass']=$userStudentPasswd;  
+				$data['uemail']=$usrEmail;  
+				$data['utel']=$userTel;  
+				$data['uqq']=$userAccount_qq;  
+				$data['usina']=$userAccount_sina;
+                $data['urenren']=$userAccount_renren;
+				$data['uinfo']=$userIntro;  
+                $data_json=json_encode($data);
+                $json="json=".$data_json;
+                echo $json;  
+				$url= "http://api.ipaikt.com:88";
+				$json_data=http_post_data($url,$json);
+			    $json_code=json_decode($json_data);
+			    if($json_code->S=="success")
+			    {
+				$i=json_encode(1);
+                session_start();
+				$_SESSION['state']=1;
+			    }
+			    else{
+				$i=is_array($json_code->MT);
+			    }
+			echo $i;
 		}
+        public function user_login_set()
+		{
+			$type=$_POST['type'];
+			$uid=$_POST['uid'];
+			$username=$_POST['username'];
+			$password=$_POST['pwd'];
+			
+			$data['A']="User_Register";
+			$data['AC']="setAccessByUid";
+			$data['C']=base64_encode(gzencode("http".time()."W"));  
+			$data['E']=1;
+            $data['V'][]="type";  
+			$data['V'][]="uid";
+			$data['V'][]="username";
+			$data['V'][]="password";
+			$data['type']="normal_student";
+			$data['uid']=$uid;
+			$data['username']=$username;
+			$data['password']=$password;
+			$data_json=json_encode($data);
+			$json="json=".$data_json;  
+			$url= "http://api.ipaikt.com:88";
+			$json_data=http_post_data($url,$json);
+			$json_code=json_decode($json_data);
+			if($json_code->S=="success")
+			{
+				$i=json_encode(1);
+				 session_start();
+				$_SESSION['state']=1;
+			}
+			else{
+				$i=json_encode($json_code->MT);
+			}
+			echo $i;
+		}
+		public function update_test(){
+			$uid=59;
+			$oldpassword="123456";
+			$password="6yhn6yhn";
+			$data['A']="User_Register";
+			$data['AC']="updatePassword";
+			$data['C']=base64_encode(gzencode("http".time()."W"));  
+			$data['E']=1;
+            $data['V'][]="uid";
+			$data['V'][]="oldpassword";
+			$data['V'][]="password";
+			$data['uid']=$uid;
+			$data['oldpassword']=$oldpassword;
+			$data['password']=$password;
+			$data_json=json_encode($data);
+			$json="json=".$data_json;  
+			$url= "http://api.ipaikt.com:88";
+			$json_data=http_post_data($url,$json);
+			echo $json_data;
+		}
+        public function update_password(){
+        	$uid=$_POST['uid'];
+			$oldpassword=$_POST['oldpwd'];
+			$password=$_POST['newpwd'];
+			$data['A']="User_Register";
+			$data['AC']="updatePassword";
+			$data['C']=base64_encode(gzencode("http".time()."W"));  
+			$data['E']=1;
+            $data['V'][]="uid";
+			$data['V'][]="oldpassword";
+			$data['V'][]="password";
+			$data['uid']=$uid;
+			$data['oldpassword']=$oldpassword;
+			$data['password']=$password;
+			$data_json=json_encode($data);
+			$json="json=".$data_json;  
+			$url= "http://api.ipaikt.com:88";
+			$json_data=http_post_data($url,$json);
+			echo $json_data;
+        }
 	}
 ?>
