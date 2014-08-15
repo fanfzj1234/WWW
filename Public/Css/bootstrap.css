@@ -1107,7 +1107,7 @@ h6,
   font-size: 12px;
 }
 p {
-  margin: 0 0 10px;
+  margin: 2 0 0px;
 }
 .lead {
   margin-bottom: 20px;
@@ -1419,8 +1419,6 @@ pre code {
   }
 }
 .container-fluid {
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }

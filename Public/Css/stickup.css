@@ -3,7 +3,7 @@
 /* Padding below the footer and lighter body text */
 
 body {
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   color: #5a5a5a;
 }
 
@@ -12,14 +12,14 @@ body {
 }
 
 .row.featurette {
-  padding: 0 80px;
+  padding: 0 40px;
   margin-right:0px;
   margin-left:0px;
 }
 
 .row.featurette:nth-child(even){
   background:#e6f1fa;
-  padding-bottom:50px;
+  padding-bottom:20px;
 }
 
 .isStuck{

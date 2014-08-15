@@ -1,0 +1,49 @@
+.fade.in {
+opacity: 1;
+}
+.popover.bottom{
+position: absolute;
+top: 0;
+left: 0;
+z-index: 1060;
+display: none;
+max-width: 276px;
+padding: 1px;
+text-align: left;
+white-space: normal;
+background-color: #fff;
+-webkit-background-clip: padding-box;
+background-clip: padding-box;
+border: 1px solid #ccc;
+border: 1px solid rgba(0,0,0,.2);
+border-radius: 6px;
+-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+.fade {
+opacity: 0;
+-webkit-transition: opacity .15s linear;
+-o-transition: opacity .15s linear;
+transition: opacity .15s linear;
+}
+.popover.bottom>.arrow {
+border-width: 11px;
+}
+
+.popover.bottom>.arrow, .popover.bottom>.arrow:after {
+position: absolute;
+display: block;
+width: 0;
+height: 0;
+border-color: transparent;
+border-style: solid;
+}
+.popover.bottom>.arrow {
+top: -11px;
+left: 50%;
+margin-left: -11px;
+border-top-width: 0;
+border-bottom-color: #999;
+border-bottom-color: rgba(0,0,0,.25);
+}
+

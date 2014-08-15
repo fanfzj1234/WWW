@@ -129,8 +129,8 @@ main {
 .title a {
   color: #AAA;
   width: auto;
-  margin: 0  20px;
-  padding-top: 15px;
+  margin: 0  40px;
+  padding-top: 10px;
   float: right;
   line-height: 30px;
   position: relative;
@@ -149,11 +149,9 @@ a:hover {
   padding: 0 30px;
 }
 
-p {
-  display: none;
+p { 
   margin-left: 10px;
   padding: 0 15px;
-  border-left: 1px solid #ccc;
   word-break:break-all; 
   word-wrap:break-word ;
 }
@@ -184,7 +182,7 @@ a {
 .bckg {
   background-color:#0a64a4;
   box-shadow:5px 2px 10px rgba(14, 14, 14, 0.48) inset;
-  width:200px;
+  width:170px;
   height:100%;
   position:fixed;
   left:0;
@@ -239,7 +237,7 @@ h3 {
 }
 
 header {
-  width:200px;
+  width:170px;
   height:100%;
   float:left;
   position:relative;
@@ -289,7 +287,7 @@ main {
 .title {
   background-color: #fff;
   border-bottom: 1px solid #C0C1C0;
-  height:60px;
+  height:55px;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -381,9 +379,9 @@ border-radius: 4px;
 box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .panel-default>.panel-heading {
-color: #333;
-background-color: #F5F5F5;
-border-color: #3B0A0A;
+color: #fff;
+background-color: #4795d1;
+border-color: #428bca;
 }
 .panel-group .panel-heading {
 border-bottom: 0;
