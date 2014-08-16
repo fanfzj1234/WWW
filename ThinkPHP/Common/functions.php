@@ -59,20 +59,17 @@ function halt($error) {
  * @return string
  */
 function http_post_data($url, $data_string) {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-		curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'Content-Type: application/json; charset=utf-8',
-			'Content-Length: ' . strlen($data_string))
-		);
-        ob_start();
-        curl_exec($ch);
-        $return_content = ob_get_contents();
-        return $return_content;
+        
+        $ch = curl_init($url);
+        curl_setopt($ch,CURLOPT_HEADER,0);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_POST,1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$data_string);
+       $arr = curl_exec($ch);
+       curl_close($ch);
+	   //var_dump($arr);
+        return $arr;
          }
 
 /**
