@@ -106,7 +106,7 @@
 					/*验证码验证*/
 					var code;
 					var code_yz;
-					$("#code").blur(function(e) {
+					$("#code").keydown(function(e) {
 						code= $("#code").val();
 						$.ajax({
 						    type : "post",
@@ -149,14 +149,14 @@
 									},
 									dataType : "json",
 									success : function(data) {
-										if (data.S == "success") {
+										if (data==1) {
 											$("#login_alert").attr("class", "alert alert-success");
 											$("#login_alert").append("登陆成功");
-											window.location.href = APP + "Index/index_main&uid=" + data.uid + "&type=" + data.utype + "&from=0&ustate="+data.ustate;
+											window.location.href = APP + "Index/index_main";
 										}
-										if (data.S == "failed") {
+										else{
 											$("#login_alert").attr("class", "alert alert-danger");
-											$("#login_alert").append("" + data.MT + "");
+											$("#login_alert").append("" + data+ "");
 										}
 									},
 									error : function() {

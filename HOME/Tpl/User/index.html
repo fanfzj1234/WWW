@@ -56,15 +56,20 @@
 										<td> 学校: </td>
 										<td>
 										<p class="text-info"  id="schoolId_1" style="width: 40%;">{$schoolId_1}</p>
-									     
+									     <input type="hidden" value="{$schoolId_1_id}" id="schoolId_1_id">
 										</td>
 										<td>
 										<p class="text-warning" id="school_1_warning"></p></td>
 									</tr>
 									<tr>
 										<td> *学院: </td>
-										<td>
-											<select id="sclid2" size="5"  style="width: 40%;"></select>
+										<td>{$collist}
+											<select id="sclid2" size="5"  style="width: 40%;">
+												<!--<foreach name="collist" item="list">
+													<option value="{$list.sclid2}">{$list.sclname2}</option>
+												</foreach>-->
+											</select>
+											<input type="hidden" value="{$schoolId_2_id}" id="schoolId_2_id">
 										</td>
 										<td>
 										<p class="text-warning" id="school_2_warning"></p></td>
@@ -73,6 +78,7 @@
 										<td> *专业: </td>
 										<td>
 										<select id="sclid3" size="5" style="width: 40%;"></select>
+										<input type="hidden" value="{$schoolId_3_id}" id="schoolId_3_id">
 										</td>
 										<td>
 										<p class="text-warning" id="school_3_warning"></p></td>
@@ -81,6 +87,7 @@
 										<td> 班级: </td>
 										<td>
 										<select id="sclid4" size="5" style="width: 40%;"></select>
+										<input type="hidden" value="{$schoolId_4_id}" id="schoolId_4_id">
 										</td>
 										<td>
 										<p class="text-warning" id="school_4_warning"></p></td>
@@ -147,7 +154,7 @@
 									<tr>
 										<td></td>
 										<td>
-										<button type="button" id="user_info_botton" data-loading-text="Loading..." class="btn btn-info">
+										<button type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-info">
 											提交信息
 										</button></td>
 										<td></td>
@@ -201,7 +208,41 @@
 									</script>-->
                                     <script >
                                     $(document).ready(function(){
-									$("#user_info_botton").click(function(){
+                                    	var schoolId_1_id=$("#schoolId_1_id").val();
+                                    	
+                                    	//获取学院;
+                                    $.ajax({
+                                    	type:"post",
+                                    	url:APP+"Public/get_col_list",
+                                    	
+                                    	data:{sclid1:schoolId_1_id},
+                                    	dataType:"json",
+									     success:function(data) {
+										$.each(data, function(i, item){
+									   $("#sclid2").append("<option value='"+item.colid+"'>"+item.colname+"</option>");
+									 });
+									},
+									error:function(data){
+                                       $("#school_2_warning").html("获取列表失败");
+									}
+									});
+                                 //专业
+                                    $.ajax({
+                                    	type:"post",
+                                    	url:APP+"Public/get_spe_list",
+                                    	
+                                    	data:{sclid1:schoolId_1_id},
+                                    	dataType:"json",
+									     success:function(data) {
+										$.each(data, function(i, item){
+									   $("#sclid2").append("<option value='"+item.colid+"'>"+item.colname+"</option>");
+									 });
+									},
+									error:function(data){
+                                       $("#school_2_warning").html("获取列表失败");
+									}
+									});
+									$("#loading-example-btn").click(function(){
 									var userid=$("#hidden_uid").val();
 									var userRealName=$("#userRealName").val();
 									var schoolId_1=$("#schoolId_1").text();
@@ -219,28 +260,20 @@
 									var userAccount_sina=$("#userAccount_sina").val();
 									var userInfo=$("#userInfo").val();
 									var userAvatar=$("#userAvatar").val();
-									$("#user_info_botton").html("loading");
+									$("#loading-example-btn").html("loading");
 									$.ajax({
 									type : "post",
 									url:APP+"User/user_info",
 									data:{uid:userid,sclid1:schoolId_1,sclid2:schoolId_2,sclid2:schoolId_2,sclid3:schoolId_3,sclid4:schoolId_4,uemail:Email,
-										utel:userTel,uqq:userAccount_qq,usina:userAccount_sina,urenren:userAccount_renren,uinfo:userInfo},
-									// dataType :"json",
+										utel:userTel,uqq:userAccount_qq,usina:userAccount_sina,urenren:userAccount_renren,uinfo:userInfo,type:"sumbit"},
+									dataType :"json",
 									async : false,
 									success : function(data) {
- 								    alert(data);
-//										if(data==1)
-//										{
-//											alert("提交成功");
-//									   $("#user_info_botton").html("提交成功");
-//									  }
-//									   else{
-//									   	alert(data);
-//									   }
-//									}, error:function(data){
-//                                     $("#user_info_botton").html("重试");
-//									}
-}
+										//alert(data);
+									   $("#loading-example-btn").html("提交成功");
+									}, error:function(data){
+                                       $("#loading-example-btn").html("重试");
+									}
 									});
 									});
 									});

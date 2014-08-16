@@ -8,7 +8,7 @@
 	var APP = "__APP__";
 	var IMG = "__IMG__"; 
 </script>
-<script src="__JS__/checkBox.js" type="text/javascript"></script>
+<script src="__JS__/checkBox.js"></script>
 <link href="__CSS__/main_table.css">
 <link href="__CSS__/main_table.css">
 <style>
@@ -809,7 +809,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 							if(class_data[i][i1][i2].cid==cid&&i1==j1&&i2==j2)
 							{
 								  class_name=class_data[i][i1][i2].elabel;
-							      class_check+="<td class='text-center'><input type='checkbox' id='week_"+ (i+1) + "_" + (i2+1) + "_" + (i1+1)+"' value='week_"+ (i+1) + "_" + (i2+1) + "_" + (i1+1)+"' onclick='Checked(this.checked,"+item+")'>&nbsp;<span class='text-primary'>第"+(i+1)+"周"+"&nbsp;周"+(i2+1)+"&nbsp;第"+(i1+1)+"节</span></td>";	
+							      class_check+="<td class='text-center'><input type='checkbox' id='week_"+ (i+1) + "_" + (i2+1) + "_" + (i1+1)+"' value='week_"+ (i+1) + "_" + (i2+1) + "_" + (i1+1)+"' onclick='Checked(this.checked,"+item+")' name='week''>&nbsp;<span class='text-primary'>第"+(i+1)+"周"+"&nbsp;周"+(i2+1)+"&nbsp;第"+(i1+1)+"节</span></td>";	
 							      if(j%4==0)
 							      {
 							       class_check+="</tr><tr>";
