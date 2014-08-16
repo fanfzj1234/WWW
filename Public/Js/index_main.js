@@ -31,10 +31,11 @@ $(document).ready(function() {
 				success : function(data) {
 					$('#school_list_1').empty();
 					$.each(data, function(i, item) {
-
-						$("#school_list_1").append("<option value='" + item.sclid1 + "'>" + item.sclname + "</option>");
-
+						$("#school_list_1").append("<option value='"+ item.sclid1+"'>"+item.sclname +"</option>");
 					});
+				},
+				error:function(data){
+					alert("请刷新页面");
 				}
 			});
 		} else {
@@ -79,11 +80,15 @@ $(document).ready(function() {
 					schoolName : inputString_2
 				},
 				async : false,
+				dataType : "json",
 				success : function(data, a) {
 					$('#school_list_2').empty();
-					$.each(data, function(i, item) {
-						$("#school_list_2").append("<option>&nbsp;&nbsp;&nbsp;&nbsp;" + item.schoolName + "</option>");
+					$.each($.parseJSON(data), function(i, item) {
+						$("#school_list_1").append("<option value='"+ item.sclid1+"'>"+item.sclname +"</option>");
 					});
+				},
+				error:function(data){
+					alert("请刷新页面");
 				}
 			});
 		} else {
