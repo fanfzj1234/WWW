@@ -16,9 +16,13 @@ class PublicAction extends CommonAction {
 		$this -> display();
 	}
     public function schooltest(){
-    	$schoolName ="qq";
-		$sclsp = ",";
-		$sclname = "";
+		$sclsp = ",qq";
+		$sclname = "齐齐";
+		import('ORG.Net.IpLocation');// 导入IpLocation类
+             $Ip = new IpLocation(); // 实例化类
+             $location = $Ip->getlocation(get_client_ip()); // 获取某个IP地址所在的位置
+        
+		$address=$location['area'];
 		if (preg_match("/[\x7f-\xff]/", $schoolName)) {
 			$sclname =$schoolName;
 		} else {
@@ -30,11 +34,13 @@ class PublicAction extends CommonAction {
 		$data['E'] = 1;
 		$data['V'][] = "sclsp";
 		$data['V'][] = "sclname";
+		$data['V'][]="address";
 		$data['sclsp'] = $sclsp;
 		$data['sclname'] = $sclname;
+		$data['address'] = $address;
 		$data_json=json_encode($data);
 		$json = "json=" . $data_json;
-		//echo $json;
+		echo $json;
 		$url = "http://api.ipaikt.com:88";
 		$json_data=http_post_data($url,$json);
 		//echo $json_data;
@@ -50,10 +56,12 @@ class PublicAction extends CommonAction {
 		var_dump($json_array);
     }
 	public function schoolinfo() {
-
+        session_start();
 		$schoolName = $_POST['schoolName'];
 		$sclsp = ",";
 		$sclname = "";
+		$address= $_SESSION['country'];
+			
 		if (preg_match("/[\x7f-\xff]/", $schoolName)) {
 			$sclname =$schoolName;
 		} else {
@@ -83,24 +91,80 @@ class PublicAction extends CommonAction {
 		echo $json_array;
 	}
 
-	public function get_discipline_list() {
-		$action = $_POST['action'];
-		$disciplineName = $_POST['disciplineName'];
-
+	public function get_col_list() {
+		$sclid1 = $_POST['sclid1'];
+		
 		$data['A'] = "School_Info";
-		$data['AC'] = "getDisciplineListByKey";
+		$data['AC'] = "getcollist";
 		$data['C'] = base64_encode(gzencode("http" . time() . "W"));
 		$data['E'] = 1;
-		$data['V'][] = "action";
-		$data['V'][] = "disciplineName";
-		$data['action'] = $action;
-		$data['disciplineName'] = $disciplineName;
-		$data_json = json_encode($data);
-
-		$url = "";
-		$json_data = http_post_data($url, $data_json);
-		return $json_data;
+		$data['V'][] = "sclid";
+		$data['sclid'] = $sclid1;
+        $data_json=json_encode($data);
+		$json = "json=" . $data_json;
+		$url = "http://api.ipaikt.com:88";
+		$json_data = http_post_data($url, $json);
+		//echo $json;
+		$json_code=json_decode($json_data);
+		
+		$V = $json_code->V;
+				foreach($V as  $v){
+                     $Array->$v = $json_code->$v;
+                } 
+		$json_array=json_encode($Array->list);
+		echo $json_array;
 	}
-
+    public function get_spe_list() {
+		$sclid1 = $_POST['sclid'];
+		$colid = $_POST['colid'];
+		$data['A'] = "School_Info";
+		$data['AC'] = "getspelist";
+		$data['C'] = base64_encode(gzencode("http" . time() . "W"));
+		$data['E'] = 1;
+		$data['V'][] = "sclid1";
+		$data['V'][] = "colid";
+		$data['sclid1'] = $sclid1;
+		$data['colid'] = $colid;
+        $data_json=json_encode($data);
+		$json = "json=" . $data_json;
+		$url = "http://api.ipaikt.com:88";
+		$json_data = http_post_data($url, $json);
+		$json_code=json_decode($json_data);
+		
+		$V = $json_code->V;
+				foreach($V as  $v){
+                     $Array->$v = $json_code->$v;
+                } 
+				
+		$school_info=json_encode($Array); 
+		$json_array=json_encode($Array->list);
+		echo $json_array;
+	}
+	public function get_cla_list() {
+		$sclid1 = $_POST['speid'];
+		$colid = $_POST['colid'];
+		$data['A'] = "School_Info";
+		$data['AC'] = "getclalist";
+		$data['C'] = base64_encode(gzencode("http" . time() . "W"));
+		$data['E'] = 1;
+		$data['V'][] = "speid";
+		$data['V'][] = "colid";
+		$data['colid'] = $colid;
+		$data['speid'] = $speid;
+        $data_json=json_encode($data);
+		$json = "json=" . $data_json;
+		$url = "http://api.ipaikt.com:88";
+		$json_data = http_post_data($url, $json);
+		$json_code=json_decode($json_data);
+		
+		$V = $json_code->V;
+				foreach($V as  $v){
+                     $Array->$v = $json_code->$v;
+                } 
+				
+		$school_info=json_encode($Array); 
+		$json_array=json_encode($Array->list);
+		echo $json_array;
+	}
 }
 ?>

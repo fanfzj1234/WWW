@@ -8,6 +8,8 @@
 			 import('ORG.Net.IpLocation');// 导入IpLocation类
              $Ip = new IpLocation(); // 实例化类
              $location = $Ip->getlocation(get_client_ip()); // 获取某个IP地址所在的位置
+             session_start();
+			 $_SESSION['country']=$location['country'];
              $this->assign("country",$location['country']);
 			 $this->assign("area",$location['area']);
              $this->display();
@@ -17,7 +19,7 @@
 			//die();
 			 ob_end_clean();
 			 session_start();
-			 if(!isset($_SESSION['yz'])&&$_SESSION['yz']==md5('爱拍课堂'))
+			 if(!isset($_SESSION['yz'])&&$_SESSION['yz']!=md5('爱拍课堂'))
 			 {
 			 	$this->redirect("Index/login");
 			 }

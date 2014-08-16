@@ -4,8 +4,8 @@
 	    /*实现用户登陆*/
 	    public function user()
 		{
-			    $studentId="2012093675";
-				$password="093675";
+			    $studentId="2012021037";
+				$password="021037";
 				$schoolId="齐齐哈尔大学";
 				$type="normal_student";
 				
@@ -26,18 +26,8 @@
 				$json="json=".$data_json;  
 			    $url = "http://api.ipaikt.com:88";
 				$json_data=http_post_data($url,$json);
-				$json_code=json_decode($json_data);
-			    if($json_code->S=="success")
-			    {
-				   $i=json_encode(1);
-				   session_start();
-				   $_SESSION['state']=1;
-				   $_SESSION['yz']==md5('爱拍课堂');
-			    }
-			    else{
-				$i=json_encode($json_code->MT);
-			    }
-			    echo $i;
+				
+			    echo $json_data;
 		}
 		public function user_register(){
 			$type=$_POST['type'];
@@ -82,7 +72,7 @@
 				$_SESSION['uid']=$Array->uid;
 				$_SESSION['type']=$Array->userType;
 				$_SESSION['utype']=1;
-				$_SESSION['yz']==md5('爱拍课堂');
+				$_SESSION['yz']=md5('爱拍课堂');
 			   }
 			else{
 				$i=json_encode($json_code->MT);

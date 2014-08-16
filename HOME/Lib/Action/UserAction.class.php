@@ -32,14 +32,14 @@
 				$me_usina=$Array->usina;
 				$me_urenren=$Array->urenren;
 				$me_uinfo=$Array->uinfo;
-				//$me_schlid1=$Array->schlid1;
-				//$me_schlid2=$Array->schlid2;
-				//$me_schlid3=$Array->schlid3;
-				//$me_schlid4=$Array->schlid4;
+				$me_schlid1=$Array->sclid;
+				$me_schlid2=$Array->colid;
+				$me_schlid3=$Array->speid;
+				$me_schlid4=$Array->claid;
 				$me_sclname=$Array->sclname;
-				$me_sclname2=$Array->sclname2;
-				$me_sclname3=$Array->sclname3;
-				$me_sclname4=$Array->sclname4;
+				$me_sclname2=$Array->colname;
+			    $me_sclname3=$Array->spename;
+				$me_sclname4=$Array->claname;
 				
 				$this->assign("user_id",$me_uid);
 				$this->assign("userEmail",$email[0]);
@@ -48,18 +48,41 @@
 				$this->assign("userAccout_sina",$me_usina);
 				$this->assign("userAccout_renren",$me_urenren);
 				$this->assign("userIntro",$me_uinfo);
-				//$this->assign("schoolId_1_id",$me_schlid1);
-				//$this->assign("schoolId_2_id",$me_schlid2);
-				//$this->assign("schoolId_3_id",$me_schlid3);
-				//$this->assign("schoolId_4_id",$me_schlid4);
+				$this->assign("schoolId_1_id",$me_schlid1);
+				$this->assign("schoolId_2_id",$me_schlid2);
+				$this->assign("schoolId_3_id",$me_schlid3);
+				$this->assign("schoolId_4_id",$me_schlid4);
 				$this->assign("schoolId_1",$me_sclname);
-				$this->assign("schoolId_2",$me_sclname2);
-				$this->assign("schoolId_3",$me_sclname3);
-				$this->assign("schoolId_4",$me_sclname4);
+//				$this->assign("schoolId_2",$me_sclname2);
+//				$this->assign("schoolId_3",$me_sclname3);
+//				$this->assign("schoolId_4",$me_sclname4);
+
+                $sclid1 =$me_schlid1;
+		
+		        $scl['A'] = "School_Info";
+		        $scl['AC'] = "getcollist";
+		        $scl['C'] = base64_encode(gzencode("http" . time() . "W"));
+		        $scl['E'] = 1;
+		        $scl['V'][] = "sclid";
+		        $scl['sclid'] = $sclid1;
+                $data_json=json_encode($scl);
+		        $json = "json=" . $data_json;
+		        $url = "http://api.ipaikt.com:88";
+		        $json_data = http_post_data($url, $json);
+		        $json_code=json_decode($json_data);
+				//echo $json;
+		        //echo $json_data;
+		        $V = $json_code->V;
+				foreach($V as  $v){
+                     $Array->$v = $json_code->$v;
+                } 
+				$collist=json_decode($Array->list);
+				$this->assign("collist",$collist);
+		
                 $this->display();
 		}
 		public function test(){
-			    $uid="54";
+			    $uid="59";
 				$data['A']="User_info";
 				$data['AC']="getUserInfo";
 				$data['C']=base64_encode(gzencode("http".time()."W"));  
@@ -71,22 +94,50 @@
 				//echo $json;
 				$url= "http://api.ipaikt.com:88";
 				$json_data=http_post_data($url,$json);
-				$json_code=json_decode($json_data);
+				//echo $json_data;
+                $json_code=json_decode($json_data);
 				$V = $json_code->V;
 				foreach($V as  $v){
                      $Array->$v = $json_code->$v;
                 }    
 				$me_uid=$Array->uid;
-				
 				$me_uemail=$Array->uemail;
+				$email=explode("@",$me_uemail);
 				$me_utel=$Array->utel;
-				echo "dianhua::".$me_utel;
 				$me_uqq=$Array->uqq;
-				echo $me_usina=$Array->usina;
-				
+				$me_usina=$Array->usina;
 				$me_urenren=$Array->urenren;
-				echo $me_urenren;
 				$me_uinfo=$Array->uinfo;
+				$me_schlid1=$Array->sclid;
+				$me_schlid2=$Array->colid;
+				$me_schlid3=$Array->speid;
+				$me_schlid4=$Array->claid;
+				$me_sclname=$Array->sclname;
+				$me_sclname2=$Array->colname;
+			    $me_sclname3=$Array->spename;
+				$me_sclname4=$Array->claname;
+
+
+                $sclid1 =$me_schlid1;
+		
+		        $scl['A'] = "School_Info";
+		        $scl['AC'] = "getcollist";
+		        $scl['C'] = base64_encode(gzencode("http" . time() . "W"));
+		        $scl['E'] = 1;
+		        $scl['V'][] = "sclid";
+		        $scl['sclid'] = $sclid1;
+                $data_json=json_encode($scl);
+		        $json = "json=" . $data_json;
+		        $url = "http://api.ipaikt.com:88";
+		        $json_data = http_post_data($url, $json);
+		        $json_code=json_decode($json_data);
+				echo $json;
+		        echo $json_data;
+		        $V = $json_code->V;
+				foreach($V as  $v){
+                     $Array->$v = $json_code->$v;
+                } 
+		        var_dump($Array->list);
 		}
 		public function user_test(){
 			     $uid=54;
