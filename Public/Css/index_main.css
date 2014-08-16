@@ -149,7 +149,7 @@ a:hover {
   padding: 0 30px;
 }
 
-p { 
+p {
   margin-left: 10px;
   padding: 0 15px;
   word-break:break-all; 
@@ -182,7 +182,7 @@ a {
 .bckg {
   background-color:#0a64a4;
   box-shadow:5px 2px 10px rgba(14, 14, 14, 0.48) inset;
-  width:170px;
+  width:200px;
   height:100%;
   position:fixed;
   left:0;
@@ -237,7 +237,7 @@ h3 {
 }
 
 header {
-  width:170px;
+  width:200px;
   height:100%;
   float:left;
   position:relative;
@@ -417,7 +417,7 @@ font-size: 18px;
 color: inherit;
 }
 a {
-color: #FFFFFF;
+color: #4795d1;
 text-decoration: none;
 }
 a {
