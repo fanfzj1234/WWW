@@ -1,4 +1,4 @@
-﻿<!--
+﻿﻿<!--
 作者：范志俊
 时间：2014-07-25
 描述：首页页面,包括显示本周课程表,和本周笔记,以及推荐笔记
@@ -321,6 +321,9 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 										<label class="redio-inline">
 											<input type="radio" class="ctype" name="ctype" id="ctype_2" value="限选">
 											限选</label>
+										<label class="r-inline">
+											<input type="radio" class="ctype" name="ctype" id="ctype_1" value="必修">
+											选修</label>
 									</div>
 									
 								</div>
@@ -386,7 +389,13 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 									<div class="col-sm-4">
 										<input type="text" id="eaddress" placeholder="Class_ddress" class="form-control">
 									</div>
-									
+									<label class="col-sm-2 control-label" for="ealarm">是否替换原课程</label>
+									<div class="col-sm-4">
+										<label class="radio-inline">
+										<input type="radio" name="replace" id="replace1" value="1">替换</label>
+										<label class="radio-inline">
+										<input type="radio" name="replace" id="replace2" value="0">不替换</label>
+									</div>
 								</div>	
 								<input type="hidden" id="hidden_week_day">
 							</form>
@@ -419,7 +428,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 							<div class="form-group">
 							 
 								<label class="col-sm-2 control-label">课程名</label>
-								<div class="col-sm-4" id="move_class_name"></div>
+								<div class="col-sm-4"><strong id="move_class_name"> </strong></div>
 								<label class="col-sm-2 control-label">上课时间</label>
 								<div class="col-sm-4" id="class_time"></div>
 							</div>
@@ -446,8 +455,35 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 									<option value="5">第五大节</option>
 								</select>
 									</div>
-								</form>
+							
 							</div>
+							<div class="form-group">
+									<label class="col-sm-2 control-label" for="ealarm">闹钟提醒</label>
+									<div class="col-sm-4">
+										<p style="padding:0px 0px 0px 0px;">提前&nbsp;<input type="text" id="moveealarm" placeholder="Before_time" value="10" >&nbsp;分钟提醒</p>
+										<p class="text-info">（-1 为无需提醒）</p>
+									</div>
+									<label class="col-sm-2 control-label" for="ealarm">提醒次数</label>
+									<div class="col-sm-4">
+								       <label class="radio-inline">
+											<input type="radio" class="ealarmtype" name="moveealarmtype" id="moveealarmtype_1" value="1">
+											一直提醒</label>
+										<label class="radio-inline">
+											<input type="radio" class="ealarmtype"  name="moveealarmtype" id="moveealarmtype_2" value="2">
+											提醒三次</label>
+										<label class="radio-inline">
+											<input type="radio" class="ealarmtype"  name="moveealarmtype" id="moveealarmtype_3" value="3">
+											提醒一次</label>	
+									</div>
+								</div>	
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="ealarm">上课/活动地点</label>
+									<div class="col-sm-4">
+										<input type="text" id="moveeaddress" placeholder="Class_ddress" class="form-control">
+									</div>
+									
+								</div>	
+							</form>	
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -581,6 +617,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 		//课表 信息
 		var class_name;
 		var week_num;
+		var move_class_id;
 		var week_select_button_num=0;
 		/*从服务器取得指定用户的课表,读取开始时间并计算当前教学周存入cookie,返回课程信息*/
 		$(document).ready(function() {
@@ -784,25 +821,53 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 			     $("#class_time").append("周"+(j2+1)+"&nbsp;第"+(j1+1)+"节");
 			     $('#class_move_modal').modal('show');
 			});
+			
 			//移动课程button
-			$(".class_move_button").click(function(){
+			$("#class_move_button").click(function(){
 				var uid=$("#hidden_uid").val();
-				var elabel=$("#move_class_name").val();
+				var elabel=$("#move_class_name").html();
+				var eaddress=$("#moveeaddress").val();
+				var ealarm=$("#moveealarm").val();
 				var ealarmtype=$(":radio[name='ealarmtype']:checked").val();	
 				var old_week=tempWeek+1;
 			    var old_edayofweek=move_edayofweek;
 			    var old_ecofday=move_ecofday;
-			   
+			    //alert(move_class_id);
+			    var classid_str = move_class_id.split("_");
+			    var eweek= parseInt(classid_str[1]);
+			    var edayofweek=$("#weekday_select").val();
+			    var ecofday=$("dayclass_select").val();
 			    
 			    $.ajax({
 			    	type:"post",
 			    	url:APP+"Table/moveclass",
 			    	async:true,
-			    	data:{a_uid:uid,a_elabel:elabel,a_ealarmtype:ealarmtype},
+			    	data:{
+			    		a_uid:uid,
+			    		a_elabel:elabel,
+			    		a_eaddress:eaddress,
+			    		a_ealarm:ealarm,
+			    		a_ealarmtype:ealarmtype,
+			    		a_eweek:eweek,
+			    		a_edayofweek:edayofweek,
+			    		a_oldweek:old_week,
+			    		a_olddofweek:old_edayofweek,
+			    		a_oldcofday:old_ecofday,
+			    	},
 			    	dataType:"json",
 			    	success:function()
 			    	{
-			    		
+			    		if(data==1)
+			    		 {   alert("移动成功");
+			    		    $("#class_move_button").html("移动成功");
+			    		    window.location.href=APP+"Index/index_main";
+			    		   }
+			    		else{
+			    			alert(data);
+			    		}
+			    	},
+			    	error:function(){
+			    			alert("请刷新重试，谢谢");
 			    	}
 			    });
 			});
@@ -862,22 +927,23 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 				var cinfo=$("#cinfo").val();
 				var ealarm=$("#ealarm").val();
 				var uid=$("#hidden_uid").val();
-				var estate=$("#hidden_state").val();
-				var cid=$("#hidden_uid").val();
+				var estate=1;
+				var cid="";
 				var eaddress=$("#eaddress").val();
 				var einfo=$("#einfo").val();
 				var ecreid=uid;
 				var exmtype=$(":radio[name='exmtype']:checked").val();
 				var week_day=$("#hidden_week_day").val();
-				var ealarmtype=$(":radio[name='ealarmtype']:checked").val();				
+				var ealarmtype=$(":radio[name='ealarmtype']:checked").val();
 				var week_str = new Array();
 			    week_str = week_day.split("_");
 			    var edayofweek= parseInt(week_str[3])+1;
 			    var ecofday=parseInt(week_str[2])+1;
 			    var eweek="";
+			    var replace=$(":radio[name='replace']:checked").val();
 			    $(".week_add").each(function(){
 			    	if($(this).attr("class")=="week_add week_add_span_active"){
-			    		eweek+=$(this).html()+",";
+			    		eweek=eweek+$(this).html()+",";
 			    	}
 			    });
 			    
@@ -902,10 +968,11 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 						a_edayofweek:edayofweek,
 						a_ecofday:ecofday,
 						a_eweek:eweek,
-						a_address:eaddress
+						a_address:eaddress,
+						a_replace:replace
 					},
 					success:function(data){
-						if(data==1)
+						if(data==2)
 						{
 							alert("添加成功");
 						}
@@ -1154,7 +1221,11 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 			 $(".week_move").click(function(){
                   if($(this).attr("class")=="week_move week_move_span")
 				  {
+						$(".week_move").each(function(){
+							$(this).attr("class","week_move week_move_span");
+						});
 						$(this).attr("class","week_move week_move_span_active");
+						move_class_id=$(this).attr("id");
 				  }
 			     else
 				{
