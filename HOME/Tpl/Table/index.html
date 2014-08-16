@@ -371,13 +371,13 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 									<label class="col-sm-2 control-label" for="ealarm">提醒次数</label>
 									<div class="col-sm-4">
 								       <label class="radio-inline">
-											<input type="radio" class="ealarmtype" name="ealarmtype" id="ealarmtype_1" value="死缠烂打">
+											<input type="radio" class="ealarmtype" name="ealarmtype" id="ealarmtype_1" value="1">
 											一直提醒</label>
 										<label class="radio-inline">
-											<input type="radio" class="ealarmtype"  name="ealarmtype" id="ealarmtype_2" value="义无反顾">
+											<input type="radio" class="ealarmtype"  name="ealarmtype" id="ealarmtype_2" value="2">
 											提醒三次</label>
 										<label class="radio-inline">
-											<input type="radio" class="ealarmtype"  name="ealarmtype" id="ealarmtype_3" value="提醒一次">
+											<input type="radio" class="ealarmtype"  name="ealarmtype" id="ealarmtype_3" value="3">
 											提醒一次</label>	
 									</div>
 								</div>	
@@ -753,7 +753,9 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 					$("#reset_table").show();	
 					});	
 				
-			//移动按钮课表			
+			//移动按钮课表		
+			var move_edayofweek;
+			var move_ecofday;
 			$(".move_class").click(function(){
 				//$('#class_move_modal').modal('show');
 				 var class_time=$(this).attr("id");
@@ -762,7 +764,9 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 			      var cid= parseInt(cid_str[1]);
 			      var j1=parseInt(cid_str[3]);
 			      var j2=parseInt(cid_str[4]);
-			       $("#move_week_checkbox").empty();
+			      move_edayofweek=j2+1;
+			      move_ecofday=j1+1;
+			       //$("#move_week_checkbox").empty();
 					for (var i = 0; i < class_data.length; i++) {
 						for (var i1 = 0; i1 < class_data[i].length; i1++) {
 							for (var i2 = 0; i2 < class_data[i][i1].length; i2++) {
@@ -784,7 +788,23 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 			$(".class_move_button").click(function(){
 				var uid=$("#hidden_uid").val();
 				var elabel=$("#move_class_name").val();
-				
+				var ealarmtype=$(":radio[name='ealarmtype']:checked").val();	
+				var old_week=tempWeek+1;
+			    var old_edayofweek=move_edayofweek;
+			    var old_ecofday=move_ecofday;
+			   
+			    
+			    $.ajax({
+			    	type:"post",
+			    	url:APP+"Table/moveclass",
+			    	async:true,
+			    	data:{a_uid:uid,a_elabel:elabel,a_ealarmtype:ealarmtype},
+			    	dataType:"json",
+			    	success:function()
+			    	{
+			    		
+			    	}
+			    });
 			});
 			
 			//删除按钮选中
@@ -843,7 +863,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 				var ealarm=$("#ealarm").val();
 				var uid=$("#hidden_uid").val();
 				var estate=$("#hidden_state").val();
-				var cid="";
+				var cid=$("#hidden_uid").val();
 				var eaddress=$("#eaddress").val();
 				var einfo=$("#einfo").val();
 				var ecreid=uid;
@@ -852,8 +872,8 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 				var ealarmtype=$(":radio[name='ealarmtype']:checked").val();				
 				var week_str = new Array();
 			    week_str = week_day.split("_");
-			    var edayofweek= parseInt(week_str[3]);
-			    var ecofday=parseInt(week_str[4]);
+			    var edayofweek= parseInt(week_str[3])+1;
+			    var ecofday=parseInt(week_str[2])+1;
 			    var eweek="";
 			    $(".week_add").each(function(){
 			    	if($(this).attr("class")=="week_add week_add_span_active"){
@@ -864,7 +884,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 				$.ajax({
 					type:"post",
 					url:APP+"Table/addevent",
-					
+					dataType : "json",
 					data:{
 						a_uid:uid,
 						a_elabel:elabel,
@@ -873,6 +893,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 						a_ecreid:ecreid,
 						a_etype:etype,
 						a_ealarm:ealarm,
+						a_ealarmtype:ealarmtype,
 						a_etname:etname,
 						a_cid:cid,
 						a_ctype:ctype,
@@ -884,12 +905,12 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 						a_address:eaddress
 					},
 					success:function(data){
-						if(data==2)
+						if(data==1)
 						{
 							alert("添加成功");
 						}
 						else{
-							alert("数据错误~");
+							alert(data);
 						}
 					},
 					error:function(data){
