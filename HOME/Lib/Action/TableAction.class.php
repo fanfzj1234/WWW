@@ -80,6 +80,62 @@
 //				echo $json_data;
 				
 		}
+		//移动课程
+		Public function moveclass(){
+			$uid=$_POST['a_uid'];
+			$elabel=$_POST['a_elabel'];
+			$eaddress=$_POST['a_eaddress'];
+			$ealarm=$_POST['a_ealarm'];
+			$ealarmtype=$_POST['a_elarmtype'];
+			$eweek=$_POST['a_eweek'];
+			$edayofweek=$_POST['a_edayofweek'];
+			$ecofday=$_POST['a_ecofday'];
+			$oldeweek=$_POST['a_eweek'];
+			$olddofweek=$_POST['a_olddofweek'];
+			$oldcofday=$_POST['a_oldcofday' ];
+
+				$data['A']="Curriculum_Set";
+				$data['AC']="moveEventInfo";
+				$data['C']=base64_encode(gzencode("http".time()."W"));
+				$data['E']=1;
+
+				$data['V'][]="uid";
+				$data['V'][]="elabel";
+				$data['V'][]="eaddress";
+				$data['V'][]="ealarm";
+				$data['V'][]="ealarmtype";
+				$data['V'][]="eweek";
+				$data['V'][]="edayofweek";
+				$data['V'][]="ecofday";
+				$data['V'][]="oldeweek";
+				$data['V'][]="olddofweek";
+				$data['V'][]="oldcofday";
+				$data['uid']=$uid;
+				$data['elabel']=$elabel;
+				$data['eaddress']=$eaddress;
+				$data['ealarm']=$ealarm;
+				$data['ealarmtype']=$ealarmtype;
+				$data['eweek']=$eweek;
+				$data['edayofweek']=$edayofweek;
+				$data['ecofday']=$ecofday;
+				$data['oldeweek']=$oldeweek;
+				$data['olddofweek']=$olddofweek;
+				$data['oldcofday']=$oldcofday;
+
+				$data_json=json_encode($data);
+
+				$json="json=".$data_json;
+				//echo $json;
+				$url = "http://api.ipaikt.com:88";
+				$json_data=http_post_data($url,$json);
+				//echo $json;
+				$json_code=json_decode($json_data);
+				if($json_code->S=="success")
+				   echo json_encode(1);
+				else{
+					echo json_encode($json_code->MT);
+				}
+				}
 		//获取课表
 		public function curriculum_user(){  
 			 $type=$_POST['type'];
@@ -240,6 +296,8 @@
 			$edayofweek=$_POST['a_edayofweek'];
 			$ecofday=$_POST['a_ecofday'];
 			$eaddress=$_POST['a_address'];
+			$ealarmtype=$_POST['a_ealarmtype'];
+			$replace=$_POST['a_replace'];
 			
 			$url = "http://api.ipaikt.com:88";
 			$data['A']="Curriculum_Set";
@@ -259,6 +317,7 @@
 			$data['V'][]="ctype";
 			$data['V'][]="exmtype";
 			$data['V'][]="cinfo";
+			$data['V'][]="replace";
 			$data['uid']=$uid;  
 			$data['elabel']=$elabel;
 			$data['einfo']=$einfo;  
@@ -271,59 +330,73 @@
 			$data['ctype']=$ctype;  
 			$data['exmtype']=$exmtype;
 			$data['cinfo']=$cinfo;  
+			$data['replace']=$replace;  
 			$data_json=json_encode($data);
-			$json="json=".$data_json;  
+			$json1="json=".$data_json;  
 			//echo $json;
 			//echo $eweek;
-			$json_data=http_post_data($url,$json);	
-			$json_code=json_decode($json_data);
-			if($json_code->S=="success")
-			$i=0;
+			$json_data1=http_post_data($url,$json1);	
+			$json_code1=json_decode($json_data1);
+			$j=0;
+			if($json_code1->S=="success")
 			{
-				$i++;
+				$j=1;
 			}
+			else{
+            	$i1=json_encode($json_code1->MT);
+            }
 			$eid=$json_code->V;
-			$data['A']="Curriculum_Set";
-			$data['AC']="addEvent";
-			$data['C']=base64_encode(gzencode("http".time()."W"));  
-			$data['E']=1;
+			$data1['A']="Curriculum_Set";
+			$data1['AC']="addEventInfo";
+			$data1['C']=base64_encode(gzencode("http".time()."W"));  
+			$data1['E']=1;
 				 
-            $data['V'][]="uid";  
-			$data['V'][]="elabel";
-			$data['V'][]="einfo";
-			$data['V'][]="eaddress";
-			$data['V'][]="ealarm";
-			$data['V'][]="ealarmtype";  
-			$data['V'][]="eweek";
-			$data['V'][]="edayofweek";
-			$data['V'][]="ecofday";  
-			$data['V'][]="einfo";
-			$data['V'][]="cinfo";
-			$data['uid']=$uid;  
-			$data['elabel']=$elabel;
-			$data['einfo']=$einfo;  
-			$data['estate']=$estate;  
-			$data['ecreid']=$ecreid;
-			$data['etype']=$etype;  
-			$data['ealarm']=$ealarm;  
-			$data['ealarmtype']=$ealarmtype;
-			$data['eweek']=$str1;  
-			$data['edayofweek']=$edayofweek;  
-			$data['ecofday']=$ecofday;
-			$data['einfo']=$einfo;
-			$data['cinfo']=$cinfo;  
-			$data_json=json_encode($data);
-			$json="json=".$data_json;  
+            $data1['V'][]="uid";  
+			$data1['V'][]="elabel";
+			$data1['V'][]="eaddress";
+			$data1['V'][]="ealarm";
+			$data1['V'][]="ealarmtype";  
+			$data1['V'][]="eweek";
+			$data1['V'][]="edayofweek";
+			$data1['V'][]="ecofday";  
+			$data1['uid']=$uid;  
+			$data1['elabel']=$elabel;
+			$data1['eaddress']=$etype;  
+			$data1['ealarm']=$ealarm;  
+			$data1['ealarmtype']=$ealarmtype;
+			$data1['eweek']=$str1;  
+			$data1['edayofweek']=$edayofweek;  
+			$data1['ecofday']=$ecofday;
+			$data_json=json_encode($data1);
+			$json2="json=".$data_json;  
 			//echo $json;
-			$json_data=http_post_data($url,$json);	
-			$json_code=json_decode($json_data);
-			if($json_code->S=="success")
-			$i=0;
+			$json_data2=http_post_data($url,$json2);	
+			$json_code2=json_decode($json_data2);
+			$k=0;
+			if($json_code2->S=="success")
 			{
-				$i++;
+				$k=1;
 			}
-			
-			echo $i;
+			else{
+				$i2=json_encode($json_code2->MT);
+			}
+			if($k==1&&$j==1)
+			{
+				echo json_encode(2);
+			}
+			if($k==1&&$j==0)
+			{
+				//echo json_encode($json1);
+				echo $i1;
+			}
+			if($k==0&&$j==1)
+			{
+				echo json_encode($json2." ".$i2);
+			}
+			if($k==0&&$j==0)
+			{
+				echo json_encode("创建失败");
+			}
 		}
 	}
 ?>
