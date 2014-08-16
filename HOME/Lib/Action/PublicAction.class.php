@@ -60,8 +60,11 @@ class PublicAction extends CommonAction {
 		$schoolName = $_POST['schoolName'];
 		$sclsp = ",";
 		$sclname = "";
-		$address= $_SESSION['country'];
-			
+		import('ORG.Net.IpLocation');// 导入IpLocation类
+             $Ip = new IpLocation(); // 实例化类
+             $location = $Ip->getlocation(get_client_ip()); // 获取某个IP地址所在的位置
+        
+		$address=$location['area'];
 		if (preg_match("/[\x7f-\xff]/", $schoolName)) {
 			$sclname =$schoolName;
 		} else {
@@ -73,8 +76,10 @@ class PublicAction extends CommonAction {
 		$data['E'] = 1;
 		$data['V'][] = "sclsp";
 		$data['V'][] = "sclname";
+		$data['V'][]="address";
 		$data['sclsp'] = $sclsp;
 		$data['sclname'] = $sclname;
+		$data['address'] = $address;
 		$data_json=json_encode($data);
 		$json = "json=" . $data_json;
 		$url = "http://api.ipaikt.com:88";
@@ -85,8 +90,6 @@ class PublicAction extends CommonAction {
 				foreach($V as  $v){
                      $Array->$v = $json_code->$v;
                 } 
-				
-		$school_info=json_encode($Array); 
 		$json_array=json_encode($Array->list);
 		echo $json_array;
 	}
