@@ -90,7 +90,7 @@
 			$eweek=$_POST['a_eweek'];
 			$edayofweek=$_POST['a_edayofweek'];
 			$ecofday=$_POST['a_ecofday'];
-			$oldeweek=$_POST['a_eweek'];
+			$oldeweek=$_POST['a_oldweek'];
 			$olddofweek=$_POST['a_olddofweek'];
 			$oldcofday=$_POST['a_oldcofday' ];
 
@@ -391,7 +391,7 @@
 			}
 			if($k==0&&$j==1)
 			{
-				echo json_encode($json2." ".$i2);
+				echo $i2;
 			}
 			if($k==0&&$j==0)
 			{
