@@ -1,4 +1,4 @@
-﻿﻿<!--
+﻿<!--
 作者：范志俊
 时间：2014-07-25
 描述：首页页面,包括显示本周课程表,和本周笔记,以及推荐笔记
@@ -799,16 +799,18 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 			      var cid_str = new Array();
 			      cid_str = class_time.split("_");
 			      var cid= parseInt(cid_str[1]);
+			      var j=parseInt(cid_str[2]);
 			      var j1=parseInt(cid_str[3]);
 			      var j2=parseInt(cid_str[4]);
 			      move_edayofweek=j2+1;
 			      move_ecofday=j1+1;
+			      move_eweek=j+1;
 			       //$("#move_week_checkbox").empty();
 					for (var i = 0; i < class_data.length; i++) {
 						for (var i1 = 0; i1 < class_data[i].length; i1++) {
 							for (var i2 = 0; i2 < class_data[i][i1].length; i2++) {
 								if (class_data[i][i1][i2] != null) {
-									if (class_data[i][i1][i2].cid == cid && i1 == j1 && i2 == j2) {
+									if (i==j&& i1 == j1 && i2 == j2) {
 										class_name = class_data[i][i1][i2].elabel;
 									}
 								}
@@ -836,7 +838,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 			    var classid_str = move_class_id.split("_");
 			    var eweek= parseInt(classid_str[1]);
 			    var edayofweek=$("#weekday_select").val();
-			    var ecofday=$("dayclass_select").val();
+			    var ecofday=$("#dayclass_select").val();
 			    
 			    $.ajax({
 			    	type:"post",
@@ -850,15 +852,17 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 			    		a_ealarmtype:ealarmtype,
 			    		a_eweek:eweek,
 			    		a_edayofweek:edayofweek,
+			    		a_ecofday:ecofday,
 			    		a_oldweek:old_week,
 			    		a_olddofweek:old_edayofweek,
 			    		a_oldcofday:old_ecofday,
 			    	},
-			    	dataType:"json",
-			    	success:function()
+			    	dataType : "json",
+			    	success:function(data)
 			    	{
 			    		if(data==1)
-			    		 {   alert("移动成功");
+			    		 {   
+			    		 	alert("移动成功");
 			    		    $("#class_move_button").html("移动成功");
 			    		    window.location.href=APP+"Index/index_main";
 			    		   }
@@ -975,6 +979,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 						if(data==2)
 						{
 							alert("添加成功");
+							window.location.href=APP+"Index/index_main";
 						}
 						else{
 							alert(data);
