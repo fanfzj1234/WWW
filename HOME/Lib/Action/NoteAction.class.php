@@ -1,14 +1,16 @@
 <?php
-/*--
-	×÷Õß£º·¶Ö¾¿¡
-	Ê±¼ä£º2014-07-25
-	ÃèÊö£ºNote¿ØÖÆÆ÷£¬ÏÔÊ¾±Ê¼Ç
-*/
+
 	class NoteAction extends CommonAction {
 	
-		// ÏÔÊ¾Ö÷Ò³Ãæ
+		
 		public function index(){
+			if(!isset($_SESSION['yz'])&&$_SESSION['yz']!=md5('çˆ±æ‹è¯¾å ‚'.$_COOKIE['uid']))
+			 {
+			 	$this->error("è¯·é‡æ–°ç™»é™†","Index/login");
+			 }
+			else{
              $this->display();
+			}
 		}
 		public function test()
 		{
@@ -31,13 +33,13 @@
 			    $url = "http://api.ipaikt.com:88";
 				$json_data=http_post_data($url,$json);
 				$json_code=json_decode($json_data);
-				$V = $json_code->V;
+				$this->V = $this->json_code['V'];
 				$date_beginday=$json_code->beginday;
-				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
-                }    
+				foreach($this->V as $v){ 
+$Array[$v]=$json_code->$v;;
+}   
 				
-				$tmp = array_merge(array('begin_time' => $date_beginday),array('class' => $Array->class));
+				$tmp = array_merge(array('begin_time' => $date_beginday),array('class' => $Array['class']));
 				$json_arry =json_encode($tmp);
 				
 				echo $json_arry;
@@ -66,13 +68,13 @@
 			    $url = "http://api.ipaikt.com:88";
 				$json_data=http_post_data($url,$json);
 				$json_code=json_decode($json_data);
-				$V = $json_code->V;
+				$this->V = $this->json_code['V'];
 				$date_beginday=$json_code->beginday;
-				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
-                }    
+				foreach($this->V as $v){ 
+$Array[$v]=$json_code->$v;;
+}   
 				
-				$tmp = array_merge(array('begin_time' => $date_beginday),array('class' => $Array->class));
+				$tmp = array_merge(array('begin_time' => $date_beginday),array('class' => $Array['class']));
 				$json_arry =json_encode($tmp);
 				
 				echo $json_arry;

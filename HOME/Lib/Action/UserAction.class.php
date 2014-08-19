@@ -8,7 +8,7 @@
 		// 显示主页面
 		public function index(){
 			    ob_end_clean();
-			    $uid=$_SESSION['uid'];
+			    $uid=$_COOKIE['uid'];
 				$data['A']="User_info";
 				$data['AC']="getUserInfo";
 				$data['C']=base64_encode(gzencode("http".time()."W"));  
@@ -20,26 +20,27 @@
 				$url= "http://api.ipaikt.com:88";
 				$json_data=http_post_data($url,$json);
 				$json_code=json_decode($json_data);
-				$V = $json_code->V;
-				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
-                }    
-				$me_uid=$Array->uid;
-				$me_uemail=$Array->uemail;
+				$this->V = $this->json_code['V'];
+				foreach($this->V as $v){ 
+$Array[$v]=$json_code->$v;;
+}
+				$me_uid=$Array['uid'];
+				$me_uemail=$Array['uemail'];
 				$email=explode("@",$me_uemail);
-				$me_utel=$Array->utel;
-				$me_uqq=$Array->uqq;
-				$me_usina=$Array->usina;
-				$me_urenren=$Array->urenren;
-				$me_uinfo=$Array->uinfo;
-				$me_schlid1=$Array->sclid;
-				$me_schlid2=$Array->colid;
-				$me_schlid3=$Array->speid;
-				$me_schlid4=$Array->claid;
-				$me_sclname=$Array->sclname;
-				$me_sclname2=$Array->colname;
-			    $me_sclname3=$Array->spename;
-				$me_sclname4=$Array->claname;
+				$me_utel=$Array['utel'];
+				$me_uqq=$Array['uqq'];
+				$me_usina=$Array['usina'];
+				$me_urenren=$Array['urenren'];
+				$me_uinfo=$Array['uinfo'];
+				$me_schlid1=$Array['sclid'];
+				$me_schlid2=$Array['colid'];
+				$me_schlid3=$Array['speid'];
+				$me_schlid4=$Array['claid'];
+				$me_sclname=$Array['sclname'];
+				$me_sclname2=$Array['colname'];
+			    $me_sclname3=$Array['spename'];
+				$me_sclname4=$Array['claname'];
+				$me_userRealName=$Array['userrealname'];
 				
 				$this->assign("user_id",$me_uid);
 				$this->assign("userEmail",$email[0]);
@@ -53,10 +54,10 @@
 				$this->assign("schoolId_3_id",$me_schlid3);
 				$this->assign("schoolId_4_id",$me_schlid4);
 				$this->assign("schoolId_1",$me_sclname);
-//				$this->assign("schoolId_2",$me_sclname2);
-//				$this->assign("schoolId_3",$me_sclname3);
-//				$this->assign("schoolId_4",$me_sclname4);
-
+				$this->assign("schoolId_2",$me_sclname2);
+				$this->assign("schoolId_3",$me_sclname3);
+				$this->assign("schoolId_4",$me_sclname4);
+                $this->assign("useRealName",$me_userRealName);
                 $sclid1 =$me_schlid1;
 		
 		        $scl['A'] = "School_Info";
@@ -72,14 +73,21 @@
 		        $json_code=json_decode($json_data);
 				//echo $json;
 		        //echo $json_data;
-		        $V = $json_code->V;
+		        $this->V = $json_code->V;
 				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
+                    $Array[$v]=$json_code->$v;
                 } 
-				$collist=json_decode($Array->list);
+				$collist=array($Array['list']);
 				$this->assign("collist",$collist);
 		
-                $this->display();
+              if(!isset($_SESSION['yz'])&&$_SESSION['yz']!=md5('爱拍课堂'.$_COOKIE['uid']))
+			 {
+			 	$this->error("请重新登陆","Index/login");
+			 }
+			 else
+			 {
+			 	$this->display();
+			 }
 		}
 		public function test(){
 			    $uid="59";
@@ -96,27 +104,27 @@
 				$json_data=http_post_data($url,$json);
 				//echo $json_data;
                 $json_code=json_decode($json_data);
-				$V = $json_code->V;
-				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
-                }    
-				$me_uid=$Array->uid;
-				$me_uemail=$Array->uemail;
+				$this->V = $json_code->V;
+				foreach($this->V as $v){ 
+$Array[$v]=$json_code->$v;;
+}
+				$me_uid=$Array['uid'];
+				$me_uemail=$Array['uemail'];
 				$email=explode("@",$me_uemail);
-				$me_utel=$Array->utel;
-				$me_uqq=$Array->uqq;
-				$me_usina=$Array->usina;
-				$me_urenren=$Array->urenren;
-				$me_uinfo=$Array->uinfo;
-				$me_schlid1=$Array->sclid;
-				$me_schlid2=$Array->colid;
-				$me_schlid3=$Array->speid;
-				$me_schlid4=$Array->claid;
-				$me_sclname=$Array->sclname;
-				$me_sclname2=$Array->colname;
-			    $me_sclname3=$Array->spename;
-				$me_sclname4=$Array->claname;
-
+				$me_utel=$Array['utel'];
+				$me_uqq=$Array['uqq'];
+				$me_usina=$Array['usina'];
+				$me_urenren=$Array['urenren'];
+				$me_uinfo=$Array['uinfo'];
+				$me_schlid1=$Array['sclid'];
+				$me_schlid2=$Array['colid'];
+				$me_schlid3=$Array['speid'];
+				$me_schlid4=$Array['claid'];
+				$me_sclname=$Array['sclname'];
+				$me_sclname2=$Array['colname'];
+			    $me_sclname3=$Array['spename'];
+				$me_sclname4=$Array['claname'];
+				$me_userRealName=$Array['userrealname'];
 
                 $sclid1 =$me_schlid1;
 		
@@ -124,7 +132,7 @@
 		        $scl['AC'] = "getcollist";
 		        $scl['C'] = base64_encode(gzencode("http" . time() . "W"));
 		        $scl['E'] = 1;
-		        $scl['V'][] = "sclid";
+		        $scl['V'][] = 631;
 		        $scl['sclid'] = $sclid1;
                 $data_json=json_encode($scl);
 		        $json = "json=" . $data_json;
@@ -133,11 +141,11 @@
 		        $json_code=json_decode($json_data);
 				echo $json;
 		        echo $json_data;
-		        $V = $json_code->V;
+		        $this->V = $json_code->V;
 				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
+                    $Array[$v]=$json_code->$v;
                 } 
-		        var_dump($Array->list);
+		        var_dump($Array['list']);
 		}
 		public function user_test(){
 			     $uid=54;
@@ -202,7 +210,7 @@
 			
 				$uid=$_POST['uid'];
 				//$username=$_POST['me_username'];
-				//$userRealName=$_POST['me_userRealName'];
+				$userRealName = $_POST['userRealName'];
 				$schoolId_1=$_POST['sclid1'];
 				$schoolId_2=$_POST['sclid2'];
 				$schoolId_3=$_POST['sclid3'];
@@ -222,7 +230,7 @@
 				$data['E']=1;
                 $data['V'][]="uid";  
 				//$data['V'][]="username";
-				//$data['V'][]="userRealName";
+				$data['V'][] = "urealname";
 				$data['V'][]="sclid1";
 				$data['V'][]="sclid2";
 				$data['V'][]="sclid3";
@@ -237,8 +245,8 @@
 				$data['V'][]="uinfo";
 				
                 $data['uid']=$uid;  
-				//$data['username']=$username;  
-			    //$data['userRealName']=$userRealName;  
+				$data['username']=$username;  
+			    $data['urealname'] = $userRealName;
 				$data['sclid1']=$schoolId_1;  
 				$data['sclid2']=3;  
 				$data['sclid3']=1;  
@@ -261,7 +269,7 @@
 			    {
 				$i=json_encode(1);
                 session_start();
-				$_SESSION['state']=1;
+				$_COOKIE['state']=1;
 			    }
 			    else{
 				$i=is_array($json_code->MT);
@@ -296,7 +304,9 @@
 			{
 				$i=json_encode(1);
 				 session_start();
-				$_SESSION['state']=1;
+				$_SEESION['login_info']=1;
+				setcookie("state",1, time()+3600*24*7);
+				setcookie("login_info", 1, time()+3600*24*7); 
 			}
 			else{
 				$i=json_encode($json_code->MT);

@@ -37,10 +37,10 @@
 			{
 				//$studentId="2012021039";
 				//$password="921128";
-				$schoolId="齐齐哈尔大学";
+				//$schoolId="齐齐哈尔大学";
 				$studentId=$_POST['studentId'];
 				$password=$_POST['student_password'];
-				//$schoolId=$_POST['schoolId'];
+				$schoolId=$_POST['schoolId'];
 				$type="normal_student";
 				$data['A']="User_Register";
 				$data['AC']="register";
@@ -60,19 +60,24 @@
 			    $url = "http://api.ipaikt.com:88";
 				$json_data=http_post_data($url,$json);
 				$json_code=json_decode($json_data);
-			    $V = $json_code->V;
-				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
-                }    
+			    $this->V = $json_code->V;
+				foreach($this->V as $v){ 
+                   $Array[$v]=$json_code->$v;
+}
 			    if($json_code->S=="success")
 			   {
 				$i=json_encode(1);
-				 session_start();
-				$_SESSION['state']=2;
-				$_SESSION['uid']=$Array->uid;
-				$_SESSION['type']=$Array->userType;
-				$_SESSION['utype']=1;
-				$_SESSION['yz']=md5('爱拍课堂');
+				session_start();
+				if($_COOKIE['state']!=1)
+				setcookie("state", 2, time()+3600*24*7); 
+				setcookie("uid", $Array['uid'], time()+3600*24*7); 
+				setcookie("type", $type, time()+3600*24*7); 
+				setcookie("utype", 1, time()+3600*24*7); 
+				if($_COOKIE['login_info']!=1)
+				{$_SEESION['login_info']=2;
+				setcookie("login_info", 2, time()+3600*24*7); 
+				}
+				$_SESSION['yz']=md5('爱拍课堂'.$_COOKIE['uid']);
 			   }
 			else{
 				$i=json_encode($json_code->MT);
@@ -106,19 +111,24 @@
 				$data['schoolId']=$schoolId;  
                
                 $json_code=json_decode($json_data);
-			    $V = $json_code->V;
-				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
-                }    
+			    $this->V = $json_code->V;
+				foreach($this->V as $v){ 
+                 $Array[$v]=$json_code->$v;
+}
 			    if($json_code->S=="success")
 			   {
 				$i=json_encode(1);
-				 session_start();
-				$_SESSION['state']=2;
-				$_SESSION['uid']=$Array->uid;
-				$_SESSION['type']=$Array->userType;
-				$_SESSION['utype']=2;
-				$_SESSION['yz']=md5('爱拍课堂');
+				session_start();
+				
+				setcookie("state", 2, time()+3600*24*7); 
+				setcookie("uid", $Array['uid'], time()+3600*24*7); 
+				setcookie("type", $type, time()+3600*24*7); 
+				setcookie("utype", 1, time()+3600*24*7); 
+				if($_COOKIE['login_info']!=1)
+				{$_SEESION['login_info']=2;
+				setcookie("login_info", 2, time()+3600*24*7); 
+				}
+				$_SESSION['yz']=md5('爱拍课堂'.$_COOKIE['uid']);
 			   }
 			else{
 				$i=json_encode($json_code->MT);
@@ -136,32 +146,33 @@
 				$data['type']=$type;  
                 
                 $json_code=json_decode($json_data);
-			   $V = $json_code->V;
-				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
-                }    
+			   $this->V = $json_code->V;
+				foreach($this->V as $v){ 
+$Array[$v]=$json_code->$v;
+}
 			    if($json_code->S=="success")
 			   {
 				$i=json_encode(1);
-				 session_start();
-				$_SESSION['state']=2;
-				$_SESSION['uid']=$Array->uid;
-				$_SESSION['type']=$Array->userType;
-				$_SESSION['yz']=md5('爱拍课堂');
+				session_start();
+				setcookie("state", 2, time()+3600*24*7); 
+				setcookie("uid", $Array['uid'], time()+3600*24*7); 
+				setcookie("type","normal_student" , time()+3600*24*7); 
+				setcookie("utype", $Array['utype'], time()+3600*24*7); 
+				setcookie("login",1,time()+3600*24*7);
+				if($_COOKIE['login_info']!=1)
+				{$_SEESION['login_info']=2;
+				setcookie("login_info", 2, time()+3600*24*7); 
+				}
+				$_SESSION['yz']=md5('爱拍课堂'.$_COOKIE['uid']);
 			    }
 			else{
 				$i=json_encode($json_code->MT);
 			}
 			echo $i;
-			}
-			   
+			}   
 		}
 		/*注销用户操作*/
-		public function  do_logout(){
-			unset($_SESSION['user']);
-		    //$this->success("注销成功");
-			$this->display("Index:index");
-			}
+		
 		public function	verify(){
 			session_start();
 			//echo md5($_POST['verify']);
@@ -190,23 +201,22 @@
 			    $url = "http://api.ipaikt.com:88";
 				$json_data=http_post_data($url,$json);
 				$json_code=json_decode($json_data);
-				$V = $json_code->V;
-				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
-                }    
+				$this->V = $json_code->V;
+				foreach($this->V as $v){ 
+$Array[$v]=$json_code->$v;
+}
 			    if($json_code->S=="success")
 			   {
 				$i=json_encode(1);
 				 session_start();
-				$_SESSION['state']=1;
-				$_SESSION['uid']=$Array->uid;
-				$_SESSION['udate']=$Array->udate;
-				$_SESSION['utype']=$Array->utype;
-				if($_SESSION['utype']==1)
-				$_SESSION['type']="normal_student";
-				if($_SESSION['utype']==2)
-				$_SESSION['type']="teacher";
-				$_SESSION['yz']=md5('爱拍课堂');
+				 session_start();
+				setcookie("state",$Array['udate'], time()+3600*24*7); 
+				setcookie("uid", $Array['uid'], time()+3600*24*7); 
+				setcookie("type","normal_student" , time()+3600*24*7); 
+				setcookie("utype",$Array['utype'], time()+3600*24*7); 
+				$_SESSION['yz']=md5('爱拍课堂'.$_COOKIE['uid']);
+			    $_SEESION['login_info']=1;
+				setcookie("login_info", 1, time()+3600*24*7); 
 			    }
 			else{
 				$i=json_encode($json_code->MT);

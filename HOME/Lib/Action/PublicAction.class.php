@@ -19,10 +19,11 @@ class PublicAction extends CommonAction {
 		$sclsp = ",qq";
 		$sclname = "齐齐";
 		import('ORG.Net.IpLocation');// 导入IpLocation类
-             $Ip = new IpLocation(); // 实例化类
+             $Ip = new IpLocation("QQWry.dat"); // 实例化类
              $location = $Ip->getlocation(get_client_ip()); // 获取某个IP地址所在的位置
-        
-		$address=$location['area'];
+            echo get_client_ip();
+            var_dump($location);
+		$address=$location['country'];
 		if (preg_match("/[\x7f-\xff]/", $schoolName)) {
 			$sclname =$schoolName;
 		} else {
@@ -43,17 +44,15 @@ class PublicAction extends CommonAction {
 		echo $json;
 		$url = "http://api.ipaikt.com:88";
 		$json_data=http_post_data($url,$json);
-		//echo $json_data;
+		var_dump($json_data);
 		$json_code=json_decode($json_data);
-		
+		$Array="";
 		$V = $json_code->V;
-				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
-                } 
-				
-		$school_info=json_encode($Array); 
-		$json_array=json_encode($Array->list);
-		var_dump($json_array);
+				foreach($V as $v){ 
+         $Array[$v]=$json_code->$v;
+}
+		$json_array=json_encode($Array['list']);
+		echo $json_array;
     }
 	public function schoolinfo() {
         session_start();
@@ -61,10 +60,10 @@ class PublicAction extends CommonAction {
 		$sclsp = ",";
 		$sclname = "";
 		import('ORG.Net.IpLocation');// 导入IpLocation类
-             $Ip = new IpLocation(); // 实例化类
+              $Ip = new IpLocation("QQWry.dat"); // 实例化类
              $location = $Ip->getlocation(get_client_ip()); // 获取某个IP地址所在的位置
         
-		$address=$location['area'];
+		$address=$location['country'];
 		if (preg_match("/[\x7f-\xff]/", $schoolName)) {
 			$sclname =$schoolName;
 		} else {
@@ -85,12 +84,12 @@ class PublicAction extends CommonAction {
 		$url = "http://api.ipaikt.com:88";
 		$json_data = http_post_data($url, $json);
 		$json_code=json_decode($json_data);
-		
+		$Array="";
 		$V = $json_code->V;
-				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
-                } 
-		$json_array=json_encode($Array->list);
+				foreach($V as $v){ 
+         $Array[$v]=$json_code->$v;
+}
+		$json_array=json_encode($Array['list']);
 		echo $json_array;
 	}
 
@@ -110,11 +109,11 @@ class PublicAction extends CommonAction {
 		//echo $json;
 		$json_code=json_decode($json_data);
 		
-		$V = $json_code->V;
-				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
-                } 
-		$json_array=json_encode($Array->list);
+		$this->V = $this->json_code['V'];
+				foreach($this->V as $v){ 
+$Array[$v]=$json_code->$v;
+}
+		$json_array=json_encode($Array['list']);
 		echo $json_array;
 	}
     public function get_spe_list() {
@@ -134,13 +133,11 @@ class PublicAction extends CommonAction {
 		$json_data = http_post_data($url, $json);
 		$json_code=json_decode($json_data);
 		
-		$V = $json_code->V;
-				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
-                } 
-				
-		$school_info=json_encode($Array); 
-		$json_array=json_encode($Array->list);
+		$this->V = $this->json_code['V'];
+				foreach($this->V as $v){ 
+$Array[$v]=$json_code->$v;
+}
+		$json_array=json_encode($this->Array['list']);
 		echo $json_array;
 	}
 	public function get_cla_list() {
@@ -160,13 +157,11 @@ class PublicAction extends CommonAction {
 		$json_data = http_post_data($url, $json);
 		$json_code=json_decode($json_data);
 		
-		$V = $json_code->V;
-				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
-                } 
-				
-		$school_info=json_encode($Array); 
-		$json_array=json_encode($Array->list);
+		$this->V = $this->json_code['V'];
+				foreach($this->V as $v){ 
+$Array[$v]=$json_code->$v;
+}
+		$json_array=json_encode($this->Array['list']);
 		echo $json_array;
 	}
 }

@@ -9,7 +9,14 @@
 		// 显示主页面
 		public function index(){
 		ob_end_clean();
-             $this->display();
+             if(!isset($_SESSION['yz'])&&$_SESSION['yz']!=md5('爱拍课堂'.$_COOKIE['uid']))
+			 {
+			 	$this->error("请重新登陆","Index/login");
+			 }
+			 else
+			 {
+			 	$this->display();
+			 }
 		}
 		//测试
 		public function test()
@@ -34,10 +41,10 @@
 				$json_data=http_post_data($url,$json);
 				echo $json_data;
 				//$json_code=json_decode($json_data);
-				//$V = $json_code->V;
+				//$this->V=$this->$json_code['V'}
 //				$date_beginday=$json_code->beginday;
 //				foreach($V as  $v){
-//                   $Array->$v = $json_code->$v;
+//                   $Array[$v]=$json_code->$v;
 //              }    
 //				
 //				$tmp = array_merge(array('begin_time' => $date_beginday),array('class' => $Array->class));
@@ -68,10 +75,10 @@
 				$json_data=http_post_data($url,$json);
 				echo $json_data;
 				//$json_code=json_decode($json_data);
-				//$V = $json_code->V;
+				//$this->V=$this->$json_code['V'}
 //				$date_beginday=$json_code->beginday;
 //				foreach($V as  $v){
-//                   $Array->$v = $json_code->$v;
+//                   $Array[$v]=$json_code->$v;
 //              }    
 //				
 //				$tmp = array_merge(array('begin_time' => $date_beginday),array('class' => $Array->class));
@@ -161,13 +168,13 @@
 				$json_data=http_post_data($url,$json);
 				//echo $json;
 				$json_code=json_decode($json_data);
-				$V = $json_code->V;
+				$V=$json_code->V;
 				$date_beginday=$json_code->beginday;
 				foreach($V as  $v){
-                     $Array->$v = $json_code->$v;
+                     $Array[$v]=$json_code->$v;
                 }    
 				
-				$tmp = array_merge(array('begin_time' => $date_beginday),array('class' => $Array->class));
+				$tmp = array_merge(array('begin_time' => $date_beginday),array('class' => $Array['class']));
 				$json_arry =json_encode($tmp);
 				
 				echo $json_arry;
@@ -397,6 +404,71 @@
 			{
 				echo json_encode("创建失败");
 			}
+		}
+        public function label_list(){
+        	$uid=$_POST['uid'];
+			$data1['A']="Curriculum_User";
+			$data1['AC']="geteventByUid";
+			$data1['C']=base64_encode(gzencode("http".time()."W"));  
+			$data1['E']=1;
+				 
+            $data1['V'][]="uid";  
+			$data1['uid']=$uid;  
+			$data_json=json_encode($data1);
+			$json="json=".$data_json; 
+			$url = "http://api.ipaikt.com:88";
+			$json_data=http_post_data($url,$json);	
+			$json_code=json_decode($json_data);
+			$Array="";
+			$V=$json_code->V;
+				foreach($this->V as  $v){
+                     $Array[$v]=$json_code->$v;
+                }    
+			//echo json_encode($Array['list']);
+			echo json_encode($json_code->list);
+        }
+		public function stulist(){
+			//$claid=$_POST['a_claid'];
+			$uid=$_POST['a_uid'];
+			$ewwek=$_POST['a_eweek'];
+			$edayofweek=$_POST['a_edayofweek'];
+			$ecofday=$_POST['a_ecofday'];
+			$exists=$_POST['a_exists'];
+			
+			$data1['A']="User_Info";
+			$data1['AC']="getUserlistbytime";
+			$data1['C']=base64_encode(gzencode("http".time()."W"));  
+			$data1['E']=1;
+				 
+           // $data1['V'][]="claid"; 
+			$data1['V'][]="uid"; 
+			$data1['V'][]="eweek"; 
+			$data1['V'][]="edayofweek";  
+			$data1['V'][]="ecofday"; 
+			$data1['V'][]="exists"; 
+			
+			//$data1['claid']=$claid;  
+			$data1['uid']=$uid;  
+			$data1['eweek']=$eweek;  
+			$data1['edayofweek']=$edayofweek;  
+			$data1['ecofday']=$ecofday;  
+			$data1['exists']=$exists;  
+			
+			$data_json=json_encode($data1);
+			$json="json=".$data_json; 
+			$url = "http://api.ipaikt.com:88";
+			$json_data=http_post_data($url,$json);	
+			$json_code=json_decode($json_data);
+			$Array="";
+			$V=$json_code->V;
+				foreach($this->V as  $v){
+                     $Array[$v]=$json_code->$v;
+                }    
+			//echo json_encode($Array['list']);
+			if($json_code->list!=null)
+			echo json_encode($json_code->list);
+			else
+				echo json_encode(1);
 		}
 	}
 ?>
