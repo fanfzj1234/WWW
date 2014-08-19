@@ -5,7 +5,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 
-		<title>爱课课堂||登陆</title>
+		<title>爱课课堂||登录</title>
 	</head>
 	<script type="text/javascript">
 		var APP = "__APP__";
@@ -17,7 +17,7 @@
 	<script src="__JS__/supersized.3.2.7.min.js"></script>
 	<script src="__JS__/supersized-init.js"></script>
 	<script src="__JS__/modernizr.js"></script>
-    <script src="__JS__/index_main.js"></script>
+	<script src="__JS__/index_main.js"></script>
 	<link rel="stylesheet" href="__CSS__/font-awesome.min.css">
 	<link rel="stylesheet" href="__CSS__/login_reset.css">
 	<link rel="stylesheet" href="__CSS__/supersized.css">
@@ -106,7 +106,7 @@
 					/*验证码验证*/
 					var code;
 					var code_yz;
-					$("#code").keydown(function(e) {
+					$("#code").keyup(function(e) {
 						code= $("#code").val();
 						$.ajax({
 						    type : "post",
@@ -114,8 +114,14 @@
 							data : {verify :code},
 							success : function(data) {
 								if(data==1)
-                               code_yz=1;
+                               {
+                               	code_yz=1;
+                               	$("#login_alert").empty();
+								$("#login_alert").append("验证码正确");
+                               }
                                else{
+                               	$("#login_alert").empty();
+								$("#login_alert").append("验证码错误，请重新输入");
                                	code_yz=0;
                                }
 							},
@@ -126,7 +132,7 @@
 							}
 					    });
 					});
-					/*登陆*/
+					/*登录*/
 					$("#login-sub-btn").click(function() {
 						login_go();
 					});
@@ -150,18 +156,21 @@
 									dataType : "json",
 									success : function(data) {
 										if (data==1) {
+											$("#login_alert").empty();
 											$("#login_alert").attr("class", "alert alert-success");
-											$("#login_alert").append("登陆成功");
+											$("#login_alert").append("登录成功");
 											window.location.href = APP + "Index/index_main";
 										}
 										else{
+											$("#login_alert").empty();
 											$("#login_alert").attr("class", "alert alert-danger");
 											$("#login_alert").append("" + data+ "");
 										}
 									},
 									error : function() {
+										$("#login_alert").empty();
 										$("#login_alert").attr("class", "alert alert-danger");
-										$("#login_alert").append("登陆失败，请重新登陆");
+										$("#login_alert").append("登录失败，请重新登录");
 									}
 								});
 							} else {

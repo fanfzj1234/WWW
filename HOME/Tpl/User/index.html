@@ -63,7 +63,7 @@
 									</tr>
 									<tr>
 										<td> *学院: </td>
-										<td>{$collist}
+										<td>
 											<select id="sclid2" size="5"  style="width: 40%;">
 												<!--<foreach name="collist" item="list">
 													<option value="{$list.sclid2}">{$list.sclname2}</option>
@@ -245,7 +245,7 @@
 									$("#loading-example-btn").click(function(){
 									var userid=$("#hidden_uid").val();
 									var userRealName=$("#userRealName").val();
-									var schoolId_1=$("#schoolId_1").text();
+									var schoolId_1=$("#schoolId_1").val();
 									var schoolId_2=$("#schoolId_2").val();
 									var schoolId_3=$("#schoolId_3").val();
 									var schoolId_4=$("#schoolId_4").val();
@@ -265,7 +265,7 @@
 									type : "post",
 									url:APP+"User/user_info",
 									data:{uid:userid,sclid1:schoolId_1,sclid2:schoolId_2,sclid2:schoolId_2,sclid3:schoolId_3,sclid4:schoolId_4,uemail:Email,
-										utel:userTel,uqq:userAccount_qq,usina:userAccount_sina,urenren:userAccount_renren,uinfo:userInfo,type:"sumbit"},
+										utel:userTel,uqq:userAccount_qq,usina:userAccount_sina,urenren:userAccount_renren,uinfo:userInfo,type:"sumbit",userRealName:userRealName},
 									dataType :"json",
 									async : false,
 									success : function(data) {

@@ -1,7 +1,7 @@
 <!--
 	作者：范志俊
 	时间：2014-07-25
-	描述：Top栏，登陆和注册，显示用户头像和用户名
+	描述：Top栏，登录和注册，显示用户头像和用户名
 -->
 <script>
 	var APP="__APP__";
@@ -11,13 +11,13 @@
 <link rel="stylesheet" href="__CSS__/index_top.css"/>
 
 
-<a href="#" title="<?php session_start(); echo $_SESSION['uid'];?>" id="user_login_name" class="glyphicon glyphicon-user" style="font-size: 18px;">
+<a href="#" title="<?php echo $_COOKIE['uid'];?>" id="user_login_name" class="glyphicon glyphicon-user" style="font-size: 18px;">
 <!-- 假如 session不存在或设置的值为空，即没有登录，显示登录和注册button-->
 
 <!-- session 存在，即登录成功就显示用户名 -->
  <strong style="color:#4795d1;padding-right:2px;font-size: 16px;" id="login_user_id">Hello 
  	<?php 
- 	if($_SESSION['type']=="normal_student"||$_SESSION['utype']=1)
+ 	if($_COOKIE['type']=="normal_student"||$_COOKIE['utype']=1)
  	{
  		echo "学生";
  	}
@@ -25,5 +25,23 @@
  	{
  		echo "教师";
  	}
- 	?>:<?php echo $_SESSION['uid']; ?></strong>
+ 	?>:<?php echo $_COOKIE['uid']; ?></strong>
+ 	
   </a>
+  <a id="login_out" style="cursor:pointer;font-size: 18px;">注销</a>
+  <script>
+  		$(document).ready(function(){
+  			$("#login_out").click(function(){
+  				$.ajax({
+  					type:"post",
+  					url:APP+"Index/do_logout",
+  					async:true,
+  					success:function(data)
+  					{
+  						if(data==1)
+  						window.location.href=APP+"Index/index";
+  					}
+  				});
+  			});
+  		});
+  </script>

@@ -44,7 +44,8 @@
 		<style>
 			#school_list_1, #school_list_2, #discipline_list {
 				margin-left: 53px;
-				width: 195px;
+				width: 215px;
+				z-index: 2;
 			}
 			.register_style_failed {
 				color: #a94442;
@@ -93,7 +94,7 @@
 		<title>爱拍课堂||ipaikt</title>
 	</head>
 
-	<body style="overflow:scroll;overflow-x:hidden" data-find="_5">
+	<body style="overflow: hidden" data-find="_5">
 		<input type="hidden" value="{$country}" id="hidden_country">
 		<input type="hidden" value="{$area}" id="hidden_area">
 		<!--[if lte IE 8]>
@@ -216,7 +217,7 @@
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon">学校</span>
-										<input type="text" id="school_input_1" class="form-control" placeholder="(暂时只支持齐齐哈尔大学)">
+										<input type="text" id="school_input_1" class="form-control" placeholder="School" >
 
 									</div>
 
@@ -227,7 +228,11 @@
                                     
                                     	function select_change(){
                                     		$("#school_input_1").val($("#school_list_1 option:selected").text());
+                                            
                                     	}
+                                    	$("#school_list_1").click(function() {
+		                                           $("#school_list_1").hide();
+	                                         });
                                     </script>
 								</div>
 								<div class="form-group">
@@ -762,21 +767,23 @@
 							success : function(data) {
 
 								if (data==1) {
-									$("#register_alert").attr("class", "alert alert-success");
-									$("#register_alert").append("注册成功");
+									$("#register_alert_stu").attr("class", "alert alert-success");
+									$("#register_alert_stu").append("注册成功");
 									window.location.href = APP + "Index/index_main";
 								}
 								else{
-                                    $("#register_alert").empty();
-									$("#register_alert").attr("class", "alert alert-danger");
-									$("#register_alert").append("" + data+ "");
+                                    $("#register_alert_stu").empty();
+                                    $("#student_register_button").html("重试...");
+									$("#register_alert_stu").attr("class", "alert alert-danger");
+									$("#register_alert_stu").html(data);
 								}
 
 							},
 							error : function(data) {
-								$("#register_alert").empty();
-								$("#register_alert").attr("class", "alert alert-danger");
-								$("#register_alert").append("注册失败，请重新注册");
+								$("#register_alert_stu").empty();
+								$("#register_alert_stu").attr("class", "alert alert-danger");
+								$("#register_alert_stu").append("注册失败，请重新注册");
+								$("#student_register_button").html("重试...");
 							}
 						});
 
@@ -814,22 +821,22 @@
 							dataType : "json",
 							success : function(data) {
 								if (data==1) {
-									$("#register_alert").empty();
-									$("#register_alert").attr("class", "alert alert-success");
-									$("#register_alert").append("注册成功");
+									$("#register_alert_tea").empty();
+									$("#register_alert_tea").attr("class", "alert alert-success");
+									$("#register_alert_tea").append("注册成功");
 
 									window.location.href = APP + "Index/index_main";
 								}
 								else{
-									$("#register_alert").empty();
-									$("#register_alert").attr("class", "alert alert-danger");
-									$("#register_alert").append("" + data+ "");
+									$("#register_alert_tea").empty();
+									$("#register_alert_tea").attr("class", "alert alert-danger");
+									$("#register_alert_tea").append(data);
 								}
 							},
 							error : function() {
-								$("#register_alert").empty();
-								$("#register_alert").attr("class", "alert alert-danger");
-								$("#register_alert").append("注册失败，请重新注册");
+								$("#register_alert_tea").empty();
+								$("#register_alert_tea").attr("class", "alert alert-danger");
+								$("#register_alert_tea").append("注册失败，请重新注册");
 							}
 						});
 
@@ -871,7 +878,7 @@
 											$("#login_alert").empty();
 											$("#login_button").html("重试");
 											$("#login_alert").attr("class", "alert alert-danger");
-											$("#login_alert").append("" + data+ "");
+											$("#login_alert").append(data);
 										}
 									},
 									error : function() {

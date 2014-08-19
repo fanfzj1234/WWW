@@ -10,7 +10,7 @@
 </script>
 <script src="__JS__/checkBox.js"></script>
 <link href="__CSS__/main_table.css">
-<link href="__CSS__/main_table.css">
+
 <style>
 	th {
 		font-size: 16px
@@ -35,7 +35,7 @@
 		width: 160px;
 		color: #000000;
 	}
-		.detailImg {
+	.detailImg {
 		text-align: center;
 		position: relative;
 		display: -moz-box;
@@ -60,7 +60,6 @@
 	.detailImg p {
 		text-align: center;
 		color: #999;
-	
 	}
 	#detailImg-pre {
 		left: 0;
@@ -82,28 +81,28 @@
 		margin-left: 30px;
 		margin-right: 30px
 	}
-	#detailImg-box, #detailImg-pre, #detailImg-next,.detailImg {
+	#detailImg-box, #detailImg-pre, #detailImg-next, .detailImg {
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 	}
-    .class_main{
-     	text-align: center;
+	.class_main {
+		text-align: center;
 		position: relative;
 		display: -moz-box;
 		display: -webkit-box;
 		margin-top: 20px;
-    }
-    #class-pre,#class-next{
-    	width: 30px;
-    }
-    #class-box{
-    	-moz-box-flex: 1;
+	}
+	#class-pre, #class-next {
+		width: 30px;
+	}
+	#class-box {
+		-moz-box-flex: 1;
 		-webkit-box-flex: 1;
-    }
-    .class_main,#class-box,#class-next,#class-pre{
-    	-moz-box-sizing: border-box;
+	}
+	.class_main, #class-box, #class-next, #class-pre {
+		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
-    }
+	}
 	.week_id_num_span {
 		text-align: center;
 		width: 30px;
@@ -130,9 +129,9 @@
 		background-color: #0a64a4;
 		cursor: pointer;
 	}
-	.week_add_span{
+	.week_add_span {
 		color: #000000;
-		background-color: #F7FBFF;	
+		background-color: #F7FBFF;
 		cursor: pointer;
 		text-align: center;
 		width: 30px;
@@ -164,9 +163,9 @@
 		margin: 1px 1px;
 		font-size: 16px;
 	}
-	.week_move_span{
+	.week_move_span {
 		color: #000000;
-		background-color: #F7FBFF;	
+		background-color: #F7FBFF;
 		cursor: pointer;
 		text-align: center;
 		width: 30px;
@@ -216,24 +215,25 @@
 	#classInfo {
 		display: none;
 	}
-	#table_top{
+	#table_top {
 		display: -moz-box;
 		display: -webkit-box;
 	}
-	#table_top_left{
-		width:200px;
+	#table_top_left {
+		width: 200px;
 		text-align: center;
 	}
-	#table_top_right{
-		width:200px;
+	#table_top_right {
+		width: 250px;
 		text-align: center;
 	}
-	#table_top_main{
-		-moz-box-flex: 1;-webkit-box-flex: 1;
+	#table_top_main {
+		-moz-box-flex: 1;
+		-webkit-box-flex: 1;
 	}
-	#table_top,#table_top_left,#table_top_main,#table_top_right{
-		-moz-box-sizing:border-box;
-	    -webkit-box-sizing: border-box; 
+	#table_top, #table_top_left, #table_top_main, #table_top_right {
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
 	}
 </style>
 <div class='title'>
@@ -268,10 +268,12 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
                       <li><a id="delete_class">删除课程</a></li>
                       <li><a id="move_class">移动课程</a></li>
                       <li><a id="reload_class">初始化课表</a></li>
+                      <li><a id="follow_class">同步课程</a></li>
             </ul>
 			<botton class="btn btn-danger" id="reset_table" style="display: none;">
 					取消
 				</botton>
+			<booton class="btn btn-warning" id="get_stu_list" style="margin-left: 10px;">课程学生列表</booton>
 			</div>
 
 		</div>
@@ -311,19 +313,15 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 								<div class="form-group" >
 									<label class="col-sm-2 control-label" for="elabel">课程名</label>
 									<div class="col-sm-4">
-										<input type="text" id="elabel" placeholder="Class_Name" class="form-control">
+										<input type="text" id="elabel_text" placeholder="Class_Name" class="form-control">
+										
 									</div>
-									<label class="col-sm-2 control-label">课程属性</label>
+									<label class="col-sm-2 control-label">课程类型</label>
 									<div class="radio col-sm-4">
-										<label class="r-inline">
-											<input type="radio" class="ctype" name="ctype" id="ctype_1" value="必修">
-											必修</label>
-										<label class="redio-inline">
-											<input type="radio" class="ctype" name="ctype" id="ctype_2" value="限选">
-											限选</label>
-										<label class="r-inline">
-											<input type="radio" class="ctype" name="ctype" id="ctype_1" value="必修">
-											选修</label>
+										<label class="raio-inline">
+											<input type="radio" class="etype" name="etype" id="etype_1"  value="1" checked="checked">课程</label>
+										<label class="radio-inline" style="padding-top: 0px;">
+											<input type="radio" class="etype" name="etype" id="etype_2" value="2" onclick="change_radio()">活动</label>
 									</div>
 									
 								</div>
@@ -331,28 +329,49 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 									<label class="col-sm-2 control-label" for="etname">上课老师</label>
 									<div class="col-sm-4">
 										<input type="text" id="etname" class="form-control" placeholder="Class_Teacher">
+										<div style="z-index: 100;margin-top: -55px;background-color: #FFFFFF;height: auto;padding-left:0px ;width: 100%;display: none;" id="select_class_list">
+										<select id="class_label_list" clas="input-xlarge" multiple="multiple" onchange="select_change()" style="width:100%;">
+										<script>		
+										function select_change(){
+                                    		$("#elabel_text").val($("#class_label_list option:selected").text());
+                                    	}
+										</script>  
+										</select>
+										</div>
 									</div>
-									<label class="col-sm-2 control-label">课程类型</label>
+									<label class="col-sm-2 control-label" for="ctype">课程属性</label>
 									<div class="radio col-sm-4">
-										<label class="raio-inline">
-											<input type="radio" class="etype" name="etype" id="etype_1"  value="1">课程</label>
-										<label class="radio-inline" style="padding-top: 0px;">
-											<input type="radio" class="etype" name="etype" id="etype_2" value="2">活动</label>
+										<label class="r-inline">
+											<input type="radio" class="ctype" name="ctype" id="ctype_1" value="必修" checked="checked">
+											必修</label>
+										<label class="redio-inline">
+											<input type="radio" class="ctype" name="ctype" id="ctype_2" value="限选">
+											限选</label>
+										<label class="r-inline">
+											<input type="radio" class="ctype" name="ctype" id="ctype_3" value="选修">
+											选修</label>
+										<label class="r-inline">
+											<input type="radio" class="ctype" name="ctype" id="ctype_4" value="无">
+											无</label>
 									</div>
+									
 								</div>
 								<div class="form-group" >
                                     <label class="col-sm-2 control-label" for="einfo">课程简介</label>
 									<div class="col-sm-4">
 										<input type="text" id="einfo" placeholder="Class_Info" class="form-control">
 									</div>
-									<label class="col-sm-2 control-label">考试类型</label>
+									<label class="col-sm-2 control-label" for="exmtype">考试类型</label>
 									<div class="radio col-sm-4">
 										<label class="radio-inline">
-											<input type="radio" class="exmtype" name="exmtype" id="exmtype_1" value="考试">
+											<input type="radio" class="exmtype" name="exmtype" id="exmtype_1" value="考试" checked="checked">
 											考试课</label>
 										<label class="radio-inline" >
 											<input type="radio" class="exmtype"  name="exmtype" id="exmtype_2" value="考察">
 											考察课</label>
+										<label class="radio-inline" >
+											<input type="radio" class="exmtype"  name="exmtype" id="exmtype_3" value="无">
+											无</label>
 									</div>
 								</div>
 								<div class="form-group" >
@@ -360,7 +379,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 									<div class="col-sm-4">
 										<textarea id="cinfo" class="form-control" rows="5"></textarea>
 									</div>
-									<label class="col-sm-2 control-label" for="ealarm">上课时间</label>
+									<label class="col-sm-2 control-label" for="add_week_checkbox">上课时间</label>
 									<div class="col-sm-4" id="add_week_checkbox">
 								       
 									</div>
@@ -371,7 +390,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 										<p style="padding:0px 0px 0px 0px;">提前&nbsp;<input type="text" id="ealarm" placeholder="Before_time" value="10" >&nbsp;分钟提醒</p>
 										<p class="text-info">（-1 为无需提醒）</p>
 									</div>
-									<label class="col-sm-2 control-label" for="ealarm">提醒次数</label>
+									<label class="col-sm-2 control-label" for="ealarmtype">提醒次数</label>
 									<div class="col-sm-4">
 								       <label class="radio-inline">
 											<input type="radio" class="ealarmtype" name="ealarmtype" id="ealarmtype_1" value="1">
@@ -380,19 +399,19 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 											<input type="radio" class="ealarmtype"  name="ealarmtype" id="ealarmtype_2" value="2">
 											提醒三次</label>
 										<label class="radio-inline">
-											<input type="radio" class="ealarmtype"  name="ealarmtype" id="ealarmtype_3" value="3">
+											<input type="radio" class="ealarmtype"  name="ealarmtype" id="ealarmtype_3" value="3" checked="checked">
 											提醒一次</label>	
 									</div>
 								</div>	
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="ealarm">上课/活动地点</label>
+									<label class="col-sm-2 control-label" for="eaddress">上课/活动地点</label>
 									<div class="col-sm-4">
-										<input type="text" id="eaddress" placeholder="Class_ddress" class="form-control">
+										<input type="text" id="eaddress" placeholder="Class_ddress" class="form-control" name="eaddress">
 									</div>
-									<label class="col-sm-2 control-label" for="ealarm">是否替换原课程</label>
+									<label class="col-sm-2 control-label" for="replace">是否替换原课程</label>
 									<div class="col-sm-4">
 										<label class="radio-inline">
-										<input type="radio" name="replace" id="replace1" value="1">替换</label>
+										<input type="radio" name="replace" id="replace1" value="1" checked="checked">替换</label>
 										<label class="radio-inline">
 										<input type="radio" name="replace" id="replace2" value="0">不替换</label>
 									</div>
@@ -400,7 +419,13 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 								<input type="hidden" id="hidden_week_day">
 							</form>
 						</div>
-						</div>
+					    <script>
+					        function change_radio()
+					    	{
+					    		$("#exmtype_3").attr("checked",true);
+					    		$("#ctype_4").attr("checked",true);
+					    	}
+					    </script>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">
 								取消
@@ -409,35 +434,97 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 								确定
 							</button> 
 						</div>
+							</div>
 					</div>
 				</div>
 			</div>
-		<!--移动课表模态框-->
-		<div class="modal fade bs-example-modal-lg" id="class_move_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"  aria-hidden="true">
+		<!--查看课程学生列表模态框-->
+		<div class="modal fade bs-example-modal-lg" id="class_stulist_modal" tabindex="-1" role="dialog" aria-labelledby="myLagerModalLabel"  aria-hidden="true">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 						</button>
-						<h5 class="modal-title" id="login_ModalLabel">移动课程</h5>
+						<h5 class="modal-title" id="login_ModalLabel">该课程学生列表</h5>
 					</div>
 					<div class="modal-body">
 						<div class="modal-form" >
-							 <form class="form-horizontal" role="form">
-							<div class="form-group">
-							 
-								<label class="col-sm-2 control-label">课程名</label>
-								<div class="col-sm-4"><strong id="move_class_name"> </strong></div>
-								<label class="col-sm-2 control-label">上课时间</label>
-								<div class="col-sm-4" id="class_time"></div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">教学周选择</label>
-									<div class="col-sm-4" id="move_week_checkbox"></div>
-								<label class="col-sm-2 control-label">移动到</label>
-									<div class="col-sm-1">
-										<select size="4" style="width:70px" id="weekday_select">
+							<form class="form-horizontal" role="form">
+								<div class="form-group" >
+									<label class="col-sm-2 control-label" for="elabel">课程名</label>
+									<div class="col-sm-4">
+										<strong id="class_name_stu_list"></strong>
+									</div>
+									<label class="col-sm-2 control-label" for="exists">有课/没课切换</label>
+									<div class="col-sm-4">
+										<label class="radio-inline">
+											<input type="radio" class="ealarmtype_stu" name="exists" id="ealarmtype_stu_1" value="1" checked="checked">
+											选择该课程</label>
+										<label class="radio-inline">
+											<input type="radio" class="ealarmtype_stu"  name="exists" id="ealarmtype_stu_2" value="0" >
+											未选择该课程</label>
+									</div>
+								</div>
+								<div class="form-group" >
+									<div class="col-sm-1"></div>
+									<div class="col-sm-10">
+									<table class="table table-condensed table-striped" id="class_stu_table">
+										
+									</table>
+									<p id="class_stu_list_warming" class="text-center"></p>
+									</div>
+									<div class="col-sm-1"></div>
+								</div>
+								</form>
+						</div>
+						
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								取消
+							</button>
+							<button type="button" class="btn btn-info" id="class_list_button">
+								确定
+							</button>
+
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--移动课表模态框-->
+       	<div class="modal fade bs-example-modal-lg" id="class_move_modal"  tabindex="-1" role="dialog" aria-labelledby="myLagerModalLabel"  aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+       			<div class="modal-content">
+       				<div class="modal-header">
+       					<button type="button" class="close" data-dismiss="modal">
+       						<span aria-hidden="true">
+       							X
+       						</span>
+       						<span class="sr-only">Close</span>
+       					</button>
+       					<h4 class="modal-title" id="move_class_ModalLabel">移动课程</h4>
+       				</div>
+       				<div class="modal-body">
+       					<form role="form" class="form-horizontal">
+       						<div class="modal-form">
+       						 <div class="form-group">
+       							<label class="col-sm-2 control-label" for="elabel">课程名</label>
+									<div class="col-sm-4">
+										<strong id="move_class_name" style="margin-top: 7px;"></strong>
+									</div>
+									<label class="col-sm-2 control-label" for="class_time">上课时间</label>
+									<div class="col-sm-4">
+										<strong  id="class_time" style="margin-top: 7px;"></strong>
+									</div>
+       						 </div>
+       						 <div class="form-group">
+       							<label class="col-sm-2 control-label" for="move_week_checkbox">教学周选择</label>
+								<div class="col-sm-4" id="move_week_checkbox"></div>
+								<label class="col-sm-2 control-label" for="weekday_select">移动到</label>
+								<div class="col-sm-1">
+									<select size="4" style="width:70px" id="weekday_select">
 									<option value="1">周一</option>
 									<option value="2">周二</option>
 									<option value="3">周三</option>
@@ -445,25 +532,25 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 									<option value="5">周五</option>
 									<option value="6">周六</option>
 									<option value="7">周日</option>
-								</select></div>
-									<div class="col-sm-3">
-								    <select size="4" style="width: 50%;" id="dayclass_select">
+								    </select>
+								</div>
+								<div class="col-sm-1">
+								    <select size="4" style="width:80px;" id="dayclass_select">
 									<option value="1">第一大节</option>
 									<option value="2">第二大节</option>
 									<option value="3">第三大节</option>
 									<option value="4">第四大节</option>
 									<option value="5">第五大节</option>
 								</select>
-									</div>
-							
-							</div>
-							<div class="form-group">
+								</div>
+       						 </div>
+       					     <div class="form-group">
 									<label class="col-sm-2 control-label" for="ealarm">闹钟提醒</label>
 									<div class="col-sm-4">
 										<p style="padding:0px 0px 0px 0px;">提前&nbsp;<input type="text" id="moveealarm" placeholder="Before_time" value="10" >&nbsp;分钟提醒</p>
 										<p class="text-info">（-1 为无需提醒）</p>
 									</div>
-									<label class="col-sm-2 control-label" for="ealarm">提醒次数</label>
+									<label class="col-sm-2 control-label" for="ealarmtype">提醒次数</label>
 									<div class="col-sm-4">
 								       <label class="radio-inline">
 											<input type="radio" class="ealarmtype" name="moveealarmtype" id="moveealarmtype_1" value="1">
@@ -472,33 +559,27 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 											<input type="radio" class="ealarmtype"  name="moveealarmtype" id="moveealarmtype_2" value="2">
 											提醒三次</label>
 										<label class="radio-inline">
-											<input type="radio" class="ealarmtype"  name="moveealarmtype" id="moveealarmtype_3" value="3">
+											<input type="radio" class="ealarmtype"  name="moveealarmtype" id="moveealarmtype_3" value="3" checked="checked">
 											提醒一次</label>	
 									</div>
 								</div>	
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="ealarm">上课/活动地点</label>
+							 <div class="form-group">
+									<label class="col-sm-2 control-label" for="moveeaddress">上课/活动地点</label>
 									<div class="col-sm-4">
-										<input type="text" id="moveeaddress" placeholder="Class_ddress" class="form-control">
+										<input type="text" id="moveeaddress" placeholder="Class_ddress" class="form-control" name="moveeaddress">
 									</div>
 									
 								</div>	
-							</form>	
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								取消
-							</button> 
-							<button type="button" class="btn btn-info" id="class_move_button">
-								移动
-							</button> 
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<script>
-		</script>
+       						</div>
+       					</form>
+       				</div>
+       				<div class="modal-footer">
+       					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+       					<button type="button" class="btn btn-info">移动</button>
+       				</div>
+       			</div>
+       		</div>
+       	</div>
 	   <!--删除课表模态框-->
 		<div class="modal fade bs-example-modal-lg" id="class_delete_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"  aria-hidden="true">
 			<div class="modal-dialog modal-lg">
@@ -524,8 +605,8 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 							<button type="button" class="btn btn-default" data-dismiss="modal">
 								取消
 							</button> 
-							<button type="button" class="btn btn-danger" id="class_delete_button">
-								删除
+							<button type="button" class="btn btn-danger" id="class_delete_button" onclick='deleteClasses()'>
+								删除 
 							</button> 
 						</div>
 					</div>
@@ -580,7 +661,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 			
 			<table id="mytable" cellspacing="0" class="table table-bordered table-striped">
 				<tr>
-					<th id="trw_1"></td><th id="trw_2"></td><th id="trw_3"></td><th id="trw_4"></td><th id="trw_5"></td><th id="trw_6"></td><th id="trw_7"></td>
+					<th id="trw_1"></th><th id="trw_2"></td><th id="trw_3"></th><th id="trw_4"></th><th id="trw_5"></th><th id="trw_6"></th><th id="trw_7"></th>
 				</tr>
 			</table>
 			
@@ -604,7 +685,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 	</div>
 
 	<script>
-		var uid01 = document.getElementById("hidden_uid").value;
+				var uid01 = document.getElementById("hidden_uid").value;
 		var rows;
 		//共有的周数
 		var currentWeek;
@@ -619,11 +700,13 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 		var week_num;
 		var move_class_id;
 		var week_select_button_num=0;
+		var class_label_list_num=0;
+		
 		/*从服务器取得指定用户的课表,读取开始时间并计算当前教学周存入cookie,返回课程信息*/
 		$(document).ready(function() {
 			var APP = "__APP__";
 			var classTabel;
-			//请求数据
+			//请求课表数据
 			$.ajax({
 				type : "post",
 				dataType : "json",
@@ -664,7 +747,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 								if (itemClassexmtype == "限选") {
 									type = "xx";
 								}
-								$(trid).append("<td id=class_td_" + (i) + "_" + (i1) + "_" + (i2) + "  onmouseover='ViewInfor(id,event)' onmouseout='ViewDelete()'><span class='class_open_" + type + " test-center' id=class_" + (i) + "_" + (i1) + "_" + (i2) + ">" + itemClassLabel + "</span><span id='cid_"+itemClasscid+"_"+i+"_"+i1+"_"+i2+"' class='glyphicon glyphicon-remove delete_class' style='float:right;display:none'></span><span id='move_"+itemClasscid+"_"+i+"_"+i1+"_"+i2+"' class='glyphicon glyphicon-transfer move_class' style='float:right;display:none'></span></td> ");
+								$(trid).append("<td id=class_td_" + (i) + "_" + (i1) + "_" + (i2) + "  onmouseover='ViewInfor(id,event)' onmouseout='ViewDelete()'><span id='class_" + (i) + "_" + (i1) + "_" + (i2) + "' class='class_open_" + type + " test-center'>" + itemClassLabel + "</span><span id='cid_"+itemClasscid+"_"+i+"_"+i1+"_"+i2+"' class='glyphicon glyphicon-remove delete_class' style='float:right;display:none'></span><span id='list_"+i+"_"+i1+"_"+i2+"' class='glyphicon glyphicon-list class_stu_list' style='float:right;display:none'></span><span id='move_"+itemClasscid+"_"+i+"_"+i1+"_"+i2+"' class='glyphicon glyphicon-transfer move_class' style='float:right;display:none'></span></td>");
 							} else {
 								//alert("第"+(i+1)+"周星期"+(i2+1)+"第"+(i1+1)+"大节"+"没课");
 								$(trid).append("<td><span class='class_null'>" + "空" + "</span><span id='class_" + (i) + "_" + (i1) + "_" + (i2) + "' class='glyphicon glyphicon-plus add_class' style='float:right;display:none'></span></td> ");
@@ -745,6 +828,24 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 					
 				}
 			}	
+			$("#elabel_text").focus(function(){
+				$("#select_class_list").show();
+			});
+			$("#class_label_list").blur(function(){
+				$("#select_class_list").hide();
+			});
+			$("#elabel_text").keydown(function(e){
+				if(e.keyCode==40)
+				{   
+					$("#class_label_list").focus();
+					$("#class_label_list").get(0).selectedIndex=class_label_list_num;
+				}
+				if(e.keyCode==38)
+				{   
+					$("#class_label_list").focus();
+					$("#class_label_list").get(0).selectedIndex=1;
+				}
+			});
 			//移动课程添加时间
 			for(var i=0;i<rows;i++){
 			
@@ -762,16 +863,20 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 						$("#reset_table").hide();
 						$("#set_class_info").show();
 						$(".move_class").hide();
+						$("#get_stu_list").show();
+						$(".class_stu_list").hide();
 			});
 			//添加课程
 			$("#add_class").click(function(){
 						$(".add_class").show();
 						$("#set_class_info").hide();
 						$("#reset_table").show();	
+						$("#get_stu_list").hide();
 			});
 			//初始化
 			$("#reload_class").click(function(){
 						$("#reload_class_modal").modal('show');
+						
 			});
 			
 			//课程选择
@@ -782,17 +887,104 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 					$(".delete_class").show();
 					$("#set_class_info").hide();
 					$("#reset_table").show();	
+					$("#get_stu_list").hide();
 					});
 			//移动课表		
 			$("#move_class").click(function(){
 					$(".move_class").show();
 					$("#set_class_info").hide();
 					$("#reset_table").show();	
+					$("#get_stu_list").hide();
 					});	
-				
+			//获取课程学生列表
+			$("#get_stu_list").click(function(){
+				$(".class_stu_list").show();
+				$("#reset_table").show();	
+				$("#get_stu_list").hide();
+				$("#set_class_info").hide();
+			});
+			//获取课程学生列表Modal
+			$(".class_stu_list").click(function(){
+				var class_id=$(this).attr("id");
+				var str=new Array();
+				str=class_id.split("_");
+				class_stu_list_function(str);
+			});
+			$(".ealarmtype_stu").click(function(){
+				class_stu_list_function(str);
+			});
+			function class_stu_list_function(str)
+			{
+				var j=parseInt(str[1]);
+				var j1=parseInt(str[2]);
+			    var j2=parseInt(str[3]); 
+			      edayofweek=j2+1;
+			      ecofday=j1+1;
+			      eweek=j+1;
+			       //$("#move_week_checkbox").empty();
+					for (var i = 0; i < class_data.length; i++) {
+						for (var i1 = 0; i1 < class_data[i].length; i1++) {
+							for (var i2 = 0; i2 < class_data[i][i1].length; i2++) {
+								if (class_data[i][i1][i2] != null) {
+									if (i==j&& i1 == j1 && i2 == j2) {
+										class_name = class_data[i][i1][i2].elabel;
+									}
+								}
+							}
+						}
+					}
+					$("#class_name_stu_list").empty();
+					$("#class_name_stu_list").append(class_name);
+					get_stu_list(eweek,edayofweek,ecofday);
+					$("#class_stulist_modal").modal('show');
+			}
+			function get_stu_list(eweek,edayofweek,ecofday){
+				    var uid=$("#hidden_uid").val();
+					var aeweek=eweek;
+					var aedayofweek=edayofweek;
+					var aecofday=ecofday;
+					var exists=$(":radio[name='ealarmtype_stu']:checked").val();
+					$.ajax({
+						type:"post",
+						url:APP+"Table/stulist",
+						async:false,
+						dataType:"json",
+						data:
+						{
+						a_uid:uid,	
+						a_eweek:aeweek,
+						a_edayofweek:aedayofweek,
+						a_ecofday:aecofday,
+						a_exists:exists
+						},
+						success:function(data)
+						{
+							$("#class_stu_table").empty();
+							$("#class_stu_table").append("<tr><th class='col-sm-3'>学号</th><th class='col-sm-2'>真实姓名 </th><td class='col-sm-1'></td><th class='col-sm-3'>学号 </th><th class='col-sm-2'>真实姓名</th><td class='col-sm-1'></td></tr>");
+							$("#class_stu_table").append("<tr>");
+							var i=0;
+							$.each(data,function(i,item){
+								$("#class_stu_table").append("<td><span class='test-center'>"+item['ustuid']+"</span</td><td><span class='test-center'>"+item['urealname']+"</span></td><td></td>");
+								if(i%2==0)
+								{
+									$("#class_stu_table").append("</tr><tr>");
+									alert(i);
+								}
+								i++;
+							});
+							$("#class_stu_table").append("</tr>");
+						},
+						error:function(data)
+						{
+							$("#class_stu_list_warming").empty();
+							$("#class_stu_list_warming").append("数据异常，请刷新重试~谢谢");
+						}
+					});
+			}
 			//移动按钮课表		
-			var move_edayofweek;
-			var move_ecofday;
+			var edayofweek;
+			var ecofday;
+			var eweek;
 			$(".move_class").click(function(){
 				//$('#class_move_modal').modal('show');
 				 var class_time=$(this).attr("id");
@@ -802,9 +994,9 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 			      var j=parseInt(cid_str[2]);
 			      var j1=parseInt(cid_str[3]);
 			      var j2=parseInt(cid_str[4]);
-			      move_edayofweek=j2+1;
-			      move_ecofday=j1+1;
-			      move_eweek=j+1;
+			      edayofweek=j2+1;
+			      ecofday=j1+1;
+			      eweek=j+1;
 			       //$("#move_week_checkbox").empty();
 					for (var i = 0; i < class_data.length; i++) {
 						for (var i1 = 0; i1 < class_data[i].length; i1++) {
@@ -823,7 +1015,6 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 			     $("#class_time").append("周"+(j2+1)+"&nbsp;第"+(j1+1)+"节");
 			     $('#class_move_modal').modal('show');
 			});
-			
 			//移动课程button
 			$("#class_move_button").click(function(){
 				var uid=$("#hidden_uid").val();
@@ -832,8 +1023,8 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 				var ealarm=$("#moveealarm").val();
 				var ealarmtype=$(":radio[name='ealarmtype']:checked").val();	
 				var old_week=tempWeek+1;
-			    var old_edayofweek=move_edayofweek;
-			    var old_ecofday=move_ecofday;
+			    var old_edayofweek=edayofweek;
+			    var old_ecofday=ecofday;
 			    //alert(move_class_id);
 			    var classid_str = move_class_id.split("_");
 			    var eweek= parseInt(classid_str[1]);
@@ -875,7 +1066,6 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 			    	}
 			    });
 			});
-			
 			//删除按钮选中
             $(".delete_class").click(function(){
 				 var class_cid=$(this).attr("id");
@@ -898,7 +1088,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 							if(class_data[i][i1][i2].cid==cid&&i1==j1&&i2==j2)
 							{
 								  class_name=class_data[i][i1][i2].elabel;
-							      class_check+="<td class='text-center'><input type='checkbox' id='week_"+ (i+1) + "_" + (i2+1) + "_" + (i1+1)+"' value='week_"+ (i+1) + "_" + (i2+1) + "_" + (i1+1)+"' onclick='Checked(this.checked,"+item+")' name='week''>&nbsp;<span class='text-primary'>第"+(i+1)+"周"+"&nbsp;周"+(i2+1)+"&nbsp;第"+(i1+1)+"节</span></td>";	
+							      class_check+="<td class='text-center'><input type='checkbox' id='week_"+ (i+1) + "_" + (i2+1) + "_" + (i1+1)+"' value='week_"+ (i+1) + "_" + (i2+1) + "_" + (i1+1)+"' onclick='toChkSon(this.checked,id)' name='week''>&nbsp;<span class='text-primary'>第"+(i+1)+"周"+"&nbsp;周"+(i2+1)+"&nbsp;第"+(i1+1)+"节</span></td>";	
 							      if(j%4==0)
 							      {
 							       class_check+="</tr><tr>";
@@ -917,14 +1107,30 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 			     $("#class_name").empty();
 			     $("#class_name").append(""+class_name+"");  
 			});
-			
 			//添加按钮选中
             $(".add_class").click(function(){
 				 $('#add_class_modal').modal('show');
 				  $("#hidden_week_day").val($(this).attr("id"));
+				  $.ajax({
+					type:"post",
+					url:APP+"Table/label_list",
+					async:false,
+					dataType:"json",
+					data:{uid:$("#hidden_uid").val()},
+					success:function(data){
+						 
+						$.each(data, function(i,item) {  
+							//$.each(item, function(j,item1) {
+								class_label_list_num++;
+ 						       $("#class_label_list").append("<option value='"+item['elabel']+"'>"+item['elabel']+"</option>")                                                         
+						//});
+						});
+					}
+				});
 			});
+			//增加课程操作
 			$("#class_add_button").click(function(){
-				var elabel=$("#elabel").val();
+				var elabel=$("#elabel_text").val();
 				var ctype=$(":radio[name='ctype']:checked").val();
 				var etname=$("#etname").val();
 				var etype=$(":radio[name='etype']:checked").val();
@@ -1026,8 +1232,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 			    }
 				});
 			});
-			
-		});
+    });
 		//显示当前教学周的课表,并隐藏其他教学周
 		function DisplayByCurrentWeek(week) {
 			var brow = (week - 1) * 5 + 1;
@@ -1187,16 +1392,17 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 				url : APP + "Table/deleteclass",
 				async : false,
 				success : function(data) {
-					alert(data);
-//					if(data==1)
-//					 {
-//					 	alert("删除成功");
-//					 $("#class_delete_modal").modal('hide');
-//					 }
-//					 else
-//					 {
-//					 	alert(data);
-//					 }
+					//alert(data);
+					if(data==1)
+					 {
+					 	alert("删除成功");
+					    $("#class_delete_modal").modal('hide');
+					    window.location.href=APP+"Index/index_main";
+					 }
+					 else
+					 {
+					 	alert(data);
+					 }
 				},
 				error:function(data)
 				{
@@ -1223,6 +1429,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
               document.getElementById("now_week_num").title="第"+(tempWeek+1)+"周";
 			ChangeTimeView();
 		}
+		//课程选择状态切换
 			 $(".week_move").click(function(){
                   if($(this).attr("class")=="week_move week_move_span")
 				  {
@@ -1240,19 +1447,16 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 		
       $("#now_week_num").html("第</strong><strong class='text-danger' style='font-size:20px;'>&nbsp;"+(tempWeek+1)+"&nbsp;</strong><strong>周");
        document.getElementById("now_week_num").title="第"+(tempWeek+1)+"周";
-</script>
+	</script>
 </article>
 <script>
-	      $(document).ready(function(){
-           	$(".week_add").click(function(){
-                  if($(this).attr("class")=="week_add week_add_span")
-				  {
-						$(this).attr("class","week_add week_add_span_active");
-				  }
-			     else
-				{
-						$(this).attr("class","week_add week_add_span");
-				}
-			}); 
-			  }); 
+	$(document).ready(function() {
+		$(".week_add").click(function() {
+			if ($(this).attr("class") == "week_add week_add_span") {
+				$(this).attr("class", "week_add week_add_span_active");
+			} else {
+				$(this).attr("class", "week_add week_add_span");
+			}
+		});
+	}); 
 </script>

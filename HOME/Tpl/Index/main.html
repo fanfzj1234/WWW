@@ -171,16 +171,16 @@
 					<?php 
 	                         session_start();
 	                        
-	                          if($_SESSION['state']==2)
+	                          if($_COOKIE['login_info']==2)
 	                          {?>
 	  <div class="alert alert-danger alert-dismissible fade in" role="alert" id="login_info_alert_div">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">关闭</span><span class="sr-only">Close</span></button>
       <h4>注意!</h4>
-      <span>由于你是第一次登陆，以便以后继续使用，请尽快完善个人资料</span><br>
-      <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#login_info ">完善登陆信息</button>
+      <span>由于你是第一次登录，以便以后继续使用，请尽快完善个人资料</span><br>
+      <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#login_info ">完善登录信息</button>
        </div>
 	  <?php }?>
-	  <!-- 登陆信息完善 Modal 模态框 -->
+	  <!-- 登录信息完善 Modal 模态框 -->
 		<div class="modal fade bs-example-modal-sm" id="login_info" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"  aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -188,7 +188,7 @@
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 						</button>
-						<h5 class="modal-title" id="login_ModalLabel">完善登陆信息</h5>
+						<h5 class="modal-title" id="login_ModalLabel">完善登录信息</h5>
 					</div>
 					<div class="modal-body">
 						<div class="modal-form">
@@ -220,7 +220,7 @@
 							</form>
 							<!-- 状态提示栏 -->
 							<p id="login_info_alert" role="alert">
-								请尽快完善登陆信息，谢谢~
+								请尽快完善登录信息，谢谢~
 							</p>
 						</div>
 
@@ -457,7 +457,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
       });
 			
 			
-			/*登陆信息完善*/
+			/*登录信息完善*/
 			$("#login_info_button").click(function() {
 				login_info_go();
 			});
