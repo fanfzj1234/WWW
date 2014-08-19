@@ -15,9 +15,6 @@ $(document).ready(function() {
 		//文本框内容为空
 		$('#school_list_1').hide();
 	}
-	   $("#school_input_1").click(function(){
-	        $('#school_list_1').show(); 
-	   });
 	/*假如文本框进行输入*/
 	$("#school_input_1").keyup(function(e) {
 		if (e.keyCode != 40 && e.keyCode != 38) {
@@ -34,12 +31,10 @@ $(document).ready(function() {
 				success : function(data) {
 					$('#school_list_1').empty();
 					$.each(data, function(i, item) {
-						$("#school_list_1").append("<option value='"+ item.sclid1+"'>"+item.sclname +"</option>");
+
+						$("#school_list_1").append("<option value='" + item.sclid1 + "'>" + item.sclname + "</option>");
+
 					});
-				},
-				error:function(data){
-				     
-					alert("请刷新页面");
 				}
 			});
 		} else {
@@ -53,11 +48,14 @@ $(document).ready(function() {
 	$("#student_password_1").focus(function() {
 		$("#school_list_1").hide();
 	});
-		/*下拉列表选择，将选择的值放进文本框内*/
-	$("#school_list_1 option").click(function(event) {
-		$("#school_input_1").val($(this).text());
+	$("#school_input_1").focus(function() {
 		$("#school_list_1").hide();
 	});
+	//$("#school_list_1").change(function() {
+
+	//	alert($("school_list_1").find("option:selected").val());
+		//$("#school_input_1").attr("text",);
+//	});
 
 
 	//教师school下拉列表获取
@@ -81,15 +79,11 @@ $(document).ready(function() {
 					schoolName : inputString_2
 				},
 				async : false,
-				dataType : "json",
 				success : function(data, a) {
 					$('#school_list_2').empty();
-					$.each($.parseJSON(data), function(i, item) {
-						$("#school_list_2").append("<option value='"+ item.sclid1+"'>"+item.sclname +"</option>");
+					$.each(data, function(i, item) {
+						$("#school_list_2").append("<option>&nbsp;&nbsp;&nbsp;&nbsp;" + item.schoolName + "</option>");
 					});
-				},
-				error:function(data){
-					alert("请刷新页面");
 				}
 			});
 		} else {
@@ -112,8 +106,8 @@ $(document).ready(function() {
 	/*下拉列表选择，将选择的值放进文本框内*/
 	$("#school_list_2 option").click(function(event) {
 		$("#school_input_2").val($(this).text());
-		$("#school_list_2").hide();
 	});
+
 
 
 	//教师discipline下拉列表获取
@@ -161,5 +155,13 @@ $(document).ready(function() {
 	$("#discipline_list option").click(function(event) {
 		$("#discipline_input").val($(this).text());
 	});
-
+	/*$("#login_button").click(function(){
+	 window.location.href=APP+"Index/index_main";
+	 });
+	 $("#student_register_button").click(function(){
+	 window.location.href=APP+"Index/index_main";
+	 });
+	 $("#teacher_register_button").click(function(){
+	 window.location.href=APP+"Index/index_main";
+	 });*/
 }); 
